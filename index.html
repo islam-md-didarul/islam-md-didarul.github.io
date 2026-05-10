@@ -175,6 +175,32 @@
     .compact-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 14px;margin:0;padding:0;list-style:none;color:var(--muted)}
     .compact-list li{border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--soft)}
     .pub-note{font-size:.9rem;color:var(--muted);margin-top:8px}
+    .access-links{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+      margin-top:14px;
+    }
+    .access-card{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px;
+      background:var(--soft);
+    }
+    .access-card strong{display:block;margin-bottom:7px;color:var(--text)}
+    .link-row{display:flex;gap:8px;flex-wrap:wrap}
+    .link-chip{
+      display:inline-flex;
+      align-items:center;
+      padding:6px 9px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:#fff;
+      color:var(--accent-2);
+      font-size:.86rem;
+      font-weight:650;
+    }
+    .link-chip:hover{background:var(--soft-2);text-decoration:none}
 
     .timeline{position:relative;display:flex;flex-direction:column;gap:12px}
     .timeline .item{position:relative}
@@ -197,6 +223,7 @@
       .hero{grid-template-columns:1fr}
       .span3,.span4,.span6,.span8{grid-column:span 12}
       .compact-list{grid-template-columns:1fr}
+      .access-links{grid-template-columns:1fr}
     }
     @media (max-width:760px){
       .topbar .wrap{align-items:flex-start;flex-direction:column}
@@ -265,12 +292,12 @@
     <section class="hero" id="about" aria-labelledby="hero-title">
       <div>
         <p class="eyebrow">PhD Student · Doctoral Researcher · Mechanical & Aerospace Engineering</p>
-        <h1 id="hero-title">Computational research for biofluids, turbomachinery, composites, and intelligent engineering systems.</h1>
+        <h1 id="hero-title">Computational research for biofluids, turbomachinery, and related engineering systems.</h1>
         <p>
           I am a PhD student in the Department of Mechanical and Aerospace Engineering at
           <strong>Gyeongsang National University (GNU), South Korea</strong>, and a doctoral researcher at the
           <strong>Flow Information Lab</strong>. My work combines Computational Fluid Dynamics (CFD), experimental
-          validation, reduced-order modeling, and machine learning for practical engineering and biomedical applications.
+          validation, reduced-order modeling, and machine learning for practical engineering and biofluids applications.
         </p>
 
         <div class="meta" aria-label="Research keywords">
@@ -483,50 +510,119 @@
         <h2 id="publications-title">Selected Publications</h2>
         <p>Journal papers and research outputs</p>
       </div>
+
       <div class="items">
         <article class="item">
           <div class="top">
-            <div class="title">Experimental and CFD analysis of flow impediments and encrustation in ureteral stents using in vitro urinary tract model</div>
+            <div class="title">
+              <a href="https://www.nature.com/articles/s41598-025-04248-1" target="_blank" rel="noopener">
+                Experimental and CFD analysis of flow impediments and encrustation in ureteral stents using in vitro urinary tract model
+              </a>
+            </div>
             <span class="tag">2025 · Scientific Reports</span>
           </div>
-          <div class="desc">Islam, M. D., Kang, H. J., Tae, S. J., Kim, K. W., Choi, Y. H., Lee, S. B., et al. <a href="https://doi.org/10.1038/s41598-025-04248-1" target="_blank" rel="noopener">DOI</a></div>
+          <div class="desc">
+            Islam, M. D., Kang, H. J., Tae, S. J., Kim, K. W., Choi, Y. H., Lee, S. B., Rakibuzzaman, M., Kim, M. U., &amp; Kim, H. H.
+            <div class="link-row" style="margin-top:8px;">
+              <a class="link-chip" href="https://doi.org/10.1038/s41598-025-04248-1" target="_blank" rel="noopener">DOI</a>
+              <a class="link-chip" href="https://www.nature.com/articles/s41598-025-04248-1" target="_blank" rel="noopener">Article</a>
+              <a class="link-chip" href="https://www.nature.com/articles/s41598-025-04248-1.pdf" target="_blank" rel="noopener">PDF</a>
+            </div>
+          </div>
         </article>
+
         <article class="item">
           <div class="top">
-            <div class="title">A new approach to evaluate obstructive sleep apnea according to body mass index using breathing diagram</div>
+            <div class="title">
+              <a href="https://pubs.aip.org/aip/pof/article/36/9/091903/3311756/A-new-approach-to-evaluate-obstructive-sleep-apnea" target="_blank" rel="noopener">
+                A new approach to evaluate obstructive sleep apnea according to body mass index using breathing diagram
+              </a>
+            </div>
             <span class="tag">2024 · Physics of Fluids</span>
           </div>
-          <div class="desc">Islam, M. D., Kim, J. S., Jeon, S. J., Kang, H. J., Kim, K. W., Jeon, M. G., et al.</div>
+          <div class="desc">
+            Islam, M. D., Kim, J. S., Jeon, S. J., Kang, H. J., Kim, K. W., Jeon, M. G., et al.
+            <div class="link-row" style="margin-top:8px;">
+              <a class="link-chip" href="https://doi.org/10.1063/5.0223081" target="_blank" rel="noopener">DOI</a>
+              <a class="link-chip" href="https://pubs.aip.org/aip/pof/article/36/9/091903/3311756/A-new-approach-to-evaluate-obstructive-sleep-apnea" target="_blank" rel="noopener">Article</a>
+            </div>
+          </div>
         </article>
+
         <article class="item">
           <div class="top">
-            <div class="title">Koopman Theory Based Reduced-Order Modeling for Obstructive Sleep Apnea Diagnosis Using Breathing Power Diagram Features</div>
+            <div class="title">
+              <a href="https://pubs.aip.org/aip/pof/article/38/2/021917/3380436/Koopman-theory-based-reduced-order-modeling-for" target="_blank" rel="noopener">
+                Koopman theory-based reduced-order modeling for diagnosing obstructive sleep apnea using breathing power diagram
+              </a>
+            </div>
             <span class="tag">2026 · Physics of Fluids</span>
           </div>
-          <div class="desc">Kang, H.*, Islam, M. D.*, Choi, Y. H., Kim, H. H., &amp; Koo, B.</div>
+          <div class="desc">
+            Kang, H.*, Islam, M. D.*, Choi, Y. H., Kim, H. H., &amp; Koo, B.
+            <div class="link-row" style="margin-top:8px;">
+              <a class="link-chip" href="https://doi.org/10.1063/5.0315426" target="_blank" rel="noopener">DOI</a>
+              <a class="link-chip" href="https://pubs.aip.org/aip/pof/article/38/2/021917/3380436/Koopman-theory-based-reduced-order-modeling-for" target="_blank" rel="noopener">Article</a>
+            </div>
+          </div>
         </article>
+
         <article class="item">
           <div class="top">
-            <div class="title">Back-turn Approach for Optimal Operation of Booster Pump Systems</div>
+            <div class="title">
+              <a href="https://www.jafmonline.net/article_2703.html" target="_blank" rel="noopener">
+                Back-turn Approach for Optimal Operation of Booster Pump Systems
+              </a>
+            </div>
             <span class="tag">2025 · Journal of Applied Fluid Mechanics</span>
           </div>
-          <div class="desc">Bae, Y. S., Islam, M. D., Choi, Y. D., Kang, H. J., Tae, S. J., &amp; Kim, H. H.</div>
+          <div class="desc">
+            Bae, Y. S., Islam, M. D., Choi, Y. D., Kang, H. J., Tae, S. J., &amp; Kim, H. H.
+            <div class="link-row" style="margin-top:8px;">
+              <a class="link-chip" href="https://doi.org/10.47176/jafm.18.9.3428" target="_blank" rel="noopener">DOI</a>
+              <a class="link-chip" href="https://www.jafmonline.net/article_2703.html" target="_blank" rel="noopener">Article</a>
+              <a class="link-chip" href="https://www.jafmonline.net/article_2703_b62f8636646c4eabf10632cc823b4411.pdf" target="_blank" rel="noopener">PDF</a>
+            </div>
+          </div>
         </article>
+
         <article class="item">
           <div class="top">
-            <div class="title">Numerical Simulation of Solid–Liquid Two-Phase Flow Analysis of Submersible Drainage Pumps</div>
+            <div class="title">
+              <a href="https://onlinelibrary.wiley.com/doi/10.1002/ird.3119" target="_blank" rel="noopener">
+                Numerical Simulation of Solid–Liquid Two-Phase Flow Analysis of Submersible Drainage Pumps
+              </a>
+            </div>
             <span class="tag">2025 · Irrigation and Drainage</span>
           </div>
-          <div class="desc">Rakibuzzaman, M., Islam, M. D., Kim, H. H., Suh, S. H., Zhou, L., &amp; Iqbal, A. P.</div>
+          <div class="desc">
+            Rakibuzzaman, M., Islam, M. D., Kim, H. H., Suh, S. H., Zhou, L., &amp; Iqbal, A. P.
+            <div class="link-row" style="margin-top:8px;">
+              <a class="link-chip" href="https://doi.org/10.1002/ird.3119" target="_blank" rel="noopener">DOI</a>
+              <a class="link-chip" href="https://onlinelibrary.wiley.com/doi/10.1002/ird.3119" target="_blank" rel="noopener">Article</a>
+            </div>
+          </div>
         </article>
+
         <article class="item">
           <div class="top">
-            <div class="title">Analysis of epoxy composites reinforced with jute, banana, and coconut fibers and enhanced with Rubik's layer</div>
+            <div class="title">
+              <a href="https://www.sciencedirect.com/science/article/pii/S1751616123005040" target="_blank" rel="noopener">
+                Analysis of epoxy composites reinforced with jute, banana, and coconut fibers and enhanced with Rubik's layer
+              </a>
+            </div>
             <span class="tag">2023 · J. Mechanical Behavior of Biomedical Materials</span>
           </div>
-          <div class="desc">Al Mahmud, M. Z., Islam, M. D., &amp; Rabbi, S. F.</div>
+          <div class="desc">
+            Al Mahmud, M. Z., Islam, M. D., &amp; Rabbi, S. F.
+            <div class="link-row" style="margin-top:8px;">
+              <a class="link-chip" href="https://doi.org/10.1016/j.jmbbm.2023.106151" target="_blank" rel="noopener">DOI</a>
+              <a class="link-chip" href="https://www.sciencedirect.com/science/article/pii/S1751616123005040" target="_blank" rel="noopener">Article</a>
+            </div>
+          </div>
         </article>
       </div>
+
       <p class="pub-note">
         For a full publication list, see the linked Google Scholar and Google Sites profiles.
       </p>
@@ -589,8 +685,8 @@
           <h3>Awards</h3>
           <ul class="list">
             <li>Best Presentation Award — IAHR-Asia 2025 Conference, South Korea (2025)</li>
-            <li>Young Pioneer Researcher Award — Gyeongsang National University, South Korea (2025,2026)</li>
-            <li>Miyan Publications Rewards — IUBAT, Bangladesh (2024,2025,2026)</li>
+            <li>Young Pioneer Researcher Award — Gyeongsang National University, South Korea (2025)</li>
+            <li>Miyan Publications Rewards — IUBAT, Bangladesh (2024)</li>
             <li>Academic Excellence Award / Dean's List — IUBAT, Bangladesh (2015–2018)</li>
           </ul>
         </div>
@@ -641,7 +737,7 @@
             <a href="https://www.researchgate.net/profile/Md-Islam-929" target="_blank" rel="noopener">ResearchGate</a> ·
             <a href="https://sites.google.com/view/islam-md-didarul" target="_blank" rel="noopener">Google Site</a>
           </p>
-          <p class="pub-note">Add your preferred public email address here if you want direct email contact on the page.</p>
+          <p class="pub-note">didarul@gnu.ac.kr</p>
         </div>
       </div>
     </section>
