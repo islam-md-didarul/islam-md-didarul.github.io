@@ -3,81 +3,186 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Didarul Islam | Portfolio</title>
-  <meta name="description" content="Personal portfolio of Didarul Islam — research, publications, experience, and contact." />
+  <meta name="color-scheme" content="light" />
+  <title>Md. Didarul Islam | Research Portfolio</title>
+  <meta name="description" content="Personal research portfolio of Md. Didarul Islam: biofluids, turbomachinery, composite materials, machine learning, publications, projects, experience, and contact links." />
+  <meta name="author" content="Md. Didarul Islam" />
+  <meta property="og:title" content="Md. Didarul Islam | Research Portfolio" />
+  <meta property="og:description" content="PhD Student and Doctoral Researcher at Gyeongsang National University working on CFD, biofluids, turbomachinery, composite materials, and machine learning." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://islam-md-didarul.github.io/" />
+  <link rel="canonical" href="https://islam-md-didarul.github.io/" />
+
   <style>
     :root{
       --bg:#ffffff;
       --text:#101114;
-      --muted:#5a606b;
-      --line:#e7e9ee;
+      --muted:#5b6370;
       --soft:#f6f7f9;
+      --soft-2:#eef2f7;
       --card:#ffffff;
-      --max:980px;
-      --radius:16px;
+      --line:#e4e7ec;
+      --accent:#0f172a;
+      --accent-2:#334155;
+      --shadow:0 12px 32px rgba(15,23,42,.08);
+      --max:1080px;
+      --radius:18px;
     }
+
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.55}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      padding:0;
+      background:
+        radial-gradient(circle at top left, rgba(15,23,42,.08), transparent 32rem),
+        var(--bg);
+      color:var(--text);
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      line-height:1.58;
+    }
+
     a{color:inherit;text-decoration:none}
     a:hover{text-decoration:underline}
+    b,strong{font-weight:750}
     .wrap{max-width:var(--max);margin:0 auto;padding:24px}
+    .skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{left:16px;top:16px;width:auto;height:auto;padding:10px 12px;border-radius:10px;background:#fff;border:1px solid var(--line);z-index:1000}
+
     .topbar{
-      position:sticky;top:0;z-index:10;
-      background:rgba(255,255,255,.9);
-      backdrop-filter:saturate(180%) blur(10px);
+      position:sticky;
+      top:0;
+      z-index:20;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:saturate(180%) blur(12px);
       border-bottom:1px solid var(--line);
     }
-    .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 24px}
-    .brand{font-weight:750;letter-spacing:.2px}
-    .nav{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
-    .nav a{padding:6px 10px;border-radius:999px}
-    .nav a:hover{background:var(--soft);text-decoration:none}
+    .topbar .wrap{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 24px;
+    }
+    .brand{font-weight:800;letter-spacing:.2px;white-space:nowrap}
+    .brand span{display:block;font-size:.78rem;color:var(--muted);font-weight:550;letter-spacing:0}
+    .nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .nav a{padding:7px 10px;border-radius:999px;color:var(--muted);font-size:.94rem}
+    .nav a:hover{background:var(--soft);color:var(--text);text-decoration:none}
 
-    .hero{padding:22px 0 8px}
-    .hero h1{font-size:2rem;margin:0 0 6px}
-    .hero p{margin:0;color:var(--muted);max-width:72ch}
-    .meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-    .pill{font-size:.92rem;padding:7px 10px;border:1px solid var(--line);background:var(--soft);border-radius:999px}
-    .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    main.wrap{padding-top:30px}
+    section{scroll-margin-top:86px}
+    .hero{
+      display:grid;
+      grid-template-columns:1.55fr .75fr;
+      gap:24px;
+      align-items:stretch;
+      padding:28px 0 10px;
+    }
+    .eyebrow{margin:0 0 10px;color:var(--muted);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:.78rem}
+    .hero h1{font-size:clamp(2.2rem,5vw,4.2rem);line-height:1.04;margin:0 0 14px;letter-spacing:-.05em}
+    .hero p{margin:0;color:var(--muted);max-width:74ch;font-size:1.05rem}
+    .hero-card{
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:22px;
+      background:linear-gradient(180deg,#fff,var(--soft));
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:18px;
+    }
+    .avatar{
+      width:86px;
+      height:86px;
+      border-radius:24px;
+      display:grid;
+      place-items:center;
+      background:var(--accent);
+      color:#fff;
+      font-size:1.65rem;
+      font-weight:800;
+      letter-spacing:.02em;
+    }
+    .hero-card h2{margin:0;font-size:1.2rem}
+    .hero-card p{font-size:.95rem}
+
+    .meta,.cta,.chips{display:flex;gap:10px;flex-wrap:wrap}
+    .meta{margin-top:18px}
+    .pill,.chip{
+      font-size:.92rem;
+      padding:7px 10px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.78);
+      border-radius:999px;
+      color:var(--accent-2);
+    }
+    .cta{margin-top:20px}
     .btn{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:9px 12px;border-radius:12px;border:1px solid var(--line);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:10px 13px;
+      border-radius:13px;
+      border:1px solid var(--line);
       background:var(--card);
+      font-weight:650;
+      font-size:.95rem;
     }
     .btn:hover{background:var(--soft);text-decoration:none}
     .btn.primary{background:var(--text);color:#fff;border-color:var(--text)}
-    .btn.primary:hover{opacity:.92}
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:18px}
+    .btn.primary:hover{opacity:.92;background:var(--text)}
+
+    .section{margin-top:34px}
+    .section-title{display:flex;align-items:end;justify-content:space-between;gap:14px;margin-bottom:13px}
+    .section h2{font-size:1.35rem;margin:0;letter-spacing:-.02em}
+    .section-title p{margin:0;color:var(--muted);font-size:.95rem}
+
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
     .card{
-      background:var(--card);
+      background:rgba(255,255,255,.88);
       border:1px solid var(--line);
       border-radius:var(--radius);
-      padding:14px;
+      padding:16px;
+      min-height:100%;
     }
-    .card h2{font-size:1.05rem;margin:0 0 8px}
+    .card h3,.card h2{font-size:1.02rem;margin:0 0 7px}
     .card p{margin:0;color:var(--muted)}
-    .span6{grid-column:span 6}
+    .span3{grid-column:span 3}
     .span4{grid-column:span 4}
+    .span6{grid-column:span 6}
+    .span8{grid-column:span 8}
     .span12{grid-column:span 12}
 
-    .section{margin-top:22px}
-    .section h2{font-size:1.15rem;margin:0 0 10px}
-    .list{margin:0;padding-left:18px;color:var(--muted)}
-    .list li{margin:6px 0}
-    .items{display:flex;flex-direction:column;gap:10px}
+    .items{display:flex;flex-direction:column;gap:11px}
     .item{
       border:1px solid var(--line);
-      border-radius:14px;
-      padding:12px;
+      border-radius:16px;
+      padding:14px;
       background:#fff;
     }
-    .item .top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:wrap}
-    .item .title{font-weight:650}
-    .item .tag{font-size:.85rem;color:var(--muted);background:var(--soft);border:1px solid var(--line);padding:4px 8px;border-radius:999px}
-    .item .desc{margin-top:6px;color:var(--muted)}
+    .item .top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .title{font-weight:760}
+    .subtitle{color:var(--muted);font-size:.95rem;margin-top:2px}
+    .tag{font-size:.84rem;color:var(--accent-2);background:var(--soft);border:1px solid var(--line);padding:4px 8px;border-radius:999px;white-space:nowrap}
+    .desc{margin-top:8px;color:var(--muted)}
+    .desc ul{margin:7px 0 0;padding-left:18px}
+    .desc li{margin:4px 0}
+    .list{margin:0;padding-left:18px;color:var(--muted)}
+    .list li{margin:7px 0}
+    .compact-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 14px;margin:0;padding:0;list-style:none;color:var(--muted)}
+    .compact-list li{border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--soft)}
+    .pub-note{font-size:.9rem;color:var(--muted);margin-top:8px}
+
+    .timeline{position:relative;display:flex;flex-direction:column;gap:12px}
+    .timeline .item{position:relative}
+
+    .contact-card a{text-decoration:underline;text-underline-offset:3px}
     .footer{
-      margin-top:28px;
-      padding-top:18px;
+      margin-top:36px;
+      padding:18px 0 28px;
       border-top:1px solid var(--line);
       color:var(--muted);
       font-size:.92rem;
@@ -86,24 +191,69 @@
       gap:12px;
       flex-wrap:wrap;
     }
-    .small{font-size:.92rem;color:var(--muted)}
-    code.k{background:var(--soft);border:1px solid var(--line);padding:2px 6px;border-radius:8px}
-    @media (max-width:820px){
-      .span6,.span4{grid-column:span 12}
+    code.k{background:var(--soft);border:1px solid var(--line);padding:2px 6px;border-radius:8px;color:var(--accent-2)}
+
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .span3,.span4,.span6,.span8{grid-column:span 12}
+      .compact-list{grid-template-columns:1fr}
+    }
+    @media (max-width:760px){
       .topbar .wrap{align-items:flex-start;flex-direction:column}
       .nav{justify-content:flex-start}
+      .wrap{padding:20px}
+      .topbar .wrap{padding:13px 20px}
+    }
+    @media print{
+      .topbar,.cta{display:none}
+      body{background:#fff}
+      .wrap{max-width:100%;padding:0}
+      .card,.item,.hero-card{box-shadow:none;break-inside:avoid}
+      section{break-inside:avoid}
     }
   </style>
-</head>
-<body>
 
-  <header class="topbar">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Md. Didarul Islam",
+    "jobTitle":"PhD Student and Doctoral Researcher",
+    "affiliation":[
+      {"@type":"CollegeOrUniversity","name":"Gyeongsang National University"},
+      {"@type":"Organization","name":"Flow Information Lab"}
+    ],
+    "alumniOf":[
+      {"@type":"CollegeOrUniversity","name":"Gyeongsang National University"},
+      {"@type":"CollegeOrUniversity","name":"IUBAT—International University of Business Agriculture and Technology"}
+    ],
+    "sameAs":[
+      "https://github.com/islam-md-didarul",
+      "https://www.linkedin.com/in/islam-md-didarul",
+      "https://sites.google.com/view/islam-md-didarul",
+      "https://scholar.google.com/citations?hl=en&user=re2yAfAAAAAJ",
+      "https://www.researchgate.net/profile/Md-Islam-929"
+    ],
+    "knowsAbout":["Computational Fluid Dynamics","Biofluid Engineering","Turbomachinery","Composite Materials","Machine Learning","Medical Twin","Reduced-order Modeling"]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="topbar" aria-label="Primary navigation">
     <div class="wrap">
-      <div class="brand">Didarul Islam</div>
-      <nav class="nav">
+      <a class="brand" href="#about" aria-label="Md. Didarul Islam home">
+        Md. Didarul Islam
+        <span>Research Portfolio</span>
+      </a>
+      <nav class="nav" aria-label="Site navigation">
         <a href="#about">About</a>
         <a href="#focus">Focus</a>
+        <a href="#education">Education</a>
         <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
         <a href="#publications">Publications</a>
         <a href="#awards">Awards</a>
         <a href="#contact">Contact</a>
@@ -111,182 +261,399 @@
     </div>
   </header>
 
-  <main class="wrap">
-    <!-- HERO -->
-    <section class="hero" id="about">
-      <h1>Researcher Portfolio</h1>
-      <p>
-        I work on <b>Biofluids</b>, <b>Turbomachinery</b>, <b>Composite Materials</b>, and <b>Machine Learning</b>.
-        This page summarizes my work, publications, and academic activities.
-      </p>
+  <main class="wrap" id="main">
+    <section class="hero" id="about" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">PhD Student · Doctoral Researcher · Mechanical & Aerospace Engineering</p>
+        <h1 id="hero-title">Computational research for biofluids, turbomachinery, composites, and intelligent engineering systems.</h1>
+        <p>
+          I am a PhD student in the Department of Mechanical and Aerospace Engineering at
+          <strong>Gyeongsang National University (GNU), South Korea</strong>, and a doctoral researcher at the
+          <strong>Flow Information Lab</strong>. My work combines Computational Fluid Dynamics (CFD), experimental
+          validation, reduced-order modeling, and machine learning for practical engineering and biomedical applications.
+        </p>
 
-      <div class="meta">
-        <span class="pill">Biofluids</span>
-        <span class="pill">Turbomachinery</span>
-        <span class="pill">Composite Materials</span>
-        <span class="pill">Machine Learning</span>
+        <div class="meta" aria-label="Research keywords">
+          <span class="pill">Biofluid Engineering</span>
+          <span class="pill">Computational Fluid Dynamics</span>
+          <span class="pill">Turbomachinery</span>
+          <span class="pill">Composite Materials</span>
+          <span class="pill">Machine Learning</span>
+        </div>
+
+        <div class="cta" aria-label="Profile links">
+          <a class="btn primary" href="#contact">Contact</a>
+          <a class="btn" href="https://github.com/islam-md-didarul" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/islam-md-didarul" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://scholar.google.com/citations?hl=en&user=re2yAfAAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+          <a class="btn" href="https://sites.google.com/view/islam-md-didarul" target="_blank" rel="noopener">Google Site</a>
+          <!-- Upload your CV PDF to /assets/ and then replace the href below. -->
+          <a class="btn" href="assets/CV_Md_Didarul_Islam.pdf" target="_blank" rel="noopener">CV</a>
+        </div>
       </div>
 
-      <div class="cta">
-        <a class="btn primary" href="#contact">Contact</a>
-        <a class="btn" href="https://github.com/islam-md-didarul" target="_blank" rel="noopener">GitHub</a>
-        <!-- Replace these with your real links -->
-        <a class="btn" href="#" target="_blank" rel="noopener">Google Scholar</a>
-        <a class="btn" href="#" target="_blank" rel="noopener">CV (PDF)</a>
-      </div>
+      <aside class="hero-card" aria-label="Profile summary">
+        <div>
+          <div class="avatar" aria-hidden="true">MDI</div>
+          <h2>Md. Didarul Islam</h2>
+          <p>PhD Student, Department of Mechanical and Aerospace Engineering, GNU, South Korea</p>
+        </div>
+        <div class="chips">
+          <span class="chip">Senior Lecturer, IUBAT (On Study Leave)</span>
+          <span class="chip">Flow Information Lab</span>
+          <span class="chip">Jinju-si, South Korea</span>
+        </div>
+      </aside>
+    </section>
 
-      <!-- QUICK INFO CARDS -->
+    <section class="section" id="focus" aria-labelledby="focus-title">
+      <div class="section-title">
+        <h2 id="focus-title">Research Focus</h2>
+        <p>Core areas and representative applications</p>
+      </div>
       <div class="grid">
-        <div class="card span6">
-          <h2>Current Role</h2>
-          <p>Write 1 line (e.g., PhD student / Research assistant / Lecturer) + institution.</p>
-        </div>
-        <div class="card span6">
-          <h2>Tools</h2>
-          <p>ANSYS / MATLAB / Python / CFD / FEM / Data Analysis (edit as needed)</p>
-        </div>
-        <div class="card span4">
-          <h2>Research</h2>
-          <p>Projects, simulations, experiments, modeling.</p>
-        </div>
-        <div class="card span4">
-          <h2>Teaching</h2>
-          <p>Courses, mentoring, lab supervision.</p>
-        </div>
-        <div class="card span4">
-          <h2>Service</h2>
-          <p>Volunteering, reviewing, leadership.</p>
-        </div>
+        <article class="card span6">
+          <h3>Biofluids & Medical Twin</h3>
+          <p>
+            CFD and experimental analysis of physiological flows, including thrombin-induced clot formation in pseudoaneurysms,
+            ureteral stent flow obstruction/encrustation, and upper-airway airflow for obstructive sleep apnea diagnosis.
+          </p>
+        </article>
+        <article class="card span6">
+          <h3>Turbomachinery</h3>
+          <p>
+            Numerical and experimental studies of pump and propeller systems, including hydraulic performance optimization,
+            cavitation/erosion analysis, booster-pump operation, and rim-driven propeller duct-shape effects.
+          </p>
+        </article>
+        <article class="card span6">
+          <h3>Composite Materials</h3>
+          <p>
+            Natural fiber-reinforced composites, eco-friendly biopolymers, additive manufacturing, and materials for biomedical
+            and structural engineering applications.
+          </p>
+        </article>
+        <article class="card span6">
+          <h3>Machine Learning & Reduced-order Modeling</h3>
+          <p>
+            Integration of machine learning concepts such as Dynamic Mode Decomposition, Koopman theory, and reduced-order
+            modeling to support faster diagnosis, simulation, and engineering decision-making.
+          </p>
+        </article>
       </div>
     </section>
 
-    <!-- FOCUS -->
-    <section class="section" id="focus">
-      <h2>Research Focus</h2>
-      <div class="grid">
-        <div class="card span6">
-          <h2>Biofluids</h2>
-          <p>2–3 lines describing your biofluids research focus and methods.</p>
-        </div>
-        <div class="card span6">
-          <h2>Turbomachinery</h2>
-          <p>2–3 lines describing your turbomachinery work (CFD, performance, design, etc.).</p>
-        </div>
-        <div class="card span6">
-          <h2>Composite Materials</h2>
-          <p>2–3 lines describing composites work (modeling, experiments, optimization, etc.).</p>
-        </div>
-        <div class="card span6">
-          <h2>Machine Learning</h2>
-          <p>2–3 lines describing ML applications in your research.</p>
-        </div>
+    <section class="section" id="education" aria-labelledby="education-title">
+      <div class="section-title">
+        <h2 id="education-title">Academic Credentials</h2>
+        <p>Education and research training</p>
       </div>
-      <p class="small" style="margin-top:10px;">
-        Tip: Keep each block short (like Google Sites). Link details via buttons if needed.
-      </p>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section class="section" id="experience">
-      <h2>Experience</h2>
-      <div class="items">
-        <div class="item">
+      <div class="timeline items">
+        <article class="item">
           <div class="top">
-            <div class="title">Research Experience — Position / Lab</div>
-            <span class="tag">YYYY–YYYY</span>
-          </div>
-          <div class="desc">1–2 bullets worth of results. Example: CFD modeling, experimental setup, publication output.</div>
-        </div>
-        <div class="item">
-          <div class="top">
-            <div class="title">Teaching Experience — Course / Role</div>
-            <span class="tag">YYYY</span>
-          </div>
-          <div class="desc">Example: TA for Fluid Mechanics, tutoring, lab instruction.</div>
-        </div>
-        <div class="item">
-          <div class="top">
-            <div class="title">Industry Experience — Company / Role</div>
-            <span class="tag">YYYY</span>
-          </div>
-          <div class="desc">Example: analysis, design support, automation scripts, reporting.</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PUBLICATIONS -->
-    <section class="section" id="publications">
-      <h2>Selected Publications</h2>
-      <div class="items">
-        <!-- Copy/paste publication item blocks -->
-        <div class="item">
-          <div class="top">
-            <div class="title">Paper Title (Journal/Conference)</div>
-            <span class="tag">Year</span>
+            <div>
+              <div class="title">Doctor of Philosophy (Ph.D.) — Ongoing</div>
+              <div class="subtitle">Mechanical & Aerospace Engineering, Gyeongsang National University, South Korea</div>
+            </div>
+            <span class="tag">2025–2028</span>
           </div>
           <div class="desc">
-            Authors. <i>Venue</i>. <a href="#" target="_blank" rel="noopener">DOI/Link</a>
+            Research project: Development of a 3D Upper Airway Medical Twin based on Reduced-order Model (RoM)
+            for non-invasive diagnosis of obstructive sleep apnea.
           </div>
-        </div>
+        </article>
 
-        <div class="item">
+        <article class="item">
           <div class="top">
-            <div class="title">Paper Title (Topic: Biofluids / Turbomachinery / etc.)</div>
-            <span class="tag">Year</span>
+            <div>
+              <div class="title">Master of Science (M.Sc.)</div>
+              <div class="subtitle">Mechanical Engineering, Gyeongsang National University, South Korea</div>
+            </div>
+            <span class="tag">2023–2025</span>
           </div>
           <div class="desc">
-            Authors. <i>Venue</i>. <a href="#" target="_blank" rel="noopener">DOI/Link</a>
+            Thesis: Experimental and Computational Fluid Dynamics Analysis of Thrombin-Induced Coagulation in Complex
+            Morphologies of Femoral Artery Pseudoaneurysms. CGPA: 4.21/4.50.
           </div>
+        </article>
+
+        <article class="item">
+          <div class="top">
+            <div>
+              <div class="title">Master of Science (Coursework)</div>
+              <div class="subtitle">Mechanical Engineering, Dhaka University of Engineering & Technology, Bangladesh</div>
+            </div>
+            <span class="tag">2019–2021</span>
+          </div>
+          <div class="desc">CGPA: 3.83/4.00. Thesis proposal on mechanical and thermal characterization of silicon matrix composites.</div>
+        </article>
+
+        <article class="item">
+          <div class="top">
+            <div>
+              <div class="title">Bachelor of Science (B.Sc.)</div>
+              <div class="subtitle">Mechanical Engineering, IUBAT, Bangladesh</div>
+            </div>
+            <span class="tag">2014–2017</span>
+          </div>
+          <div class="desc">CGPA: 3.84/4.00; ranked 1st out of 92. Practicum project on refrigerator production processes.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <div class="section-title">
+        <h2 id="experience-title">Experience</h2>
+        <p>Research, teaching, and industry background</p>
+      </div>
+      <div class="grid">
+        <div class="card span4">
+          <h3>Research Experience</h3>
+          <ul class="list">
+            <li><strong>Doctoral Researcher</strong>, Flow Information Lab, GNU, South Korea (Sep 2025–Aug 2028)</li>
+            <li><strong>Graduate Research Assistant</strong>, Flow Information Lab, GNU, South Korea (Sep 2023–Aug 2025)</li>
+            <li><strong>Undergraduate Thesis Supervisor</strong>, Department of Mechanical Engineering, IUBAT (Jan 2021–Aug 2023)</li>
+          </ul>
+        </div>
+        <div class="card span4">
+          <h3>Teaching Experience</h3>
+          <ul class="list">
+            <li><strong>Senior Lecturer</strong>, IUBAT, Bangladesh (Jan 2022–Aug 2023)</li>
+            <li><strong>Lecturer</strong>, IUBAT, Bangladesh (Jan 2020–Dec 2021)</li>
+            <li><strong>Instructor</strong>, Pubergaon Polytechnic and Medical Institute (Jan 2018–Dec 2018)</li>
+          </ul>
+        </div>
+        <div class="card span4">
+          <h3>Industry Experience</h3>
+          <ul class="list">
+            <li><strong>Assistant Engineer (Mechanical)</strong>, Shams Engineering, Bangladesh (Jan 2019–Dec 2019)</li>
+            <li><strong>Internship Trainee</strong>, Minister Hi-Tech Park, Bangladesh (Sep 2017–Dec 2017)</li>
+            <li><strong>Executive (Marketing)</strong>, CADD CORE Engineering Training Institute (Feb 2017–Sep 2017)</li>
+          </ul>
         </div>
       </div>
+    </section>
 
-      <p class="small" style="margin-top:10px;">
-        Keep 3–6 “selected” papers here. If you want a full list later, we can add a second page.
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="section-title">
+        <h2 id="projects-title">Participating Research Projects</h2>
+        <p>Selected ongoing and completed projects</p>
+      </div>
+      <div class="items">
+        <article class="item">
+          <div class="top">
+            <div class="title">3D Upper Airway Medical Twin based on Reduced-order Model for OSA Diagnosis</div>
+            <span class="tag">2025.09–2028.08</span>
+          </div>
+          <div class="desc">Funder: Glocal R&amp;D Research Center. Focus: CFD, reduced-order modeling, medical-twin framework, and non-invasive diagnosis.</div>
+        </article>
+        <article class="item">
+          <div class="top">
+            <div class="title">Global Aerospace Digital Composites Pioneering Research</div>
+            <span class="tag">2025.03–2027.02</span>
+          </div>
+          <div class="desc">Funder: GADIST Research Center, GNU. Focus: aerospace digital composites and engineering simulation.</div>
+        </article>
+        <article class="item">
+          <div class="top">
+            <div class="title">Rim-driven Pump Equipped Firefighting Drone for High-rise Building Fire Response</div>
+            <span class="tag">2025.04–2026.02</span>
+          </div>
+          <div class="desc">Funder: College of Space and Aeronautics Research Center, GNU. Focus: pump/propulsion performance and CFD-based design evaluation.</div>
+        </article>
+        <article class="item">
+          <div class="top">
+            <div class="title">Small Hydropower By-pass Piping CFD Analysis Data</div>
+            <span class="tag">2025.02–2025.12</span>
+          </div>
+          <div class="desc">Funder: K-water. Focus: CFD analysis data for hydraulic engineering applications.</div>
+        </article>
+        <article class="item">
+          <div class="top">
+            <div class="title">Optimal Thrombin Injection Method for Femoral Artery Pseudoaneurysm Treatment</div>
+            <span class="tag">2023.09–2025.02</span>
+          </div>
+          <div class="desc">Funder: National Research Foundation of Korea. Focus: biofluid experiments, CFD, and treatment-related flow analysis.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="publications" aria-labelledby="publications-title">
+      <div class="section-title">
+        <h2 id="publications-title">Selected Publications</h2>
+        <p>Journal papers and research outputs</p>
+      </div>
+      <div class="items">
+        <article class="item">
+          <div class="top">
+            <div class="title">Experimental and CFD analysis of flow impediments and encrustation in ureteral stents using in vitro urinary tract model</div>
+            <span class="tag">2025 · Scientific Reports</span>
+          </div>
+          <div class="desc">Islam, M. D., Kang, H. J., Tae, S. J., Kim, K. W., Choi, Y. H., Lee, S. B., et al. <a href="https://doi.org/10.1038/s41598-025-04248-1" target="_blank" rel="noopener">DOI</a></div>
+        </article>
+        <article class="item">
+          <div class="top">
+            <div class="title">A new approach to evaluate obstructive sleep apnea according to body mass index using breathing diagram</div>
+            <span class="tag">2024 · Physics of Fluids</span>
+          </div>
+          <div class="desc">Islam, M. D., Kim, J. S., Jeon, S. J., Kang, H. J., Kim, K. W., Jeon, M. G., et al.</div>
+        </article>
+        <article class="item">
+          <div class="top">
+            <div class="title">Koopman Theory Based Reduced-Order Modeling for Obstructive Sleep Apnea Diagnosis Using Breathing Power Diagram Features</div>
+            <span class="tag">2026 · Physics of Fluids</span>
+          </div>
+          <div class="desc">Kang, H.*, Islam, M. D.*, Choi, Y. H., Kim, H. H., &amp; Koo, B.</div>
+        </article>
+        <article class="item">
+          <div class="top">
+            <div class="title">Back-turn Approach for Optimal Operation of Booster Pump Systems</div>
+            <span class="tag">2025 · Journal of Applied Fluid Mechanics</span>
+          </div>
+          <div class="desc">Bae, Y. S., Islam, M. D., Choi, Y. D., Kang, H. J., Tae, S. J., &amp; Kim, H. H.</div>
+        </article>
+        <article class="item">
+          <div class="top">
+            <div class="title">Numerical Simulation of Solid–Liquid Two-Phase Flow Analysis of Submersible Drainage Pumps</div>
+            <span class="tag">2025 · Irrigation and Drainage</span>
+          </div>
+          <div class="desc">Rakibuzzaman, M., Islam, M. D., Kim, H. H., Suh, S. H., Zhou, L., &amp; Iqbal, A. P.</div>
+        </article>
+        <article class="item">
+          <div class="top">
+            <div class="title">Analysis of epoxy composites reinforced with jute, banana, and coconut fibers and enhanced with Rubik's layer</div>
+            <span class="tag">2023 · J. Mechanical Behavior of Biomedical Materials</span>
+          </div>
+          <div class="desc">Al Mahmud, M. Z., Islam, M. D., &amp; Rabbi, S. F.</div>
+        </article>
+      </div>
+      <p class="pub-note">
+        For a full publication list, see the linked Google Scholar and Google Sites profiles.
       </p>
     </section>
 
-    <!-- AWARDS -->
-    <section class="section" id="awards">
-      <h2>Awards & Scholarships</h2>
-      <ul class="list">
-        <li>Award / Scholarship name — Institution (Year)</li>
-        <li>Award / Scholarship name — Institution (Year)</li>
-        <li>Award / Scholarship name — Institution (Year)</li>
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="section-title">
+        <h2 id="skills-title">Technical Skills</h2>
+        <p>Software, programming, and research tools</p>
+      </div>
+      <ul class="compact-list">
+        <li><strong>CAD:</strong> AutoCAD, SolidWorks, NX, Ansys SpaceClaim</li>
+        <li><strong>Simulation:</strong> Ansys CFX, ICEM CFD, Ansys Workbench</li>
+        <li><strong>Programming:</strong> Python, C, Google Colab</li>
+        <li><strong>Numerical Analysis:</strong> MATLAB, ANSYS CFD</li>
+        <li><strong>Data & Visualization:</strong> RStudio, Python, Minitab, MS Excel</li>
+        <li><strong>Writing:</strong> LaTeX, Overleaf, Google Docs, MS Office Suite</li>
+        <li><strong>Imaging & Diagrams:</strong> NIH BioArt, 3D Doctor, ImageJ, Draw.io, Canva</li>
+        <li><strong>Reference Management:</strong> Mendeley, EndNote, Zotero</li>
       </ul>
     </section>
 
-    <!-- CONTACT -->
-    <section class="section" id="contact">
-      <h2>Contact</h2>
+    <section class="section" id="conferences" aria-labelledby="conferences-title">
+      <div class="section-title">
+        <h2 id="conferences-title">Conference Presentations</h2>
+        <p>Selected recent presentations</p>
+      </div>
+      <div class="items">
+        <article class="item">
+          <div class="top">
+            <div class="title">CFD Analysis of Duct Shape Effects on Thrust in Electric Hubless Rim-Driven Propellers</div>
+            <span class="tag">KSFM Winter Conference · 2025</span>
+          </div>
+          <div class="desc">Korean Society of Fluid Machinery Winter Conference, South Korea.</div>
+        </article>
+        <article class="item">
+          <div class="top">
+            <div class="title">Back-Turn method for energy optimization in Booster pump systems</div>
+            <span class="tag">IAHR-Asia · 2025</span>
+          </div>
+          <div class="desc">5th IAHR Asian Working Group Symposium on Hydraulic Machinery and Systems, South Korea.</div>
+        </article>
+        <article class="item">
+          <div class="top">
+            <div class="title">Effects of Cavitation and Erosion on the Hydraulic Performances of SDPs</div>
+            <span class="tag">4AWHM · 2025</span>
+          </div>
+          <div class="desc">4th Asian Workshop on Hydraulic Machinery, Japan.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="awards" aria-labelledby="awards-title">
+      <div class="section-title">
+        <h2 id="awards-title">Awards & Scholarships</h2>
+        <p>Recognition and funding</p>
+      </div>
       <div class="grid">
         <div class="card span6">
-          <h2>Email</h2>
-          <p>your.email@domain.com</p>
+          <h3>Awards</h3>
+          <ul class="list">
+            <li>Best Presentation Award — IAHR-Asia 2025 Conference, South Korea (2025)</li>
+            <li>Young Pioneer Researcher Award — Gyeongsang National University, South Korea (2025,2026)</li>
+            <li>Miyan Publications Rewards — IUBAT, Bangladesh (2024,2025,2026)</li>
+            <li>Academic Excellence Award / Dean's List — IUBAT, Bangladesh (2015–2018)</li>
+          </ul>
         </div>
         <div class="card span6">
-          <h2>Links</h2>
-          <p>
-            <a href="https://github.com/islam-md-didarul" target="_blank" rel="noopener">GitHub</a> ·
-            <a href="#" target="_blank" rel="noopener">LinkedIn</a> ·
-            <a href="#" target="_blank" rel="noopener">Google Scholar</a>
-          </p>
-        </div>
-        <div class="card span12">
-          <h2>Address / Affiliation</h2>
-          <p>Department / University / City, Country (optional)</p>
-          <p class="small">You can also add <code class="k">ORCID</code> and <code class="k">ResearchGate</code> here.</p>
+          <h3>Scholarships</h3>
+          <ul class="list">
+            <li>GNU Fellowship — Gyeongsang National University, South Korea (2025–2028)</li>
+            <li>CSA Research Scholarship — Gyeongsang National University, South Korea (2025–2026)</li>
+            <li>GNU Fellowship — Master's study, Gyeongsang National University (2023–2025)</li>
+            <li>Merit-Based Scholarship, 100% Tuition Fee Waiver — IUBAT, Bangladesh (2014–2017)</li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <div class="footer">
-      <div>© <span id="y"></span> Didarul Islam</div>
-      <div>Built with GitHub Pages · Single-page portfolio</div>
-    </div>
+    <section class="section" id="memberships" aria-labelledby="memberships-title">
+      <div class="section-title">
+        <h2 id="memberships-title">Memberships</h2>
+        <p>Professional society involvement</p>
+      </div>
+      <div class="grid">
+        <div class="card span4"><h3>KSFM</h3><p>Student Member, Korean Society of Fluid Machinery</p></div>
+        <div class="card span4"><h3>KSME</h3><p>Student Member, Korean Society of Mechanical Engineers</p></div>
+        <div class="card span4"><h3>BESCO</h3><p>Student Member, Biomedical Engineering Society for Circulatory Disorders</p></div>
+      </div>
+    </section>
+
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="section-title">
+        <h2 id="contact-title">Contact</h2>
+        <p>Academic profiles and professional links</p>
+      </div>
+      <div class="grid">
+        <div class="card span6 contact-card">
+          <h3>Affiliation</h3>
+          <p>
+            Flow Information Lab<br />
+            Department of Mechanical and Aerospace Engineering<br />
+            Gyeongsang National University, Jinju-si, South Korea
+          </p>
+        </div>
+        <div class="card span6 contact-card">
+          <h3>Profile Links</h3>
+          <p>
+            <a href="https://github.com/islam-md-didarul" target="_blank" rel="noopener">GitHub</a> ·
+            <a href="https://www.linkedin.com/in/islam-md-didarul" target="_blank" rel="noopener">LinkedIn</a> ·
+            <a href="https://scholar.google.com/citations?hl=en&user=re2yAfAAAAAJ" target="_blank" rel="noopener">Google Scholar</a> ·
+            <a href="https://www.researchgate.net/profile/Md-Islam-929" target="_blank" rel="noopener">ResearchGate</a> ·
+            <a href="https://sites.google.com/view/islam-md-didarul" target="_blank" rel="noopener">Google Site</a>
+          </p>
+          <p class="pub-note">Add your preferred public email address here if you want direct email contact on the page.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>© <span id="year"></span> Md. Didarul Islam</div>
+      <div>Built for GitHub Pages · Single-page academic portfolio</div>
+    </footer>
   </main>
 
   <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
