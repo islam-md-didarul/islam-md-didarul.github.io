@@ -28,6 +28,8 @@
       --shadow:0 12px 32px rgba(15,23,42,.08);
       --max:1080px;
       --radius:18px;
+      --hero-card-width:330px;
+      --hero-text-width:680px;
     }
 
     *{box-sizing:border-box}
@@ -73,17 +75,41 @@
 
     main.wrap{padding-top:30px}
     section{scroll-margin-top:86px}
+
+    /* Layout updated so the left text stops cleanly before the profile card. */
     .hero{
       display:grid;
-      grid-template-columns:1.55fr .75fr;
-      gap:24px;
-      align-items:stretch;
+      grid-template-columns:minmax(0, 1fr) var(--hero-card-width);
+      gap:48px;
+      align-items:start;
       padding:28px 0 10px;
     }
+    .hero-copy{
+      max-width:var(--hero-text-width);
+      min-width:0;
+    }
+
     .eyebrow{margin:0 0 10px;color:var(--muted);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:.78rem}
-    .hero h1{font-size:clamp(1.8rem,4vw,3.2rem);line-height:1.00;margin:0 0 14px;letter-spacing:-.04em}
+    .hero h1{
+      max-width:var(--hero-text-width);
+      font-size:clamp(1.8rem,4vw,3.2rem);
+      line-height:1.00;
+      margin:0 0 14px;
+      letter-spacing:-.04em;
+      text-wrap:balance;
+    }
+
+    /* Reusable justification class for longer paragraph text. */
+    .justify-text{
+      text-align:justify;
+      text-justify:inter-word;
+      hyphens:auto;
+      overflow-wrap:break-word;
+    }
+
     .hero p{margin:0;color:var(--muted);max-width:74ch;font-size:1.05rem}
     .hero-card{
+      width:100%;
       border:1px solid var(--line);
       border-radius:28px;
       padding:22px;
@@ -105,7 +131,7 @@
       box-shadow:0 8px 20px rgba(15,23,42,.10);
     }
     .hero-card h2{margin:0;font-size:1.2rem}
-    .hero-card p{font-size:.95rem}
+    .hero-card p{font-size:.95rem;text-align:left}
 
     .meta,.cta,.chips{display:flex;gap:10px;flex-wrap:wrap}
     .meta{margin-top:18px}
@@ -137,7 +163,7 @@
     .section{margin-top:34px}
     .section-title{display:flex;align-items:end;justify-content:space-between;gap:14px;margin-bottom:13px}
     .section h2{font-size:1.35rem;margin:0;letter-spacing:-.02em}
-    .section-title p{margin:0;color:var(--muted);font-size:.95rem}
+    .section-title p{margin:0;color:var(--muted);font-size:.95rem;text-align:right}
 
     .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
     .card{
@@ -148,7 +174,7 @@
       min-height:100%;
     }
     .card h3,.card h2{font-size:1.02rem;margin:0 0 7px}
-    .card p{margin:0;color:var(--muted)}
+    .card p{margin:0;color:var(--muted);text-align:justify;text-justify:inter-word;hyphens:auto;overflow-wrap:break-word}
     .span3{grid-column:span 3}
     .span4{grid-column:span 4}
     .span6{grid-column:span 6}
@@ -166,14 +192,14 @@
     .title{font-weight:760}
     .subtitle{color:var(--muted);font-size:.95rem;margin-top:2px}
     .tag{font-size:.84rem;color:var(--accent-2);background:var(--soft);border:1px solid var(--line);padding:4px 8px;border-radius:999px;white-space:nowrap}
-    .desc{margin-top:8px;color:var(--muted)}
-    .desc ul{margin:7px 0 0;padding-left:18px}
+    .desc{margin-top:8px;color:var(--muted);text-align:justify;text-justify:inter-word;hyphens:auto;overflow-wrap:break-word}
+    .desc ul{margin:7px 0 0;padding-left:18px;text-align:left}
     .desc li{margin:4px 0}
     .list{margin:0;padding-left:18px;color:var(--muted)}
     .list li{margin:7px 0}
     .compact-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 14px;margin:0;padding:0;list-style:none;color:var(--muted)}
     .compact-list li{border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--soft)}
-    .pub-note{font-size:.9rem;color:var(--muted);margin-top:8px}
+    .pub-note{font-size:.9rem;color:var(--muted);margin-top:8px;text-align:justify;text-justify:inter-word;hyphens:auto}
     .access-links{
       display:grid;
       grid-template-columns:repeat(2,minmax(0,1fr));
@@ -205,6 +231,7 @@
     .timeline .item{position:relative}
 
     .contact-card a{text-decoration:underline;text-underline-offset:3px}
+    .contact-card p{text-align:left}
     .footer{
       margin-top:36px;
       padding:18px 0 28px;
@@ -219,7 +246,8 @@
     code.k{background:var(--soft);border:1px solid var(--line);padding:2px 6px;border-radius:8px;color:var(--accent-2)}
 
     @media (max-width:900px){
-      .hero{grid-template-columns:1fr}
+      .hero{grid-template-columns:1fr;gap:24px}
+      .hero-copy,.hero h1{max-width:100%}
       .span3,.span4,.span6,.span8{grid-column:span 12}
       .compact-list{grid-template-columns:1fr}
       .access-links{grid-template-columns:1fr}
@@ -229,6 +257,10 @@
       .nav{justify-content:flex-start}
       .wrap{padding:20px}
       .topbar .wrap{padding:13px 20px}
+      .section-title{align-items:flex-start;flex-direction:column}
+      .section-title p{text-align:left}
+      .hero h1{text-wrap:auto}
+      .justify-text,.card p,.desc,.pub-note{text-align:left}
     }
     @media print{
       .topbar,.cta{display:none}
@@ -289,10 +321,10 @@
 
   <main class="wrap" id="main">
     <section class="hero" id="about" aria-labelledby="hero-title">
-      <div>
+      <div class="hero-copy">
         <p class="eyebrow">Doctoral Researcher · Mechanical & Aerospace Engineering</p>
         <h1 id="hero-title">Computational research for biofluids, turbomachinery and related engineering systems.</h1>
-        <p>
+        <p class="justify-text">
           I am a PhD student in the Department of Mechanical and Aerospace Engineering at
           <strong>Gyeongsang National University (GNU), South Korea</strong>, and a doctoral researcher at the
           <strong>Flow Information Lab</strong>. My work combines Computational Fluid Dynamics (CFD), experimental
