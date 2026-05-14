@@ -23,6 +23,29 @@
       h3 { margin: 0 0 4px 0; font-size: 16px; font-weight: 600; }
       p { margin: 0 0 12px 0; }
       ul { margin-top: 0; }
+      /* Word-style full justification from top to bottom.
+         Headings, name, profile links, image labels, badges, and footer remain visually controlled. */
+      p, li, .section-cell, .paper-text-cell, .profile-text {
+        text-align: justify;
+        text-justify: inter-word;
+        hyphens: auto;
+        overflow-wrap: break-word;
+      }
+      p, li {
+        text-align-last: left;
+      }
+      .name, h2, h3, .paper-img, .badge, .small, .profile-photo, .muted.badge {
+        text-align: initial;
+      }
+      .name { text-align: center !important; }
+      p[style*="text-align:center"], p[style*="text-align: center"] {
+        text-align: center !important;
+        text-align-last: center !important;
+      }
+      p[style*="text-align:right"], p[style*="text-align: right"] {
+        text-align: right !important;
+        text-align-last: right !important;
+      }
       .name {
         font-size: 32px;
         font-weight: 400;
@@ -37,6 +60,7 @@
       }
       .section-cell { padding: 16px; }
       .paper-img {
+        text-align: center;
         width: 150px;
         min-height: 95px;
         border-radius: 8px;
@@ -83,6 +107,20 @@
         border-radius: 8px;
         padding: 10px;
         background: #fafafa;
+      }
+
+      .paper-img, .paper-img * {
+        text-align: center !important;
+        text-align-last: center !important;
+      }
+      .paper-text-cell p, .section-cell p, .profile-text p:not(.name) {
+        text-align: justify;
+        text-align-last: left;
+        text-justify: inter-word;
+      }
+      .section-cell li {
+        text-align: justify;
+        text-align-last: left;
       }
       @media (max-width: 700px) {
         .profile-text, .profile-image, .paper-image-cell, .paper-text-cell {
