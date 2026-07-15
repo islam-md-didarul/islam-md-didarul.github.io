@@ -23,6 +23,14 @@
       --text: #202124;
       --muted: #667085;
       --border: #e4e7ec;
+      --page-bg: #f7f6f2; /* Main off-white page background */
+      --network-line: rgba(56, 118, 168, 0.16);
+      --network-line-strong: rgba(56, 118, 168, 0.26);
+      --network-dot: rgba(32, 84, 128, 0.58);
+      --network-glow: rgba(120, 186, 232, 0.22);
+      --section-line-1: rgba(48, 111, 160, 0.16);
+      --section-line-2: rgba(30, 92, 145, 0.52);
+      --section-line-3: rgba(133, 194, 232, 0.26);
       --surface: #f8fafc;
       --surface-blue: #f2f7fc;
       --white: #ffffff;
@@ -37,19 +45,145 @@
     }
 
     html {
+      background: var(--page-bg);
       scroll-behavior: smooth;
       scroll-padding-top: calc(var(--nav-height) + 18px);
     }
 
     body {
+      position: relative;
       margin: 0;
+      overflow-x: hidden;
       color: var(--text);
-      background: var(--white);
+      background: var(--page-bg);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
         "Segoe UI", sans-serif;
       font-size: 16px;
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+    }
+
+    .background-network {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 1;
+    }
+
+    /* CSS/SVG fallback motion: visible even when canvas animation is throttled. */
+    .background-network-svg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: visible;
+      opacity: 0.62;
+    }
+
+    .network-line {
+      fill: none;
+      stroke: rgba(48, 111, 160, 0.38);
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-dasharray: 10 10;
+      animation: network-line-flow 5.6s linear infinite;
+    }
+
+    .network-line.strong {
+      stroke: rgba(36, 91, 137, 0.52);
+      stroke-width: 2.5;
+      stroke-dasharray: 14 10;
+      animation-duration: 4.2s;
+    }
+
+    .network-node-svg {
+      fill: rgba(29, 84, 129, 0.66);
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: network-node-pulse 2.6s ease-in-out infinite alternate;
+    }
+
+    .network-node-svg:nth-of-type(3n) {
+      animation-delay: -0.8s;
+    }
+
+    .network-node-svg:nth-of-type(4n) {
+      animation-delay: -1.5s;
+    }
+
+    .network-halo-svg {
+      fill: rgba(108, 177, 224, 0.18);
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: network-halo-pulse 3.2s ease-in-out infinite alternate;
+    }
+
+    .network-cluster-a {
+      transform-origin: 22% 22%;
+      animation: network-drift-a 8s ease-in-out infinite alternate;
+    }
+
+    .network-cluster-b {
+      transform-origin: 78% 20%;
+      animation: network-drift-b 10s ease-in-out infinite alternate;
+    }
+
+    .network-cluster-c {
+      transform-origin: 52% 64%;
+      animation: network-drift-c 9s ease-in-out infinite alternate;
+    }
+
+    .network-cluster-d {
+      transform-origin: 18% 78%;
+      animation: network-drift-d 11s ease-in-out infinite alternate;
+    }
+
+    @keyframes network-line-flow {
+      from { stroke-dashoffset: 0; }
+      to { stroke-dashoffset: -180; }
+    }
+
+    @keyframes network-node-pulse {
+      from { opacity: 0.5; transform: scale(0.78); }
+      to { opacity: 1; transform: scale(1.32); }
+    }
+
+    @keyframes network-halo-pulse {
+      from { opacity: 0.18; transform: scale(0.75); }
+      to { opacity: 0.5; transform: scale(1.3); }
+    }
+
+    @keyframes network-drift-a {
+      from { transform: translate3d(-12px, -7px, 0) rotate(-0.8deg); }
+      to { transform: translate3d(24px, 17px, 0) rotate(1.4deg); }
+    }
+
+    @keyframes network-drift-b {
+      from { transform: translate3d(13px, -10px, 0) rotate(0.8deg); }
+      to { transform: translate3d(-25px, 19px, 0) rotate(-1.5deg); }
+    }
+
+    @keyframes network-drift-c {
+      from { transform: translate3d(-18px, 10px, 0) rotate(-1deg); }
+      to { transform: translate3d(21px, -21px, 0) rotate(1.2deg); }
+    }
+
+    @keyframes network-drift-d {
+      from { transform: translate3d(8px, 16px, 0) rotate(0.6deg); }
+      to { transform: translate3d(29px, -15px, 0) rotate(-1.1deg); }
+    }
+
+    .site-nav,
+    main,
+    footer,
+    .skip-link {
+      position: relative;
+      z-index: 1;
     }
 
     img {
@@ -145,7 +279,7 @@
       top: 0;
       z-index: 1000;
       min-height: var(--nav-height);
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(247, 246, 242, 0.96);
       border-bottom: 1px solid var(--border);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
@@ -189,21 +323,52 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      gap: 3px;
+      gap: 0;
       list-style: none;
       margin: 0;
       padding: 0;
     }
 
+    .nav-links li {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links li:not(:last-child)::after {
+      content: "";
+      width: 2px;
+      height: 25px;
+      margin: 0 3px;
+      border-radius: 999px;
+      background: linear-gradient(
+        180deg,
+        rgba(23, 105, 170, 0.08),
+        rgba(23, 105, 170, 0.5),
+        rgba(23, 105, 170, 0.08)
+      );
+      box-shadow: 0 0 8px rgba(23, 105, 170, 0.14);
+      transform-origin: center;
+      animation: nav-separator-pulse 3.2s ease-in-out infinite;
+    }
+
+    .nav-links li:nth-child(even)::after {
+      animation-delay: -1.6s;
+    }
+
     .nav-link {
       position: relative;
       display: inline-block;
-      padding: 9px 10px;
+      padding: 10px 12px 11px;
       color: #3f4650;
-      border-radius: 7px;
+      border-radius: 8px;
       font-size: 0.86rem;
-      font-weight: 650;
+      font-weight: 680;
       white-space: nowrap;
+      transition:
+        color 0.22s ease,
+        background-color 0.22s ease,
+        transform 0.22s ease;
     }
 
     .nav-link:hover,
@@ -214,27 +379,84 @@
       text-decoration: none;
     }
 
-    .nav-link.active::after,
-    .nav-link[aria-current="location"]::after {
+    .nav-link::after {
       content: "";
       position: absolute;
-      right: 10px;
-      bottom: 4px;
-      left: 10px;
-      height: 2px;
-      border-radius: 2px;
-      background: var(--blue);
+      right: 4px;
+      bottom: 3px;
+      left: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--blue-dark), #4d9bd5, var(--blue-dark));
+      background-size: 220% 100%;
+      box-shadow:
+        0 2px 7px rgba(23, 105, 170, 0.28),
+        0 0 10px rgba(77, 155, 213, 0.18);
+      opacity: 0;
+      transform: scaleX(0.35);
+      transform-origin: center;
+      transition: opacity 0.22s ease, transform 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after,
+    .nav-link[aria-current="location"]::after {
+      opacity: 1;
+      transform: scaleX(1);
+      animation: nav-underline-flow 2.4s linear infinite;
+    }
+
+    .nav-link:hover {
+      transform: translateY(-1px);
+    }
+
+    @keyframes nav-separator-pulse {
+      0%, 100% {
+        opacity: 0.42;
+        transform: scaleY(0.76);
+      }
+      50% {
+        opacity: 1;
+        transform: scaleY(1.08);
+      }
+    }
+
+    @keyframes nav-underline-flow {
+      from { background-position: 0% 50%; }
+      to { background-position: 220% 50%; }
     }
 
     /* Shared sections */
     main section {
+      position: relative;
       scroll-margin-top: calc(var(--nav-height) + 18px);
       padding: 58px 0;
-      border-top: 1px solid var(--border);
+      border-top: 0;
     }
 
-    main section:first-child {
-      border-top: 0;
+    main section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        var(--section-line-1) 6%,
+        var(--section-line-2) 26%,
+        var(--section-line-3) 50%,
+        var(--section-line-2) 74%,
+        var(--section-line-1) 94%,
+        transparent 100%);
+      background-size: 220% 100%;
+      animation: section-separator-flow 7.5s linear infinite;
+      box-shadow: 0 0 12px rgba(65, 138, 189, 0.14);
+      opacity: 0.95;
+    }
+
+    main section:first-child::before {
+      display: none;
     }
 
     .section-heading {
@@ -521,8 +743,30 @@
     }
 
     details.archive {
+      position: relative;
       margin-top: 26px;
-      border-top: 1px solid var(--border);
+      border-top: 0;
+    }
+
+    details.archive::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        var(--section-line-1) 8%,
+        var(--section-line-2) 30%,
+        var(--section-line-3) 50%,
+        var(--section-line-2) 70%,
+        var(--section-line-1) 92%,
+        transparent 100%);
+      background-size: 220% 100%;
+      animation: section-separator-flow 6.6s linear infinite;
+      box-shadow: 0 0 10px rgba(65, 138, 189, 0.12);
+      opacity: 0.92;
     }
 
     details.archive summary {
@@ -660,9 +904,31 @@
     }
 
     .presentation-showcase {
+      position: relative;
       margin-top: 38px;
       padding-top: 34px;
-      border-top: 1px solid var(--border);
+      border-top: 0;
+    }
+
+    .presentation-showcase::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        var(--section-line-1) 8%,
+        var(--section-line-2) 30%,
+        var(--section-line-3) 50%,
+        var(--section-line-2) 70%,
+        var(--section-line-1) 92%,
+        transparent 100%);
+      background-size: 220% 100%;
+      animation: section-separator-flow 6.8s linear infinite;
+      box-shadow: 0 0 10px rgba(65, 138, 189, 0.12);
+      opacity: 0.92;
     }
 
     .presentation-showcase-head {
@@ -978,12 +1244,14 @@
       left: 0;
       z-index: 1001;
       width: 100%;
-      height: 3px;
+      height: 5px;
       pointer-events: none;
       transform: scaleX(0);
       transform-origin: left center;
       background: linear-gradient(90deg, var(--blue), #62a8df);
-      box-shadow: 0 0 10px rgba(23, 105, 170, 0.25);
+      box-shadow:
+        0 2px 8px rgba(23, 105, 170, 0.28),
+        0 0 14px rgba(98, 168, 223, 0.22);
     }
 
     .site-nav {
@@ -991,7 +1259,7 @@
     }
 
     .site-nav.is-scrolled {
-      background: rgba(255, 255, 255, 0.985);
+      background: rgba(247, 246, 242, 0.985);
       box-shadow: 0 8px 24px rgba(15, 35, 60, 0.08);
     }
 
@@ -1074,10 +1342,19 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
+      .nav-links li {
+        display: block;
+      }
+
+      .nav-links li::after {
+        display: none !important;
+      }
+
       .nav-link {
         width: 100%;
       }
 
+      .nav-link::after,
       .nav-link.active::after,
       .nav-link[aria-current="location"]::after {
         display: none;
@@ -1220,6 +1497,46 @@
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
       }
+
+      /* Keep only the decorative network visibly moving in restrictive previews. */
+      .background-network-svg .network-line {
+        animation-duration: 7s !important;
+        animation-iteration-count: infinite !important;
+      }
+
+      .background-network-svg .network-line.strong {
+        animation-duration: 5.5s !important;
+      }
+
+      .background-network-svg .network-node-svg {
+        animation-duration: 2.6s !important;
+        animation-iteration-count: infinite !important;
+      }
+
+      .background-network-svg .network-halo-svg {
+        animation-duration: 3.2s !important;
+        animation-iteration-count: infinite !important;
+      }
+
+      .background-network-svg .network-cluster-a {
+        animation-duration: 8s !important;
+        animation-iteration-count: infinite !important;
+      }
+
+      .background-network-svg .network-cluster-b {
+        animation-duration: 10s !important;
+        animation-iteration-count: infinite !important;
+      }
+
+      .background-network-svg .network-cluster-c {
+        animation-duration: 9s !important;
+        animation-iteration-count: infinite !important;
+      }
+
+      .background-network-svg .network-cluster-d {
+        animation-duration: 11s !important;
+        animation-iteration-count: infinite !important;
+      }
     }
   </style>
 <script type="application/ld+json">
@@ -1244,6 +1561,29 @@
   </script>
 </head>
 <body>
+<canvas aria-hidden="true" class="background-network"></canvas>
+<svg aria-hidden="true" class="background-network-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+  <g class="network-cluster-a">
+    <line class="network-line strong" x1="42" y1="112" x2="132" y2="58"/><line class="network-line" x1="132" y1="58" x2="222" y2="126"/><line class="network-line" x1="222" y1="126" x2="304" y2="72"/><line class="network-line" x1="132" y1="58" x2="170" y2="196"/><line class="network-line strong" x1="170" y1="196" x2="274" y2="220"/><line class="network-line" x1="274" y1="220" x2="346" y2="144"/><line class="network-line" x1="222" y1="126" x2="274" y2="220"/><line class="network-line" x1="42" y1="112" x2="98" y2="242"/>
+    <circle class="network-halo-svg" cx="132" cy="58" r="15"/><circle class="network-halo-svg" cx="274" cy="220" r="13"/>
+    <circle class="network-node-svg" cx="42" cy="112" r="3.4"/><circle class="network-node-svg" cx="132" cy="58" r="4.2"/><circle class="network-node-svg" cx="222" cy="126" r="3.8"/><circle class="network-node-svg" cx="304" cy="72" r="3.1"/><circle class="network-node-svg" cx="170" cy="196" r="4"/><circle class="network-node-svg" cx="274" cy="220" r="4.5"/><circle class="network-node-svg" cx="346" cy="144" r="3.3"/><circle class="network-node-svg" cx="98" cy="242" r="3"/>
+  </g>
+  <g class="network-cluster-b">
+    <line class="network-line" x1="1020" y1="74" x2="1110" y2="132"/><line class="network-line strong" x1="1110" y1="132" x2="1202" y2="66"/><line class="network-line" x1="1202" y1="66" x2="1338" y2="116"/><line class="network-line" x1="1110" y1="132" x2="1154" y2="236"/><line class="network-line strong" x1="1154" y1="236" x2="1270" y2="210"/><line class="network-line" x1="1270" y1="210" x2="1368" y2="280"/><line class="network-line" x1="1202" y1="66" x2="1270" y2="210"/><line class="network-line" x1="1020" y1="74" x2="1000" y2="216"/>
+    <circle class="network-halo-svg" cx="1110" cy="132" r="14"/><circle class="network-halo-svg" cx="1270" cy="210" r="16"/>
+    <circle class="network-node-svg" cx="1020" cy="74" r="3.2"/><circle class="network-node-svg" cx="1110" cy="132" r="4.3"/><circle class="network-node-svg" cx="1202" cy="66" r="3.6"/><circle class="network-node-svg" cx="1338" cy="116" r="3.1"/><circle class="network-node-svg" cx="1154" cy="236" r="4"/><circle class="network-node-svg" cx="1270" cy="210" r="4.6"/><circle class="network-node-svg" cx="1368" cy="280" r="3.4"/><circle class="network-node-svg" cx="1000" cy="216" r="3"/>
+  </g>
+  <g class="network-cluster-c">
+    <line class="network-line strong" x1="520" y1="510" x2="646" y2="454"/><line class="network-line" x1="646" y1="454" x2="754" y2="524"/><line class="network-line" x1="754" y1="524" x2="882" y2="466"/><line class="network-line" x1="646" y1="454" x2="682" y2="628"/><line class="network-line strong" x1="682" y1="628" x2="808" y2="650"/><line class="network-line" x1="808" y1="650" x2="924" y2="580"/><line class="network-line" x1="754" y1="524" x2="808" y2="650"/><line class="network-line" x1="520" y1="510" x2="554" y2="660"/>
+    <circle class="network-halo-svg" cx="646" cy="454" r="16"/><circle class="network-halo-svg" cx="808" cy="650" r="15"/>
+    <circle class="network-node-svg" cx="520" cy="510" r="3.4"/><circle class="network-node-svg" cx="646" cy="454" r="4.6"/><circle class="network-node-svg" cx="754" cy="524" r="4"/><circle class="network-node-svg" cx="882" cy="466" r="3.3"/><circle class="network-node-svg" cx="682" cy="628" r="4.2"/><circle class="network-node-svg" cx="808" cy="650" r="4.7"/><circle class="network-node-svg" cx="924" cy="580" r="3.4"/><circle class="network-node-svg" cx="554" cy="660" r="3.1"/>
+  </g>
+  <g class="network-cluster-d">
+    <line class="network-line" x1="40" y1="680" x2="128" y2="618"/><line class="network-line strong" x1="128" y1="618" x2="232" y2="704"/><line class="network-line" x1="232" y1="704" x2="338" y2="642"/><line class="network-line" x1="128" y1="618" x2="166" y2="790"/><line class="network-line strong" x1="166" y1="790" x2="286" y2="824"/><line class="network-line" x1="286" y1="824" x2="392" y2="754"/><line class="network-line" x1="232" y1="704" x2="286" y2="824"/>
+    <circle class="network-halo-svg" cx="128" cy="618" r="13"/><circle class="network-halo-svg" cx="286" cy="824" r="15"/>
+    <circle class="network-node-svg" cx="40" cy="680" r="3"/><circle class="network-node-svg" cx="128" cy="618" r="4.2"/><circle class="network-node-svg" cx="232" cy="704" r="3.8"/><circle class="network-node-svg" cx="338" cy="642" r="3.2"/><circle class="network-node-svg" cx="166" cy="790" r="4"/><circle class="network-node-svg" cx="286" cy="824" r="4.5"/><circle class="network-node-svg" cx="392" cy="754" r="3.2"/>
+  </g>
+</svg>
 <div aria-hidden="true" class="scroll-progress"></div>
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <header class="site-nav">
@@ -1307,25 +1647,36 @@
 
 <ul class="updates-list">
 <li><span class="update-date">Jul 2026</span><span>Selected as a member of <a href="https://k-club.kird.re.kr/bbs/BBSMSTR_000000000792/view.do?nttId=B000000006713Bt8oA9" rel="noopener" target="_blank">Group 7 — K-ResearChain</a> in the KIRD Global R&amp;D Career Salon in Korea.</span></li>
+<li><span class="update-date">Jul 2026</span><span>Delivered the keynote lecture <a href="https://isromac2026.com/" rel="noopener" target="_blank">“CFD–PIV Analysis and Performance Optimization of Hubless Rim-Driven Systems”</a> at ISROMAC19, Waseda University, Japan.</span></li>
 
 
 <li><span class="update-date">May 2026</span><span>Received the <a href="https://chem.gnu.ac.kr/board/view?bd_id=news01&amp;wr_id=602&amp;main=1" rel="noopener" target="_blank">Young Pioneer Researcher Award</a> from Gyeongsang National University.</span></li>
 <li><span class="update-date">Apr 2026</span><span>Received <a href="https://news.iubat.ac.bd/article.php?post_id=bb7ba8e893b885b645697215d64dd68a" rel="noopener" target="_blank">Miyan Publications Rewards 2026</a> from IUBAT, Bangladesh.</span></li>
-<li><span class="update-date">Feb 2026</span><span>Published the Koopman reduced-order modeling study for OSA diagnosis in <em>Physics of Fluids</em>.</span></li>
-<li><span class="update-date">Feb 2026</span><span>Published the pseudoaneurysm thrombin-injection outcome study in <em>Journal of Thrombosis and Haemostasis</em>.</span></li>
-<li><span class="update-date">Sep 2025</span><span>Started the Ph.D. program in Mechanical and Aerospace Engineering at Gyeongsang National University and continued as a Doctoral Researcher.</span></li>
+<li><span class="update-date">Feb 2026</span><span>Published <a href="https://doi.org/10.1063/5.0315426" rel="noopener" target="_blank">“Koopman theory-based reduced-order modeling for diagnosing obstructive sleep apnea using breathing power diagram”</a> in <em>Physics of Fluids</em>.</span></li>
+<li><span class="update-date">Feb 2026</span><span>Published <a href="https://doi.org/10.1016/j.jtha.2026.02.033" rel="noopener" target="_blank">“Experimental Investigation of Ultrasound-Guided Thrombin Injection Outcomes in Complex Morphologies of Iatrogenic Femoral Artery Pseudoaneurysms”</a> in the <em>Journal of Thrombosis and Haemostasis</em>.</span></li>
+<li><span class="update-date">Sep 2025</span><span>Started the Ph.D. program in Mechanical and Aerospace Engineering at <a href="https://www.gnu.ac.kr/eng/main.do" rel="noopener" target="_blank">Gyeongsang National University</a> and continued as a Doctoral Researcher at the <a href="https://sites.google.com/gnu.ac.kr/flow-information-lab" rel="noopener" target="_blank">Flow Information Lab</a>.</span></li>
 </ul>
 <details class="archive">
-<summary>View milestones archive, 2020–2025</summary>
+<summary>View detailed milestones archive, 2020–2025</summary>
 <ul class="updates-list">
-<li><span class="update-date">Aug 2025</span><span>Published the ureteral-stent CFD and in-vitro study in <em>Scientific Reports</em>.</span></li>
-<li><span class="update-date">Aug 2025</span><span>Received the Best Presentation Award at the 5th IAHR Asian Working Group Symposium on Hydraulic Machinery and Systems.</span></li>
-<li><span class="update-date">Apr 2025</span><span>Published the solid–liquid two-phase submersible-drainage-pump study in <em>Irrigation and Drainage</em>.</span></li>
-<li><span class="update-date">Dec 2024</span><span>Published the optimized impeller experimental study in <em>Physics of Fluids</em>.</span></li>
-<li><span class="update-date">Sep 2024</span><span>Published the breathing-diagram-based OSA evaluation study in <em>Physics of Fluids</em>.</span></li>
-<li><span class="update-date">Sep 2023</span><span>Started the M.Sc. program at Gyeongsang National University and joined the Flow Information Lab as a Graduate Research Assistant.</span></li>
-<li><span class="update-date">Jan 2022</span><span>Promoted to Senior Lecturer in Mechanical Engineering at IUBAT.</span></li>
-<li><span class="update-date">Jan 2020</span><span>Joined IUBAT as a Lecturer in Mechanical Engineering.</span></li>
+<li><span class="update-date">Aug 2025</span><span>Completed the <strong>M.Sc. in Mechanical Engineering</strong> at <a href="https://www.gnu.ac.kr/eng/main.do" rel="noopener" target="_blank">Gyeongsang National University</a>, South Korea, with a CGPA of 4.21/4.50.</span></li>
+<li><span class="update-date">Aug 2025</span><span>Published <a href="https://doi.org/10.1038/s41598-025-04248-1" rel="noopener" target="_blank">“Experimental and CFD analysis of flow impediments and encrustation in ureteral stents using in vitro urinary tract model”</a> in <em>Scientific Reports</em>.</span></li>
+<li><span class="update-date">Aug 2025</span><span>Received the <strong>Best Presentation Award</strong> at the 5th IAHR Asian Working Group Symposium on Hydraulic Machinery and Systems, South Korea.</span></li>
+<li><span class="update-date">Aug 2025</span><span>Presented “Back-Turn Method for Energy Optimization in Booster Pump Systems” at the 5th IAHR Asian Working Group Symposium on Hydraulic Machinery and Systems, South Korea.</span></li>
+<li><span class="update-date">Apr 2025</span><span>Published <a href="https://doi.org/10.1002/ird.3119" rel="noopener" target="_blank">“Numerical Simulation of Solid–Liquid Two-Phase Flow Analysis of Submersible Drainage Pumps”</a> in <em>Irrigation and Drainage</em>.</span></li>
+<li><span class="update-date">Mar 2025</span><span>Received the <strong>Miyan Publications Rewards 2025</strong> from IUBAT, Bangladesh, in recognition of research publication achievements.</span></li>
+<li><span class="update-date">Jan 2025</span><span>Presented “Effects of Cavitation and Erosion on the Hydraulic Performances of Submersible Drainage Pumps” at the 4th Asian Workshop on Hydraulic Machinery, Japan.</span></li>
+<li><span class="update-date">Dec 2024</span><span>Published <a href="https://doi.org/10.1063/5.0243408" rel="noopener" target="_blank">“Optimized impeller hydraulic performance of submersible drainage pumps: An experimental study”</a> in <em>Physics of Fluids</em>.</span></li>
+<li><span class="update-date">Nov 2024</span><span>Presented “Flow Performance and Encrustation Analysis of Ureteral Stents Using an In Vitro Urinary System” at the Korean Society of Mechanical Engineers Winter Conference, South Korea.</span></li>
+<li><span class="update-date">Sep 2024</span><span>Published <a href="https://doi.org/10.1063/5.0223081" rel="noopener" target="_blank">“A new approach to evaluate obstructive sleep apnea according to body mass index using breathing diagram”</a> in <em>Physics of Fluids</em>.</span></li>
+<li><span class="update-date">Aug 2024</span><span>Presented “Percutaneous Thrombin Injection Outcomes in Femoral Artery Pseudoaneurysms Using Complex Pseudoaneurysm Models” at ICTAM 2024, South Korea.</span></li>
+<li><span class="update-date">Aug 2024</span><span>Presented “Analysis of Encrustation Formation in Four Types of Ureteral Stents Using an In Vitro Urinary Model” at ICTAM 2024, South Korea.</span></li>
+<li><span class="update-date">Mar 2024</span><span>Presented “Analysis of Encrustation Formation at a Double J Stent with a Controlled Flow Rate Using an In Vitro Bladder Model” at the Biomedical Engineering Society for Circulatory Disorders Summer Conference, South Korea.</span></li>
+<li><span class="update-date">Feb 2024</span><span>Received the <strong>Miyan Publications Rewards 2024</strong> from IUBAT, Bangladesh, in recognition of research publication achievements.</span></li>
+<li><span class="update-date">Nov 2023</span><span>Presented “A Study on Renovated Double J Stent for Urine Drainage Performance” at the Korean Society of Mechanical Engineers Annual Meeting, South Korea.</span></li>
+<li><span class="update-date">Sep 2023</span><span>Started the <strong>M.Sc. program in Mechanical Engineering</strong> at <a href="https://www.gnu.ac.kr/eng/main.do" rel="noopener" target="_blank">Gyeongsang National University</a> and joined the <a href="https://sites.google.com/gnu.ac.kr/flow-information-lab" rel="noopener" target="_blank">Flow Information Lab</a> as a Graduate Research Assistant.</span></li>
+<li><span class="update-date">Jan 2022</span><span>Promoted to <strong>Senior Lecturer</strong> in the Department of Mechanical Engineering at IUBAT, Bangladesh.</span></li>
+<li><span class="update-date">Jan 2020</span><span>Joined IUBAT as a <strong>Lecturer</strong> in the Department of Mechanical Engineering.</span></li>
 </ul>
 </details>
 
@@ -1526,7 +1877,7 @@
 <li class="presentation-entry">
 <span class="presentation-year">2026</span>
 <div>
-<strong>CFD–PIV Analysis and Performance Optimization of Hubless Rim-Driven Systems</strong>
+<strong><a href="https://isromac2026.com/" rel="noopener" target="_blank">CFD–PIV Analysis and Performance Optimization of Hubless Rim-Driven Systems</a></strong>
 <span class="presentation-meta">ISROMAC19 · Waseda University, Japan · July 5–7, 2026</span>
 <span class="presentation-type">Keynote Lecture</span>
 </div>
@@ -1754,6 +2105,211 @@
         .filter(Boolean);
       const progressBar = document.querySelector('.scroll-progress');
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // More clearly animated network background inspired by connecting-node visuals.
+      const networkCanvas = document.querySelector('.background-network');
+      const networkContext = networkCanvas ? networkCanvas.getContext('2d') : null;
+
+      function initNetworkBackground() {
+        if (!networkCanvas || !networkContext) return;
+
+        const media = window.matchMedia('(max-width: 720px)');
+        const nodes = [];
+        const pointer = { x: null, y: null, active: false };
+        let width = 0;
+        let height = 0;
+        let rafId = null;
+        let dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        let nodeCount = 0;
+        let connectionDistance = 210;
+        let pointerDistance = 220;
+        const rootStyle = getComputedStyle(document.documentElement);
+        const lineColor = rootStyle.getPropertyValue('--network-line').trim();
+        const lineStrongColor = rootStyle.getPropertyValue('--network-line-strong').trim();
+        const dotColor = rootStyle.getPropertyValue('--network-dot').trim();
+        const glowColor = rootStyle.getPropertyValue('--network-glow').trim();
+
+        function randomBetween(min, max) {
+          return min + Math.random() * (max - min);
+        }
+
+        function buildNodes() {
+          nodes.length = 0;
+          nodeCount = media.matches ? 50 : 92;
+          connectionDistance = media.matches ? 155 : 220;
+          pointerDistance = media.matches ? 150 : 220;
+          for (let i = 0; i < nodeCount; i += 1) {
+            const speedScale = media.matches ? 1.15 : 1.25;
+            nodes.push({
+              x: Math.random() * width,
+              y: Math.random() * height,
+              vx: randomBetween(-0.28, 0.28) * speedScale,
+              vy: randomBetween(-0.24, 0.24) * speedScale,
+              r: randomBetween(1.5, 3.2),
+              pulse: Math.random() * Math.PI * 2,
+              pulseSpeed: randomBetween(0.012, 0.024)
+            });
+          }
+        }
+
+        function resizeCanvas(rebuild) {
+          dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+          width = window.innerWidth;
+          height = Math.max(window.innerHeight, document.documentElement.clientHeight);
+          networkCanvas.width = Math.round(width * dpr);
+          networkCanvas.height = Math.round(height * dpr);
+          networkCanvas.style.width = width + 'px';
+          networkCanvas.style.height = height + 'px';
+          networkContext.setTransform(dpr, 0, 0, dpr, 0, 0);
+          if (rebuild !== false) buildNodes();
+          drawFrame(false);
+        }
+
+        function updateNode(node) {
+          node.x += node.vx;
+          node.y += node.vy;
+          node.pulse += node.pulseSpeed;
+
+          if (node.x <= -30 || node.x >= width + 30) node.vx *= -1;
+          if (node.y <= -30 || node.y >= height + 30) node.vy *= -1;
+
+          if (pointer.active && pointer.x !== null && pointer.y !== null) {
+            const dx = pointer.x - node.x;
+            const dy = pointer.y - node.y;
+            const dist = Math.hypot(dx, dy);
+            if (dist < pointerDistance && dist > 0.001) {
+              const influence = (1 - dist / pointerDistance) * 0.05;
+              node.vx += (dx / dist) * influence;
+              node.vy += (dy / dist) * influence;
+            }
+          }
+
+          node.vx *= 0.9985;
+          node.vy *= 0.9985;
+          node.vx = Math.max(Math.min(node.vx, 0.62), -0.62);
+          node.vy = Math.max(Math.min(node.vy, 0.56), -0.56);
+        }
+
+        function drawPointerConnections(node) {
+          if (!pointer.active || pointer.x === null || pointer.y === null) return;
+          const dx = pointer.x - node.x;
+          const dy = pointer.y - node.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist > pointerDistance) return;
+          const strength = 1 - dist / pointerDistance;
+          networkContext.strokeStyle = lineStrongColor;
+          networkContext.globalAlpha = Math.max(strength * 0.55, 0.12);
+          networkContext.lineWidth = 1.6;
+          networkContext.beginPath();
+          networkContext.moveTo(node.x, node.y);
+          networkContext.lineTo(pointer.x, pointer.y);
+          networkContext.stroke();
+        }
+
+        function drawFrame(animate) {
+          networkContext.clearRect(0, 0, width, height);
+
+          for (let i = 0; i < nodes.length; i += 1) {
+            const a = nodes[i];
+            if (animate !== false) updateNode(a);
+
+            for (let j = i + 1; j < nodes.length; j += 1) {
+              const b = nodes[j];
+              const dx = b.x - a.x;
+              const dy = b.y - a.y;
+              const dist = Math.hypot(dx, dy);
+              if (dist > connectionDistance) continue;
+              const strength = 1 - dist / connectionDistance;
+              networkContext.strokeStyle = strength > 0.58 ? lineStrongColor : lineColor;
+              networkContext.globalAlpha = Math.max(strength * 1.08, 0.12);
+              networkContext.lineWidth = strength > 0.5 ? 2.2 : 1.3;
+              networkContext.beginPath();
+              networkContext.moveTo(a.x, a.y);
+              networkContext.lineTo(b.x, b.y);
+              networkContext.stroke();
+            }
+
+            drawPointerConnections(a);
+          }
+
+          networkContext.globalAlpha = 1;
+          for (let i = 0; i < nodes.length; i += 1) {
+            const node = nodes[i];
+            const pulseScale = 1 + Math.sin(node.pulse) * 0.16;
+            networkContext.fillStyle = glowColor;
+            networkContext.beginPath();
+            networkContext.arc(node.x, node.y, node.r * 5.4 * pulseScale, 0, Math.PI * 2);
+            networkContext.fill();
+
+            networkContext.fillStyle = dotColor;
+            networkContext.beginPath();
+            networkContext.arc(node.x, node.y, node.r * pulseScale, 0, Math.PI * 2);
+            networkContext.fill();
+          }
+        }
+
+        function setPointerPosition(event) {
+          pointer.x = event.clientX;
+          pointer.y = event.clientY;
+          pointer.active = true;
+        }
+
+        networkCanvas.addEventListener('mousemove', setPointerPosition, { passive: true });
+        networkCanvas.addEventListener('touchmove', function (event) {
+          const touch = event.touches && event.touches[0];
+          if (!touch) return;
+          pointer.x = touch.clientX;
+          pointer.y = touch.clientY;
+          pointer.active = true;
+        }, { passive: true });
+        window.addEventListener('mousemove', setPointerPosition, { passive: true });
+        window.addEventListener('mouseleave', function () {
+          pointer.active = false;
+          pointer.x = null;
+          pointer.y = null;
+        });
+        window.addEventListener('touchend', function () {
+          pointer.active = false;
+          pointer.x = null;
+          pointer.y = null;
+        }, { passive: true });
+
+        let resizeTimer = null;
+        window.addEventListener('resize', function () {
+          window.clearTimeout(resizeTimer);
+          resizeTimer = window.setTimeout(function () {
+            resizeCanvas(true);
+          }, 120);
+        });
+
+        if (media.addEventListener) {
+          media.addEventListener('change', function () {
+            resizeCanvas(true);
+          });
+        }
+
+        resizeCanvas(true);
+
+        // Keep the network visibly animated; other page effects still respect reduced-motion.
+        function animate() {
+          drawFrame(true);
+          rafId = window.requestAnimationFrame(animate);
+        }
+        animate();
+
+        document.addEventListener('visibilitychange', function () {
+          if (document.hidden) {
+            if (rafId) {
+              window.cancelAnimationFrame(rafId);
+              rafId = null;
+            }
+          } else if (!rafId) {
+            animate();
+          }
+        });
+      }
+
+      initNetworkBackground();
 
       function closeMenu() {
         navLinksContainer.classList.remove('open');
