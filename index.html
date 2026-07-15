@@ -17,6 +17,8 @@
 
   <title>Md. Didarul Islam | CFD, Biofluids and Turbomachinery Researcher</title>
 
+  <script>document.documentElement.classList.add('js');</script>
+
   <style>
     :root {
       --navy: #0b2545;
@@ -624,9 +626,206 @@
       white-space: nowrap;
     }
 
-    .news-content {
+    .news-columns {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(270px, 0.45fr);
+      gap: 30px;
+      align-items: start;
       width: 100%;
-      max-width: none;
+    }
+
+    .presentation-card {
+      align-self: start;
+      padding: 20px 20px 16px;
+    }
+
+    .presentation-card h3 {
+      margin-bottom: 14px;
+    }
+
+    .presentation-list {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .presentation-list li {
+      margin-bottom: 14px;
+      line-height: 1.42;
+    }
+
+    .presentation-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .presentation-list .muted {
+      display: inline-block;
+      margin-top: 3px;
+      font-size: 0.9rem;
+    }
+
+    .presentation-showcase {
+      margin-top: 38px;
+      padding-top: 34px;
+      border-top: 1px solid var(--border);
+    }
+
+    .presentation-showcase-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+
+    .presentation-showcase-head h3 {
+      margin-bottom: 4px;
+      font-size: clamp(1.3rem, 2.3vw, 1.65rem);
+    }
+
+    .presentation-showcase-head p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .presentation-filters {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      padding: 4px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .presentation-filter {
+      min-height: 34px;
+      padding: 6px 11px;
+      color: #4d5664;
+      background: transparent;
+      border: 0;
+      border-radius: 7px;
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 730;
+      cursor: pointer;
+      transition: color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .presentation-filter:hover,
+    .presentation-filter.active {
+      color: var(--navy);
+      background: var(--white);
+      box-shadow: 0 3px 10px rgba(15, 35, 60, 0.08);
+    }
+
+    .presentation-groups {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+
+    .presentation-groups.is-filtered {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .presentation-group {
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(15, 35, 60, 0.04);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .presentation-group:hover {
+      transform: translateY(-2px);
+      border-color: #cbd9e6;
+      box-shadow: 0 14px 30px rgba(15, 35, 60, 0.08);
+    }
+
+    .presentation-group.is-hidden {
+      display: none;
+    }
+
+    .presentation-group-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 18px 20px;
+      background: var(--surface-blue);
+      border-bottom: 1px solid #dce8f2;
+    }
+
+    .presentation-group-header h4 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 1.02rem;
+    }
+
+    .presentation-count {
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .presentation-timeline {
+      list-style: none;
+      margin: 0;
+      padding: 4px 20px 8px;
+    }
+
+    .presentation-entry {
+      display: grid;
+      grid-template-columns: 54px minmax(0, 1fr);
+      gap: 14px;
+      padding: 15px 0;
+      border-bottom: 1px solid #edf0f3;
+      transition: transform 0.18s ease, background-color 0.18s ease;
+    }
+
+    .presentation-entry:last-child {
+      border-bottom: 0;
+    }
+
+    .presentation-entry:hover {
+      transform: translateX(3px);
+    }
+
+    .presentation-year {
+      color: var(--blue);
+      font-size: 0.86rem;
+      font-weight: 800;
+    }
+
+    .presentation-entry strong {
+      display: block;
+      color: var(--navy);
+      line-height: 1.4;
+    }
+
+    .presentation-meta {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.5;
+    }
+
+    .presentation-type {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 7px;
+      padding: 2px 7px;
+      color: var(--blue-dark);
+      background: #edf6fd;
+      border: 1px solid #d2e8f8;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 760;
+      letter-spacing: 0.02em;
     }
 
     /* Background */
@@ -708,12 +907,13 @@
     /* Contact */
     .contact-panel {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 300px;
-      gap: 42px;
-      padding: 34px 38px;
+      grid-template-columns: minmax(0, 1fr) 248px;
+      gap: 34px;
+      padding: 34px 24px 34px 38px;
       color: var(--white);
       background: var(--navy);
       border-radius: 16px;
+      box-shadow: 0 18px 44px rgba(11, 37, 69, 0.16);
     }
 
     .contact-panel h2,
@@ -732,10 +932,12 @@
     .contact-links {
       display: grid;
       align-content: start;
+      justify-items: start;
       justify-self: end;
       width: 100%;
+      max-width: 230px;
       gap: 8px;
-      padding-left: 34px;
+      padding-left: 28px;
       border-left: 1px solid rgba(217, 228, 239, 0.28);
     }
 
@@ -754,7 +956,79 @@
       padding-top: 22px;
     }
 
-    /* Responsive */
+    /* Subtle motion and interaction */
+    .scroll-progress {
+      position: fixed;
+      top: var(--nav-height);
+      left: 0;
+      z-index: 1001;
+      width: 100%;
+      height: 3px;
+      pointer-events: none;
+      transform: scaleX(0);
+      transform-origin: left center;
+      background: linear-gradient(90deg, var(--blue), #62a8df);
+      box-shadow: 0 0 10px rgba(23, 105, 170, 0.25);
+    }
+
+    .site-nav {
+      transition: box-shadow 0.22s ease, background-color 0.22s ease;
+    }
+
+    .site-nav.is-scrolled {
+      background: rgba(255, 255, 255, 0.985);
+      box-shadow: 0 8px 24px rgba(15, 35, 60, 0.08);
+    }
+
+    .profile-frame,
+    .profile-photo {
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .profile-frame:hover {
+      transform: translateY(-4px);
+    }
+
+    .profile-frame:hover .profile-photo {
+      transform: scale(1.205);
+    }
+
+    .research-card,
+    .project-card,
+    .info-card {
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .research-card:hover,
+    .project-card:hover,
+    .info-card:hover {
+      transform: translateY(-3px);
+      border-color: #cbd9e6;
+      box-shadow: 0 13px 28px rgba(15, 35, 60, 0.075);
+    }
+
+    .updates-list li {
+      transition: transform 0.18s ease;
+    }
+
+    .updates-list li:hover {
+      transform: translateX(3px);
+    }
+
+    .js [data-reveal] {
+      opacity: 0;
+      transform: translateY(18px);
+      transition:
+        opacity 0.62s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+        transform 0.62s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+    }
+
+    .js [data-reveal].is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+        /* Responsive */
     @media (max-width: 900px) {
       .nav-toggle {
         display: inline-flex;
@@ -817,12 +1091,26 @@
         border-left: 0;
       }
 
-      .research-grid {
+      .research-grid,
+      .news-columns {
         grid-template-columns: 1fr;
       }
 
       .research-card {
         min-height: auto;
+      }
+
+      .presentation-card {
+        max-width: 620px;
+      }
+
+      .presentation-showcase-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .presentation-groups {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -860,6 +1148,19 @@
 
       .updates-list li {
         grid-template-columns: 74px minmax(0, 1fr);
+        gap: 10px;
+      }
+
+      .presentation-filters {
+        width: 100%;
+      }
+
+      .presentation-filter {
+        flex: 1 1 auto;
+      }
+
+      .presentation-entry {
+        grid-template-columns: 48px minmax(0, 1fr);
         gap: 10px;
       }
 
@@ -930,6 +1231,7 @@
 </head>
 
 <body>
+  <div class="scroll-progress" aria-hidden="true"></div>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <header class="site-nav">
@@ -942,10 +1244,10 @@
 
       <ul class="nav-links" id="primary-menu">
         <li><a class="nav-link active" aria-current="location" href="#home">Home</a></li>
+        <li><a class="nav-link" href="#updates">Updates</a></li>
         <li><a class="nav-link" href="#research">Research</a></li>
         <li><a class="nav-link" href="#publications">Publications</a></li>
         <li><a class="nav-link" href="#projects">Projects</a></li>
-        <li><a class="nav-link" href="#news">News</a></li>
         <li><a class="nav-link" href="#background">Background</a></li>
         <li><a class="nav-link" href="#contact">Contact</a></li>
       </ul>
@@ -955,7 +1257,7 @@
   <main id="main-content">
     <section class="hero" id="home" aria-labelledby="home-title">
       <div class="page-shell hero-grid">
-        <div>
+        <div data-reveal>
           <p class="eyebrow">Academic Research Portfolio</p>
           <h1 id="home-title">Md. Didarul Islam</h1>
           <p class="hero-role">Ph.D. Student and Doctoral Researcher in CFD, Biofluids, and Turbomachinery</p>
@@ -981,7 +1283,7 @@
           </div>
         </div>
 
-        <div class="profile-frame">
+        <div class="profile-frame" data-reveal style="--reveal-delay:100ms;">
           <div class="profile-crop">
             <img
               class="profile-photo"
@@ -995,9 +1297,169 @@
       </div>
     </section>
 
+    <section id="Updates" aria-labelledby="updates-title">
+      <div class="page-shell">
+        <div class="section-heading" data-reveal>
+          <p class="eyebrow">Milestones and Presentations</p>
+          <h2 id="updates-title">Recent Updates</h2>
+          <p>Selected recent milestones are shown first; earlier updates remain available in the archive.</p>
+        </div>
+
+        <div class="updates-columns">
+          <div>
+            <ul class="updates-list">
+              <li><span class="update-date">Jul 2026</span><span>Selected as a member of <a href="https://k-club.kird.re.kr/bbs/BBSMSTR_000000000792/view.do?nttId=B000000006713Bt8oA9" target="_blank" rel="noopener">Group 7 — K-ResearChain</a> in the KIRD Global R&amp;D Career Salon in Korea.</span></li>
+              <li><span class="update-date">Jul 2026</span><span>Delivered the keynote lecture “CFD–PIV Analysis and Performance Optimization of Hubless Rim-Driven Systems” at <a href="https://isromac2026.com/" target="_blank" rel="noopener">ISROMAC19</a>, Waseda University, Japan.</span></li>
+              <li><span class="update-date">Jul 2026</span><span>Presented “OSA Diagnostic Index Prediction Using CFD and CNN-KAE” at <a href="https://ncfe.or.kr/" target="_blank" rel="noopener">14NCFE</a>, South Korea.</span></li>
+              <li><span class="update-date">May 2026</span><span>Received the <a href="https://chem.gnu.ac.kr/board/view?bd_id=news01&amp;wr_id=602&amp;main=1" target="_blank" rel="noopener">Young Pioneer Researcher Award</a> from Gyeongsang National University.</span></li>
+              <li><span class="update-date">Apr 2026</span><span>Received <a href="https://news.iubat.ac.bd/article.php?post_id=bb7ba8e893b885b645697215d64dd68a" target="_blank" rel="noopener">Miyan Publications Rewards 2026</a> from IUBAT, Bangladesh.</span></li>
+              <li><span class="update-date">Feb 2026</span><span>Published the Koopman reduced-order modeling study for OSA diagnosis in <em>Physics of Fluids</em>.</span></li>
+              <li><span class="update-date">Feb 2026</span><span>Published the pseudoaneurysm thrombin-injection outcome study in <em>Journal of Thrombosis and Haemostasis</em>.</span></li>
+              <li><span class="update-date">Sep 2025</span><span>Started the Ph.D. program in Mechanical and Aerospace Engineering at Gyeongsang National University and continued as a Doctoral Researcher.</span></li>
+            </ul>
+
+            <details class="archive">
+              <summary>View updates archive, 2020–2025</summary>
+              <ul class="updates-list">
+                <li><span class="update-date">Aug 2025</span><span>Published the ureteral-stent CFD and in-vitro study in <em>Scientific Reports</em>.</span></li>
+                <li><span class="update-date">Aug 2025</span><span>Received the Best Presentation Award at the 5th IAHR Asian Working Group Symposium on Hydraulic Machinery and Systems.</span></li>
+                <li><span class="update-date">Aug 2025</span><span>Presented the back-turn method for booster-pump energy optimization at IAHR-Asia 2025.</span></li>
+                <li><span class="update-date">Apr 2025</span><span>Published the solid–liquid two-phase submersible-drainage-pump study in <em>Irrigation and Drainage</em>.</span></li>
+                <li><span class="update-date">Jan 2025</span><span>Presented the cavitation and erosion study at the 4th Asian Workshop on Hydraulic Machinery, Japan.</span></li>
+                <li><span class="update-date">Dec 2024</span><span>Published the optimized impeller experimental study in <em>Physics of Fluids</em>.</span></li>
+                <li><span class="update-date">Nov 2024</span><span>Presented the ureteral-stent flow and encrustation study at the KSME Winter Conference.</span></li>
+                <li><span class="update-date">Sep 2024</span><span>Published the breathing-diagram-based OSA evaluation study in <em>Physics of Fluids</em>.</span></li>
+                <li><span class="update-date">Aug 2024</span><span>Presented pseudoaneurysm and ureteral-stent studies at ICTAM 2024, South Korea.</span></li>
+                <li><span class="update-date">Mar 2024</span><span>Presented a Double J stent encrustation study at the Biomedical Engineering Society for Circulatory Disorders Summer Conference.</span></li>
+                <li><span class="update-date">Nov 2023</span><span>Presented a renovated Double J stent study at the KSME Annual Meeting.</span></li>
+                <li><span class="update-date">Sep 2023</span><span>Started the M.Sc. program at Gyeongsang National University and joined the Flow Information Lab as a Graduate Research Assistant.</span></li>
+                <li><span class="update-date">Jan 2022</span><span>Joined IUBAT as a Senior Lecturer in Mechanical Engineering.</span></li>
+                <li><span class="update-date">Jan 2020</span><span>Joined IUBAT as a Lecturer in Mechanical Engineering.</span></li>
+              </ul>
+            </details>
+          </div>
+
+        <div class="presentation-showcase" data-reveal aria-labelledby="all-presentations-title">
+          <div class="presentation-showcase-head">
+            <div>
+              <p class="eyebrow">Conference Activity</p>
+              <h3 id="all-presentations-title">Domestic and International Presentations</h3>
+              <p>Oral presentations, international sessions, workshops, and a keynote lecture delivered from 2023 to 2026.</p>
+            </div>
+
+            <div class="presentation-filters" role="group" aria-label="Filter conference presentations">
+              <button class="presentation-filter active" type="button" data-presentation-filter="all" aria-pressed="true">All</button>
+              <button class="presentation-filter" type="button" data-presentation-filter="international" aria-pressed="false">International</button>
+              <button class="presentation-filter" type="button" data-presentation-filter="domestic" aria-pressed="false">Domestic</button>
+            </div>
+          </div>
+
+          <div class="presentation-groups">
+            <article class="presentation-group" data-presentation-category="international" data-reveal>
+              <header class="presentation-group-header">
+                <h4>International Conferences and Workshops</h4>
+                <span class="presentation-count">5 presentations</span>
+              </header>
+              <ol class="presentation-timeline">
+                <li class="presentation-entry">
+                  <span class="presentation-year">2026</span>
+                  <div>
+                    <strong>CFD–PIV Analysis and Performance Optimization of Hubless Rim-Driven Systems</strong>
+                    <span class="presentation-meta">ISROMAC19 · Waseda University, Japan · July 5–7, 2026</span>
+                    <span class="presentation-type">Keynote Lecture</span>
+                  </div>
+                </li>
+                <li class="presentation-entry">
+                  <span class="presentation-year">2025</span>
+                  <div>
+                    <strong>Back-Turn Method for Energy Optimization in Booster Pump Systems</strong>
+                    <span class="presentation-meta">5th IAHR Asian Working Group Symposium on Hydraulic Machinery and Systems · South Korea · August 4–7, 2025</span>
+                    <span class="presentation-type">Oral Presentation</span>
+                  </div>
+                </li>
+                <li class="presentation-entry">
+                  <span class="presentation-year">2025</span>
+                  <div>
+                    <strong>Effects of Cavitation and Erosion on the Hydraulic Performances of Submersible Drainage Pumps</strong>
+                    <span class="presentation-meta">4th Asian Workshop on Hydraulic Machinery · Japan · January 4–6, 2025</span>
+                    <span class="presentation-type">Oral Presentation</span>
+                  </div>
+                </li>
+                <li class="presentation-entry">
+                  <span class="presentation-year">2024</span>
+                  <div>
+                    <strong>Percutaneous Thrombin Injection Outcomes in Femoral Artery Pseudoaneurysms Using Complex Pseudoaneurysm Models</strong>
+                    <span class="presentation-meta">26th International Congress of Theoretical and Applied Mechanics (ICTAM 2024) · South Korea · August 25–30, 2024</span>
+                    <span class="presentation-type">International Conference</span>
+                  </div>
+                </li>
+                <li class="presentation-entry">
+                  <span class="presentation-year">2024</span>
+                  <div>
+                    <strong>Analysis of Encrustation Formation in Four Types of Ureteral Stents Using an In Vitro Urinary Model</strong>
+                    <span class="presentation-meta">26th International Congress of Theoretical and Applied Mechanics (ICTAM 2024) · South Korea · August 25–30, 2024</span>
+                    <span class="presentation-type">International Conference</span>
+                  </div>
+                </li>
+              </ol>
+            </article>
+
+            <article class="presentation-group" data-presentation-category="domestic" data-reveal>
+              <header class="presentation-group-header">
+                <h4>Domestic Conferences and International Sessions</h4>
+                <span class="presentation-count">5 presentations</span>
+              </header>
+              <ol class="presentation-timeline">
+                <li class="presentation-entry">
+                  <span class="presentation-year">2026</span>
+                  <div>
+                    <strong>OSA Diagnostic Index Prediction Using CFD and CNN-KAE</strong>
+                    <span class="presentation-meta">14th National Congress on Fluids Engineering (14NCFE) · South Korea · July 8–11, 2026</span>
+                    <span class="presentation-type">Domestic Oral Presentation</span>
+                  </div>
+                </li>
+                <li class="presentation-entry">
+                  <span class="presentation-year">2025</span>
+                  <div>
+                    <strong>CFD Analysis of Duct Shape Effects on Thrust in Electric Hubless Rim-Driven Propellers</strong>
+                    <span class="presentation-meta">Korean Society of Fluid Machinery Winter Conference · South Korea · December 3–6, 2025</span>
+                    <span class="presentation-type">Domestic Conference</span>
+                  </div>
+                </li>
+                <li class="presentation-entry">
+                  <span class="presentation-year">2024</span>
+                  <div>
+                    <strong>Flow Performance and Encrustation Analysis of Ureteral Stents Using an In Vitro Urinary System</strong>
+                    <span class="presentation-meta">Korean Society of Mechanical Engineers Winter Conference · South Korea · November 4–7, 2024</span>
+                    <span class="presentation-type">International Session</span>
+                  </div>
+                </li>
+                <li class="presentation-entry">
+                  <span class="presentation-year">2024</span>
+                  <div>
+                    <strong>Analysis of Encrustation Formation at a Double J Stent with a Controlled Flow Rate Using an In Vitro Bladder Model</strong>
+                    <span class="presentation-meta">Biomedical Engineering Society for Circulatory Disorders Summer Conference · South Korea · March 4–6, 2024</span>
+                    <span class="presentation-type">Domestic Conference</span>
+                  </div>
+                </li>
+                <li class="presentation-entry">
+                  <span class="presentation-year">2023</span>
+                  <div>
+                    <strong>A Study on Renovated Double J Stent for Urine Drainage Performance</strong>
+                    <span class="presentation-meta">Korean Society of Mechanical Engineers Annual Meeting · South Korea · November 1–4, 2023</span>
+                    <span class="presentation-type">International Session</span>
+                  </div>
+                </li>
+              </ol>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="research" aria-labelledby="research-title">
       <div class="page-shell">
-        <div class="section-heading">
+        <div class="section-heading" data-reveal>
           <p class="eyebrow">Research Focus</p>
           <h2 id="research-title">Connecting flow physics, experiments, and data-driven models</h2>
           <p>
@@ -1007,7 +1469,7 @@
         </div>
 
         <div class="research-grid">
-          <article class="research-card">
+          <article class="research-card" data-reveal>
             <span class="card-number" aria-hidden="true">01</span>
             <h3>Biofluid Mechanics</h3>
             <p>
@@ -1016,7 +1478,7 @@
             </p>
           </article>
 
-          <article class="research-card">
+          <article class="research-card" data-reveal>
             <span class="card-number" aria-hidden="true">02</span>
             <h3>Turbomachinery and Propulsion</h3>
             <p>
@@ -1025,7 +1487,7 @@
             </p>
           </article>
 
-          <article class="research-card">
+          <article class="research-card" data-reveal>
             <span class="card-number" aria-hidden="true">03</span>
             <h3>Data-Driven Flow Modeling</h3>
             <p>
@@ -1039,7 +1501,7 @@
 
     <section id="publications" aria-labelledby="publications-title">
       <div class="page-shell">
-        <div class="section-heading">
+        <div class="section-heading" data-reveal>
           <p class="eyebrow">Selected Work</p>
           <h2 id="publications-title">Featured Publications</h2>
           <p>
@@ -1048,7 +1510,7 @@
         </div>
 
         <div class="publication-list">
-          <article class="publication-card">
+          <article class="publication-card" data-reveal>
             <div class="publication-visual">
               <div><span class="publication-topic">Koopman ROM</span><span class="muted">OSA · Biofluids</span></div>
             </div>
@@ -1061,7 +1523,7 @@
             </div>
           </article>
 
-          <article class="publication-card">
+          <article class="publication-card" data-reveal>
             <div class="publication-visual">
               <div><span class="publication-topic">Stent CFD</span><span class="muted">CFD · Experiment</span></div>
             </div>
@@ -1074,7 +1536,7 @@
             </div>
           </article>
 
-          <article class="publication-card">
+          <article class="publication-card" data-reveal>
             <div class="publication-visual">
               <div><span class="publication-topic">Thrombin Model</span><span class="muted">Pseudoaneurysm</span></div>
             </div>
@@ -1087,7 +1549,7 @@
             </div>
           </article>
 
-          <article class="publication-card">
+          <article class="publication-card" data-reveal>
             <div class="publication-visual">
               <div><span class="publication-topic">Breathing Diagram</span><span class="muted">OSA · CFD</span></div>
             </div>
@@ -1100,7 +1562,7 @@
             </div>
           </article>
 
-          <article class="publication-card">
+          <article class="publication-card" data-reveal>
             <div class="publication-visual">
               <div><span class="publication-topic">Cavitation</span><span class="muted">Drainage Pump</span></div>
             </div>
@@ -1113,7 +1575,7 @@
             </div>
           </article>
 
-          <article class="publication-card">
+          <article class="publication-card" data-reveal>
             <div class="publication-visual">
               <div><span class="publication-topic">Rim-Driven Systems</span><span class="muted">Propulsion · Pump</span></div>
             </div>
@@ -1143,7 +1605,7 @@
             <div class="year-group">
               <div class="year-label">2025</div>
               <div class="year-publications">
-                <div class="compact-publication"><strong>Thrombin-induced thrombosis models for ultrasound-guided thrombin injection of femoral artery pseudoaneurysms.</strong><p>Kang, H. J., <strong>Islam, M. D.</strong>, Choi, Y. H., Lee, Y. K., Song, M. J., &amp; Kim, H. H. · <em>Physics of Fluids</em>, 37(8). <a href="https://doi.org/10.1063/5.0279546" target="_blank" rel="noopener">DOI</a></p></div>
+                <div class="compact-publication"><strong>Thrombin-induced thrombosis models for ultrasound-guided thrombin injection of femoral artery pseudoaneurysms.</strong><p>Kang, H. J.*, <strong>Islam, M. D.*</strong>, Choi, Y. H., Lee, Y. K., Song, M. J., &amp; Kim, H. H. · <em>Physics of Fluids</em>, 37(8). <a href="https://doi.org/10.1063/5.0279546" target="_blank" rel="noopener">DOI</a></p></div>
                 <div class="compact-publication"><strong>Experimental and CFD analysis of flow impediments and encrustation in ureteral stents using in vitro urinary tract model.</strong><p><strong>Islam, M. D.</strong>, Kang, H. J., Tae, S. J., et al. · <em>Scientific Reports</em>, 15(1), 22034. <a href="https://doi.org/10.1038/s41598-025-04248-1" target="_blank" rel="noopener">DOI</a></p></div>
                 <div class="compact-publication"><strong>Back-turn Approach for Optimal Operation of Booster Pump Systems.</strong><p>Bae, Y. S., <strong>Islam, M. D.</strong>, Choi, Y. D., Kang, H. J., Tae, S. J., &amp; Kim, H. H. · <em>Journal of Applied Fluid Mechanics</em>, 18(9), 2202–2211. <a href="https://doi.org/10.47176/jafm.18.9.3428" target="_blank" rel="noopener">DOI</a></p></div>
                 <div class="compact-publication"><strong>Additive Manufacturing in Bone Science: A Cutting-Edge Review of Its Potential and Progress.</strong><p>Chowdhury, M. S., Oliullah, M. S., Hossen, M. Z., et al., &amp; <strong>Islam, M. D.</strong> · <em>Medicine in Novel Technology and Devices</em>, 100379. <a href="https://doi.org/10.1016/j.medntd.2025.100379" target="_blank" rel="noopener">DOI</a></p></div>
@@ -1185,49 +1647,49 @@
 
     <section id="projects" aria-labelledby="projects-title">
       <div class="page-shell">
-        <div class="section-heading">
+        <div class="section-heading" data-reveal>
           <p class="eyebrow">Current and Recent Work</p>
           <h2 id="projects-title">Selected Research Projects</h2>
           <p>Projects that represent my current research direction and collaborative experience.</p>
         </div>
 
         <div class="project-grid">
-          <article class="project-card">
+          <article class="project-card" data-reveal>
             <span class="tag">Ongoing · 2025–Present</span>
             <h3>3D Upper Airway Medical Twin for Non-invasive OSA Diagnosis</h3>
             <p class="project-meta">Glocal R&amp;D Research Center</p>
             <p>CFD-based upper-airway modeling, patient-specific breathing analysis, and reduced-order prediction using Koopman and CNN-based methods.</p>
           </article>
 
-          <article class="project-card">
+          <article class="project-card" data-reveal>
             <span class="tag">Ongoing · 2025–Present</span>
             <h3>Global Aerospace Digital Composites Pioneering Research</h3>
             <p class="project-meta">GADIST Research Center, Gyeongsang National University</p>
             <p>Research support at the intersection of computational engineering, aerospace systems, digital analysis, and advanced composite applications.</p>
           </article>
 
-          <article class="project-card">
+          <article class="project-card" data-reveal>
             <span class="tag">Completed · 2025–2026</span>
             <h3>Rim-Driven Pump Equipped Firefighting Drone</h3>
             <p class="project-meta">College of Space and Aeronautics Research Center, GNU</p>
             <p>Hydraulic performance analysis and shape optimization of rim-driven pumping systems for high-rise firefighting applications.</p>
           </article>
 
-          <article class="project-card">
+          <article class="project-card" data-reveal>
             <span class="tag">Completed · 2025</span>
             <h3>CFD Analysis for Small-Hydropower By-Pass Piping</h3>
             <p class="project-meta">K-water</p>
             <p>Computational assessment of internal flow behavior and hydraulic performance for small-hydropower by-pass piping systems.</p>
           </article>
 
-          <article class="project-card">
+          <article class="project-card" data-reveal>
             <span class="tag">Completed · 2023–2025</span>
             <h3>Optimal Thrombin Injection for Femoral Artery Pseudoaneurysm</h3>
             <p class="project-meta">National Research Foundation of Korea</p>
             <p>In-vitro and computational investigation of injection location, thrombosis behavior, treatment success, and embolism risk.</p>
           </article>
 
-          <article class="project-card">
+          <article class="project-card" data-reveal>
             <span class="tag">Completed · 2023–2024</span>
             <h3>Double J Ureteral Stent Improvement Study</h3>
             <p class="project-meta">National Research Foundation of Korea</p>
@@ -1237,61 +1699,16 @@
       </div>
     </section>
 
-    <section id="news" aria-labelledby="news-title">
-      <div class="page-shell">
-        <div class="section-heading">
-          <p class="eyebrow">News and Milestones</p>
-          <h2 id="news-title">Recent Updates</h2>
-          <p>Selected recent milestones are shown first; earlier updates remain available in the archive.</p>
-        </div>
-
-        <div class="news-content">
-          <div>
-            <ul class="updates-list">
-              <li><span class="update-date">Jul 2026</span><span>Selected as a member of <a href="https://k-club.kird.re.kr/bbs/BBSMSTR_000000000792/view.do?nttId=B000000006713Bt8oA9" target="_blank" rel="noopener">Group 7 — K-ResearChain</a> in the KIRD Global R&amp;D Career Salon in Korea.</span></li>
-              <li><span class="update-date">Jul 2026</span><span>Delivered the keynote lecture “CFD–PIV Analysis and Performance Optimization of Hubless Rim-Driven Systems” at <a href="https://isromac2026.com/" target="_blank" rel="noopener">ISROMAC19</a>, Waseda University, Japan.</span></li>
-              <li><span class="update-date">Jul 2026</span><span>Presented “OSA Diagnostic Index Prediction Using CFD and CNN-KAE” at <a href="https://ncfe.or.kr/" target="_blank" rel="noopener">14NCFE</a>, South Korea.</span></li>
-              <li><span class="update-date">May 2026</span><span>Received the <a href="https://chem.gnu.ac.kr/board/view?bd_id=news01&amp;wr_id=602&amp;main=1" target="_blank" rel="noopener">Young Pioneer Researcher Award</a> from Gyeongsang National University.</span></li>
-              <li><span class="update-date">Apr 2026</span><span>Received <a href="https://news.iubat.ac.bd/article.php?post_id=bb7ba8e893b885b645697215d64dd68a" target="_blank" rel="noopener">Miyan Publications Rewards 2026</a> from IUBAT, Bangladesh.</span></li>
-              <li><span class="update-date">Feb 2026</span><span>Published the Koopman reduced-order modeling study for OSA diagnosis in <em>Physics of Fluids</em>.</span></li>
-              <li><span class="update-date">Feb 2026</span><span>Published the pseudoaneurysm thrombin-injection outcome study in <em>Journal of Thrombosis and Haemostasis</em>.</span></li>
-              <li><span class="update-date">Sep 2025</span><span>Started the Ph.D. program in Mechanical and Aerospace Engineering at Gyeongsang National University and continued as a Doctoral Researcher.</span></li>
-            </ul>
-
-            <details class="archive">
-              <summary>View updates archive, 2020–2025</summary>
-              <ul class="updates-list">
-                <li><span class="update-date">Aug 2025</span><span>Published the ureteral-stent CFD and in-vitro study in <em>Scientific Reports</em>.</span></li>
-                <li><span class="update-date">Aug 2025</span><span>Received the Best Presentation Award at the 5th IAHR Asian Working Group Symposium on Hydraulic Machinery and Systems.</span></li>
-                <li><span class="update-date">Aug 2025</span><span>Presented the back-turn method for booster-pump energy optimization at IAHR-Asia 2025.</span></li>
-                <li><span class="update-date">Apr 2025</span><span>Published the solid–liquid two-phase submersible-drainage-pump study in <em>Irrigation and Drainage</em>.</span></li>
-                <li><span class="update-date">Jan 2025</span><span>Presented the cavitation and erosion study at the 4th Asian Workshop on Hydraulic Machinery, Japan.</span></li>
-                <li><span class="update-date">Dec 2024</span><span>Published the optimized impeller experimental study in <em>Physics of Fluids</em>.</span></li>
-                <li><span class="update-date">Nov 2024</span><span>Presented the ureteral-stent flow and encrustation study at the KSME Winter Conference.</span></li>
-                <li><span class="update-date">Sep 2024</span><span>Published the breathing-diagram-based OSA evaluation study in <em>Physics of Fluids</em>.</span></li>
-                <li><span class="update-date">Aug 2024</span><span>Presented pseudoaneurysm and ureteral-stent studies at ICTAM 2024, South Korea.</span></li>
-                <li><span class="update-date">Mar 2024</span><span>Presented a Double J stent encrustation study at the Biomedical Engineering Society for Circulatory Disorders Summer Conference.</span></li>
-                <li><span class="update-date">Nov 2023</span><span>Presented a renovated Double J stent study at the KSME Annual Meeting.</span></li>
-                <li><span class="update-date">Sep 2023</span><span>Started the M.Sc. program at Gyeongsang National University and joined the Flow Information Lab as a Graduate Research Assistant.</span></li>
-                <li><span class="update-date">Jan 2022</span><span>Joined IUBAT as a Senior Lecturer in Mechanical Engineering.</span></li>
-                <li><span class="update-date">Jan 2020</span><span>Joined IUBAT as a Lecturer in Mechanical Engineering.</span></li>
-              </ul>
-            </details>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section id="background" aria-labelledby="background-title">
       <div class="page-shell">
-        <div class="section-heading">
+        <div class="section-heading" data-reveal>
           <p class="eyebrow">Academic Background</p>
           <h2 id="background-title">Education, Experience, Skills, and Honors</h2>
           <p>Selected background information is shown here; the complete record is available in the downloadable CV.</p>
         </div>
 
         <div class="background-grid">
-          <article class="info-card">
+          <article class="info-card" data-reveal>
             <h3>Education</h3>
             <ul class="timeline-list">
               <li><span class="timeline-title">Ph.D. in Mechanical and Aerospace Engineering</span><span class="timeline-meta">Gyeongsang National University, South Korea · 2025–Present</span></li>
@@ -1301,7 +1718,7 @@
             </ul>
           </article>
 
-          <article class="info-card">
+          <article class="info-card" data-reveal>
             <h3>Experience</h3>
             <ul class="timeline-list">
               <li><span class="timeline-title">Doctoral Researcher</span><span class="timeline-meta">Flow Information Lab, GNU · Sep 2025–Present</span></li>
@@ -1312,7 +1729,7 @@
             </ul>
           </article>
 
-          <article class="info-card">
+          <article class="info-card" data-reveal>
             <h3>Research Skills</h3>
             <div class="skills-grid">
               <div class="skill-item"><strong>CFD</strong><span>ANSYS CFX, ICEM CFD, SpaceClaim, Workbench</span></div>
@@ -1324,7 +1741,7 @@
             </div>
           </article>
 
-          <article class="info-card">
+          <article class="info-card" data-reveal>
             <h3>Selected Honors</h3>
             <ul class="honors-list">
               <li><time>2026</time><span><strong>Young Pioneer Researcher Award</strong><br><span class="muted">Gyeongsang National University</span></span></li>
@@ -1340,7 +1757,7 @@
 
     <section id="contact" aria-labelledby="contact-title">
       <div class="page-shell">
-        <div class="contact-panel">
+        <div class="contact-panel" data-reveal>
           <div>
             <p class="eyebrow" style="color:#9fd2ff;">Contact</p>
             <h2 id="contact-title">Research collaboration and academic communication</h2>
@@ -1373,12 +1790,15 @@
 
   <script>
     (function () {
+      const nav = document.querySelector('.site-nav');
       const navToggle = document.querySelector('.nav-toggle');
       const navLinksContainer = document.querySelector('.nav-links');
       const navLinks = Array.from(document.querySelectorAll('.nav-link'));
       const sections = navLinks
         .map((link) => document.querySelector(link.getAttribute('href')))
         .filter(Boolean);
+      const progressBar = document.querySelector('.scroll-progress');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       function closeMenu() {
         navLinksContainer.classList.remove('open');
@@ -1398,7 +1818,7 @@
         if (event.key === 'Escape') closeMenu();
       });
 
-      const observer = new IntersectionObserver(
+      const sectionObserver = new IntersectionObserver(
         (entries) => {
           const visible = entries
             .filter((entry) => entry.isIntersecting)
@@ -1423,7 +1843,70 @@
         }
       );
 
-      sections.forEach((section) => observer.observe(section));
+      sections.forEach((section) => sectionObserver.observe(section));
+
+      // Scroll progress and sticky-navigation depth. This never repositions the page.
+      let scrollTicking = false;
+      function updateScrollEffects() {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollable > 0 ? Math.min(window.scrollY / scrollable, 1) : 0;
+        progressBar.style.transform = 'scaleX(' + progress + ')';
+        nav.classList.toggle('is-scrolled', window.scrollY > 12);
+        scrollTicking = false;
+      }
+
+      window.addEventListener('scroll', function () {
+        if (!scrollTicking) {
+          window.requestAnimationFrame(updateScrollEffects);
+          scrollTicking = true;
+        }
+      }, { passive: true });
+      updateScrollEffects();
+
+      // Staggered reveal effects, disabled when reduced motion is requested.
+      const revealItems = Array.from(document.querySelectorAll('[data-reveal]'));
+      document.querySelectorAll('.research-grid, .publication-list, .project-grid, .background-grid').forEach((container) => {
+        Array.from(container.children).forEach((item, index) => {
+          item.style.setProperty('--reveal-delay', Math.min(index * 65, 260) + 'ms');
+        });
+      });
+
+      if (reduceMotion || !('IntersectionObserver' in window)) {
+        revealItems.forEach((item) => item.classList.add('is-visible'));
+      } else {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        }, { rootMargin: '0px 0px -9% 0px', threshold: 0.08 });
+
+        revealItems.forEach((item) => revealObserver.observe(item));
+      }
+
+      // Conference-presentation filtering.
+      const filterButtons = Array.from(document.querySelectorAll('[data-presentation-filter]'));
+      const presentationGroups = Array.from(document.querySelectorAll('[data-presentation-category]'));
+      const presentationGroupsContainer = document.querySelector('.presentation-groups');
+
+      filterButtons.forEach((button) => {
+        button.addEventListener('click', function () {
+          const selected = button.dataset.presentationFilter;
+          filterButtons.forEach((item) => {
+            const active = item === button;
+            item.classList.toggle('active', active);
+            item.setAttribute('aria-pressed', String(active));
+          });
+
+          presentationGroups.forEach((group) => {
+            const hidden = selected !== 'all' && group.dataset.presentationCategory !== selected;
+            group.classList.toggle('is-hidden', hidden);
+          });
+
+          presentationGroupsContainer.classList.toggle('is-filtered', selected !== 'all');
+        });
+      });
     })();
   </script>
 </body>
