@@ -1178,8 +1178,105 @@
       border-top: 0;
     }
 
+    .standalone-presentation-showcase::before {
+      display: none;
+    }
+
     #conferences .presentation-showcase-head {
       margin-bottom: 24px;
+      padding: 16px 18px;
+      background: rgba(247, 246, 242, 0.88);
+      border: 1px solid rgba(205, 214, 223, 0.82);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(15, 35, 60, 0.06);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    #conferences .presentation-showcase-head .eyebrow {
+      color: #315f88;
+      font-weight: 850;
+      letter-spacing: 0.12em;
+    }
+
+    #conferences .presentation-showcase-head h2 {
+      color: #071d36;
+      font-weight: 820;
+      letter-spacing: -0.025em;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.72);
+    }
+
+    #conferences .presentation-showcase-head p:not(.eyebrow) {
+      color: #465466;
+      font-size: 0.98rem;
+      font-weight: 520;
+      line-height: 1.6;
+    }
+
+    #conferences .presentation-filters {
+      background: rgba(255, 255, 255, 0.92);
+      border-color: #cbd5df;
+      box-shadow: 0 5px 16px rgba(15, 35, 60, 0.07);
+    }
+
+    #conferences .presentation-filter {
+      color: #344054;
+      font-weight: 780;
+    }
+
+    #conferences .presentation-filter:hover,
+    #conferences .presentation-filter.active {
+      color: #071d36;
+      background: #ffffff;
+      box-shadow: 0 3px 10px rgba(15, 35, 60, 0.10);
+    }
+
+    #conferences .presentation-group {
+      background: rgba(255, 255, 255, 0.96);
+      border-color: #cfd8e3;
+      box-shadow: 0 12px 30px rgba(15, 35, 60, 0.08);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    #conferences .presentation-group-header {
+      background: #edf4fa;
+      border-bottom-color: #cbdbe8;
+    }
+
+    #conferences .presentation-group-header h4 {
+      color: #0a2747;
+      font-weight: 820;
+      letter-spacing: -0.01em;
+    }
+
+    #conferences .presentation-count {
+      color: #526071;
+      font-weight: 760;
+    }
+
+    #conferences .presentation-year {
+      color: #0f67b1;
+      font-weight: 850;
+    }
+
+    #conferences .presentation-entry strong {
+      color: #102a43;
+      font-weight: 790;
+      line-height: 1.42;
+    }
+
+    #conferences .presentation-meta {
+      color: #596779;
+      font-size: 0.87rem;
+      font-weight: 500;
+    }
+
+    #conferences .presentation-type {
+      color: #0c568f;
+      background: #eaf5fc;
+      border-color: #bdddf1;
+      font-weight: 800;
     }
 
     /* Background */
@@ -1472,6 +1569,10 @@
       .presentation-showcase-head {
         align-items: flex-start;
         flex-direction: column;
+      }
+
+      #conferences .presentation-showcase-head {
+        padding: 14px;
       }
 
       .presentation-groups {
@@ -1870,7 +1971,7 @@
 <h3>Data-Driven Flow Modeling</h3>
 <p>
               Koopman theory, dynamic mode decomposition, CNN-based autoencoders, and reduced-order models
-              for faster prediction, diagnosis and engineering design exploration.
+              for faster prediction, diagnosis, and engineering design exploration.
             </p>
 </article>
 </div>
