@@ -70,10 +70,10 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      opacity: 1;
+      opacity: 0;
     }
 
-    /* CSS/SVG fallback motion: visible even when canvas animation is throttled. */
+    /* Designed SVG background inspired by the attached dynamic-tech reference. */
     .background-network-svg {
       position: fixed;
       inset: 0;
@@ -82,102 +82,141 @@
       height: 100%;
       pointer-events: none;
       overflow: visible;
-      opacity: 0.62;
+      opacity: 0.66;
     }
 
-    .network-line {
+    .tech-scene {
+      transform-origin: center;
+      animation: tech-scene-float 18s ease-in-out infinite alternate;
+    }
+
+    .tech-link {
       fill: none;
-      stroke: rgba(48, 111, 160, 0.38);
-      stroke-width: 1.8;
+      stroke: rgba(40, 91, 138, 0.20);
+      stroke-width: 1.7;
       stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .tech-link.bold {
+      stroke: rgba(33, 86, 135, 0.30);
+      stroke-width: 2.15;
+    }
+
+    .tech-link.dashed {
+      stroke: rgba(57, 109, 154, 0.28);
+      stroke-dasharray: 5 7;
+      animation: tech-dash-flow 8s linear infinite;
+    }
+
+    .tech-link.accent {
+      stroke: rgba(0, 172, 196, 0.56);
+      stroke-width: 2.4;
       stroke-dasharray: 10 10;
-      animation: network-line-flow 5.6s linear infinite;
+      animation: tech-dash-flow 4s linear infinite;
+      filter: drop-shadow(0 0 7px rgba(0, 176, 201, 0.18));
     }
 
-    .network-line.strong {
-      stroke: rgba(36, 91, 137, 0.52);
-      stroke-width: 2.5;
-      stroke-dasharray: 14 10;
-      animation-duration: 4.2s;
-    }
-
-    .network-node-svg {
-      fill: rgba(29, 84, 129, 0.66);
+    .tech-node {
+      fill: rgba(27, 76, 128, 0.88);
       transform-box: fill-box;
       transform-origin: center;
-      animation: network-node-pulse 2.6s ease-in-out infinite alternate;
+      animation: tech-node-pulse 3s ease-in-out infinite alternate;
     }
 
-    .network-node-svg:nth-of-type(3n) {
-      animation-delay: -0.8s;
+    .tech-node.soft {
+      fill: rgba(52, 103, 154, 0.66);
     }
 
-    .network-node-svg:nth-of-type(4n) {
-      animation-delay: -1.5s;
+    .tech-node.core {
+      fill: rgba(255, 255, 255, 0.95);
+      animation-duration: 2.2s;
     }
 
-    .network-halo-svg {
-      fill: rgba(108, 177, 224, 0.18);
+    .tech-halo {
+      fill: rgba(108, 177, 224, 0.16);
       transform-box: fill-box;
       transform-origin: center;
-      animation: network-halo-pulse 3.2s ease-in-out infinite alternate;
+      animation: tech-halo-pulse 4.2s ease-in-out infinite alternate;
     }
 
-    .network-cluster-a {
-      transform-origin: 22% 22%;
-      animation: network-drift-a 8s ease-in-out infinite alternate;
+    .tech-ring {
+      fill: none;
+      stroke: rgba(0, 153, 214, 0.34);
+      stroke-width: 1.5;
+      animation: tech-ring-breathe 5.4s ease-in-out infinite alternate;
     }
 
-    .network-cluster-b {
-      transform-origin: 78% 20%;
-      animation: network-drift-b 10s ease-in-out infinite alternate;
+    .tech-ring.large {
+      stroke: rgba(36, 91, 137, 0.18);
+      stroke-width: 1.3;
     }
 
-    .network-cluster-c {
-      transform-origin: 52% 64%;
-      animation: network-drift-c 9s ease-in-out infinite alternate;
+    .tech-blur {
+      fill: rgba(80, 118, 204, 0.18);
+      filter: blur(12px);
+      animation: tech-blur-float 7.5s ease-in-out infinite alternate;
     }
 
-    .network-cluster-d {
-      transform-origin: 18% 78%;
-      animation: network-drift-d 11s ease-in-out infinite alternate;
+    .tech-cluster-left {
+      transform-origin: 24% 52%;
+      animation: tech-drift-left 11s ease-in-out infinite alternate;
     }
 
-    @keyframes network-line-flow {
+    .tech-cluster-center {
+      transform-origin: 50% 52%;
+      animation: tech-drift-center 9s ease-in-out infinite alternate;
+    }
+
+    .tech-cluster-right {
+      transform-origin: 76% 50%;
+      animation: tech-drift-right 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes tech-scene-float {
+      from { transform: translate3d(0, 0, 0); }
+      to { transform: translate3d(0, -8px, 0); }
+    }
+
+    @keyframes tech-dash-flow {
       from { stroke-dashoffset: 0; }
-      to { stroke-dashoffset: -180; }
+      to { stroke-dashoffset: -90; }
     }
 
-    @keyframes network-node-pulse {
-      from { opacity: 0.5; transform: scale(0.78); }
-      to { opacity: 1; transform: scale(1.32); }
+    @keyframes tech-node-pulse {
+      from { opacity: 0.68; transform: scale(0.88); }
+      to { opacity: 1; transform: scale(1.16); }
     }
 
-    @keyframes network-halo-pulse {
-      from { opacity: 0.18; transform: scale(0.75); }
-      to { opacity: 0.5; transform: scale(1.3); }
+    @keyframes tech-halo-pulse {
+      from { opacity: 0.08; transform: scale(0.82); }
+      to { opacity: 0.28; transform: scale(1.18); }
     }
 
-    @keyframes network-drift-a {
-      from { transform: translate3d(-12px, -7px, 0) rotate(-0.8deg); }
-      to { transform: translate3d(24px, 17px, 0) rotate(1.4deg); }
+    @keyframes tech-ring-breathe {
+      from { opacity: 0.22; transform: scale(0.96); }
+      to { opacity: 0.42; transform: scale(1.04); }
     }
 
-    @keyframes network-drift-b {
-      from { transform: translate3d(13px, -10px, 0) rotate(0.8deg); }
-      to { transform: translate3d(-25px, 19px, 0) rotate(-1.5deg); }
+    @keyframes tech-blur-float {
+      from { opacity: 0.12; transform: translate3d(-6px, 2px, 0) scale(0.92); }
+      to { opacity: 0.24; transform: translate3d(10px, -10px, 0) scale(1.08); }
     }
 
-    @keyframes network-drift-c {
-      from { transform: translate3d(-18px, 10px, 0) rotate(-1deg); }
-      to { transform: translate3d(21px, -21px, 0) rotate(1.2deg); }
+    @keyframes tech-drift-left {
+      from { transform: translate3d(-14px, 8px, 0); }
+      to { transform: translate3d(18px, -14px, 0); }
     }
 
-    @keyframes network-drift-d {
-      from { transform: translate3d(8px, 16px, 0) rotate(0.6deg); }
-      to { transform: translate3d(29px, -15px, 0) rotate(-1.1deg); }
+    @keyframes tech-drift-center {
+      from { transform: translate3d(-8px, 12px, 0); }
+      to { transform: translate3d(10px, -10px, 0); }
     }
 
+    @keyframes tech-drift-right {
+      from { transform: translate3d(16px, -6px, 0); }
+      to { transform: translate3d(-20px, 14px, 0); }
+    }
     .site-nav,
     main,
     footer,
@@ -1563,25 +1602,70 @@
 <body>
 <canvas aria-hidden="true" class="background-network"></canvas>
 <svg aria-hidden="true" class="background-network-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
-  <g class="network-cluster-a">
-    <line class="network-line strong" x1="42" y1="112" x2="132" y2="58"/><line class="network-line" x1="132" y1="58" x2="222" y2="126"/><line class="network-line" x1="222" y1="126" x2="304" y2="72"/><line class="network-line" x1="132" y1="58" x2="170" y2="196"/><line class="network-line strong" x1="170" y1="196" x2="274" y2="220"/><line class="network-line" x1="274" y1="220" x2="346" y2="144"/><line class="network-line" x1="222" y1="126" x2="274" y2="220"/><line class="network-line" x1="42" y1="112" x2="98" y2="242"/>
-    <circle class="network-halo-svg" cx="132" cy="58" r="15"/><circle class="network-halo-svg" cx="274" cy="220" r="13"/>
-    <circle class="network-node-svg" cx="42" cy="112" r="3.4"/><circle class="network-node-svg" cx="132" cy="58" r="4.2"/><circle class="network-node-svg" cx="222" cy="126" r="3.8"/><circle class="network-node-svg" cx="304" cy="72" r="3.1"/><circle class="network-node-svg" cx="170" cy="196" r="4"/><circle class="network-node-svg" cx="274" cy="220" r="4.5"/><circle class="network-node-svg" cx="346" cy="144" r="3.3"/><circle class="network-node-svg" cx="98" cy="242" r="3"/>
-  </g>
-  <g class="network-cluster-b">
-    <line class="network-line" x1="1020" y1="74" x2="1110" y2="132"/><line class="network-line strong" x1="1110" y1="132" x2="1202" y2="66"/><line class="network-line" x1="1202" y1="66" x2="1338" y2="116"/><line class="network-line" x1="1110" y1="132" x2="1154" y2="236"/><line class="network-line strong" x1="1154" y1="236" x2="1270" y2="210"/><line class="network-line" x1="1270" y1="210" x2="1368" y2="280"/><line class="network-line" x1="1202" y1="66" x2="1270" y2="210"/><line class="network-line" x1="1020" y1="74" x2="1000" y2="216"/>
-    <circle class="network-halo-svg" cx="1110" cy="132" r="14"/><circle class="network-halo-svg" cx="1270" cy="210" r="16"/>
-    <circle class="network-node-svg" cx="1020" cy="74" r="3.2"/><circle class="network-node-svg" cx="1110" cy="132" r="4.3"/><circle class="network-node-svg" cx="1202" cy="66" r="3.6"/><circle class="network-node-svg" cx="1338" cy="116" r="3.1"/><circle class="network-node-svg" cx="1154" cy="236" r="4"/><circle class="network-node-svg" cx="1270" cy="210" r="4.6"/><circle class="network-node-svg" cx="1368" cy="280" r="3.4"/><circle class="network-node-svg" cx="1000" cy="216" r="3"/>
-  </g>
-  <g class="network-cluster-c">
-    <line class="network-line strong" x1="520" y1="510" x2="646" y2="454"/><line class="network-line" x1="646" y1="454" x2="754" y2="524"/><line class="network-line" x1="754" y1="524" x2="882" y2="466"/><line class="network-line" x1="646" y1="454" x2="682" y2="628"/><line class="network-line strong" x1="682" y1="628" x2="808" y2="650"/><line class="network-line" x1="808" y1="650" x2="924" y2="580"/><line class="network-line" x1="754" y1="524" x2="808" y2="650"/><line class="network-line" x1="520" y1="510" x2="554" y2="660"/>
-    <circle class="network-halo-svg" cx="646" cy="454" r="16"/><circle class="network-halo-svg" cx="808" cy="650" r="15"/>
-    <circle class="network-node-svg" cx="520" cy="510" r="3.4"/><circle class="network-node-svg" cx="646" cy="454" r="4.6"/><circle class="network-node-svg" cx="754" cy="524" r="4"/><circle class="network-node-svg" cx="882" cy="466" r="3.3"/><circle class="network-node-svg" cx="682" cy="628" r="4.2"/><circle class="network-node-svg" cx="808" cy="650" r="4.7"/><circle class="network-node-svg" cx="924" cy="580" r="3.4"/><circle class="network-node-svg" cx="554" cy="660" r="3.1"/>
-  </g>
-  <g class="network-cluster-d">
-    <line class="network-line" x1="40" y1="680" x2="128" y2="618"/><line class="network-line strong" x1="128" y1="618" x2="232" y2="704"/><line class="network-line" x1="232" y1="704" x2="338" y2="642"/><line class="network-line" x1="128" y1="618" x2="166" y2="790"/><line class="network-line strong" x1="166" y1="790" x2="286" y2="824"/><line class="network-line" x1="286" y1="824" x2="392" y2="754"/><line class="network-line" x1="232" y1="704" x2="286" y2="824"/>
-    <circle class="network-halo-svg" cx="128" cy="618" r="13"/><circle class="network-halo-svg" cx="286" cy="824" r="15"/>
-    <circle class="network-node-svg" cx="40" cy="680" r="3"/><circle class="network-node-svg" cx="128" cy="618" r="4.2"/><circle class="network-node-svg" cx="232" cy="704" r="3.8"/><circle class="network-node-svg" cx="338" cy="642" r="3.2"/><circle class="network-node-svg" cx="166" cy="790" r="4"/><circle class="network-node-svg" cx="286" cy="824" r="4.5"/><circle class="network-node-svg" cx="392" cy="754" r="3.2"/>
+  <g class="tech-scene">
+    <circle class="tech-ring large" cx="80" cy="450" r="84"/>
+    <circle class="tech-ring large" cx="1325" cy="380" r="120"/>
+    <circle class="tech-blur" cx="292" cy="570" r="34"/>
+    <circle class="tech-blur" cx="1180" cy="602" r="48"/>
+
+    <g class="tech-cluster-left">
+      <line class="tech-link dashed" x1="-30" y1="355" x2="100" y2="436"/>
+      <line class="tech-link" x1="100" y1="436" x2="210" y2="494"/>
+      <line class="tech-link dashed" x1="210" y1="494" x2="400" y2="384"/>
+      <circle class="tech-node core" cx="100" cy="436" r="7"/>
+      <circle class="tech-node soft" cx="210" cy="494" r="8"/>
+      <g>
+        <circle class="tech-halo" cx="400" cy="384" r="24"/>
+        <circle class="tech-ring" cx="400" cy="384" r="30"/>
+        <circle class="tech-node" cx="400" cy="384" r="7.2"/>
+        <circle class="tech-node soft" cx="400" cy="372" r="1.6"/>
+        <circle class="tech-node soft" cx="392" cy="382" r="1.4"/>
+        <circle class="tech-node soft" cx="409" cy="380" r="1.4"/>
+        <circle class="tech-node soft" cx="393" cy="392" r="1.4"/>
+        <circle class="tech-node soft" cx="408" cy="392" r="1.5"/>
+      </g>
+      <circle class="tech-node" cx="418" cy="520" r="4.5"/>
+      <circle class="tech-ring" cx="478" cy="622" r="30"/>
+      <circle class="tech-node soft" cx="478" cy="622" r="4.1"/>
+    </g>
+
+    <g class="tech-cluster-center">
+      <line class="tech-link accent" x1="400" y1="384" x2="560" y2="468"/>
+      <line class="tech-link bold" x1="560" y1="468" x2="642" y2="432"/>
+      <line class="tech-link bold" x1="560" y1="468" x2="642" y2="548"/>
+      <line class="tech-link bold" x1="642" y1="432" x2="724" y2="468"/>
+      <line class="tech-link bold" x1="724" y1="468" x2="724" y2="548"/>
+      <line class="tech-link bold" x1="724" y1="548" x2="642" y2="584"/>
+      <line class="tech-link bold" x1="642" y1="584" x2="642" y2="432"/>
+      <line class="tech-link bold" x1="560" y1="468" x2="560" y2="558"/>
+      <line class="tech-link dashed" x1="642" y1="584" x2="642" y2="734"/>
+      <line class="tech-link" x1="642" y1="432" x2="642" y2="362"/>
+
+      <circle class="tech-node soft" cx="560" cy="468" r="5.8"/>
+      <circle class="tech-node" cx="560" cy="558" r="4.8"/>
+      <circle class="tech-node" cx="642" cy="432" r="5.8"/>
+      <circle class="tech-node core" cx="642" cy="584" r="6"/>
+      <circle class="tech-node core" cx="724" cy="468" r="6"/>
+      <circle class="tech-node" cx="724" cy="548" r="5.6"/>
+      <circle class="tech-node" cx="642" cy="362" r="4.7"/>
+    </g>
+
+    <g class="tech-cluster-right">
+      <line class="tech-link dashed" x1="724" y1="468" x2="878" y2="378"/>
+      <line class="tech-link bold" x1="878" y1="378" x2="1018" y2="472"/>
+      <line class="tech-link dashed" x1="1018" y1="472" x2="1220" y2="566"/>
+      <g>
+        <circle class="tech-halo" cx="878" cy="378" r="22"/>
+        <circle class="tech-ring" cx="878" cy="378" r="26"/>
+        <circle class="tech-ring" cx="878" cy="378" r="10"/>
+        <circle class="tech-node core" cx="878" cy="378" r="6.4"/>
+      </g>
+      <circle class="tech-node" cx="1018" cy="472" r="5.6"/>
+      <circle class="tech-node core" cx="1100" cy="282" r="5.5"/>
+      <circle class="tech-node core" cx="987" cy="503" r="4.9"/>
+      <circle class="tech-ring" cx="918" cy="648" r="28"/>
+      <circle class="tech-node soft" cx="918" cy="648" r="4.4"/>
+    </g>
   </g>
 </svg>
 <div aria-hidden="true" class="scroll-progress"></div>
@@ -2135,9 +2219,9 @@
 
         function buildNodes() {
           nodes.length = 0;
-          nodeCount = media.matches ? 50 : 92;
-          connectionDistance = media.matches ? 155 : 220;
-          pointerDistance = media.matches ? 150 : 220;
+          nodeCount = media.matches ? 18 : 26;
+          connectionDistance = media.matches ? 110 : 145;
+          pointerDistance = media.matches ? 110 : 145;
           for (let i = 0; i < nodeCount; i += 1) {
             const speedScale = media.matches ? 1.15 : 1.25;
             nodes.push({
