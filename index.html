@@ -88,7 +88,7 @@
 
     .page-container {
       width: calc(100% - 32px) !important;
-      max-width: 1200px !important;
+      max-width: 1080px !important;
       margin: 0 auto !important;
     }
 
@@ -241,7 +241,7 @@
 
     .top-tabs-inner {
       width: calc(100% - 32px);
-      max-width: 1200px;
+      max-width: 1080px;
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -424,7 +424,7 @@
       <a class="top-tab" href="#contact">Contact</a>
     </div>
   </nav>
-  <table class="page-container" style="width:100%;max-width:1200px;border:0;border-spacing:0;border-collapse:separate;margin:0 auto;">
+  <table class="page-container" style="width:100%;max-width:1080px;border:0;border-spacing:0;border-collapse:separate;margin:0 auto;">
     <tbody>
       <tr>
         <td>
@@ -474,7 +474,7 @@
             <tbody>
               <tr>
                 <td class="section-cell">
-                  <h2>Latest Updates</h2>
+                  <h2>Updates</h2>
                   <ul class="updates-list">
 
                     <li><span class="update-date">Jul 2026</span> Selected as a member of <a href="https://k-club.kird.re.kr/bbs/BBSMSTR_000000000792/view.do?nttId=B000000006713Bt8oA9" target="_blank" rel="noopener">Group 7 — K-ResearChain</a> in the KIRD Global R&amp;D Career Salon in Korea.</li>
@@ -1078,25 +1078,56 @@
 
   <script>
     (function () {
+      const tabsContainer = document.querySelector('.top-tabs-inner');
       const tabs = Array.from(document.querySelectorAll('.top-tab'));
       const sections = tabs
         .map((tab) => document.querySelector(tab.getAttribute('href')))
         .filter(Boolean);
 
-      function setActiveTab(id) {
+      let activeId = 'home';
+
+      function keepTabVisibleHorizontally(tab) {
+        if (!tabsContainer || !tab) return;
+
+        const containerRect = tabsContainer.getBoundingClientRect();
+        const tabRect = tab.getBoundingClientRect();
+        const padding = 12;
+
+        if (tabRect.left < containerRect.left + padding) {
+          tabsContainer.scrollBy({
+            left: tabRect.left - containerRect.left - padding,
+            behavior: 'smooth'
+          });
+        } else if (tabRect.right > containerRect.right - padding) {
+          tabsContainer.scrollBy({
+            left: tabRect.right - containerRect.right + padding,
+            behavior: 'smooth'
+          });
+        }
+      }
+
+      function setActiveTab(id, adjustHorizontalNav) {
+        if (!id || id === activeId) return;
+        activeId = id;
+
+        let activeTab = null;
         tabs.forEach((tab) => {
           const isActive = tab.getAttribute('href') === '#' + id;
           tab.classList.toggle('active', isActive);
-          if (isActive) {
-            tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-          }
+          if (isActive) activeTab = tab;
         });
+
+        // Only move the navigation bar horizontally. Never scroll the page itself.
+        if (adjustHorizontalNav) {
+          keepTabVisibleHorizontally(activeTab);
+        }
       }
 
       tabs.forEach((tab) => {
         tab.addEventListener('click', function () {
           const targetId = this.getAttribute('href').slice(1);
-          setActiveTab(targetId);
+          activeId = '';
+          setActiveTab(targetId, true);
         });
       });
 
@@ -1107,11 +1138,11 @@
             .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
           if (visible.length) {
-            setActiveTab(visible[0].target.id);
+            setActiveTab(visible[0].target.id, false);
           }
         },
         {
-          rootMargin: '-74px 0px -65% 0px',
+          rootMargin: '-76px 0px -62% 0px',
           threshold: [0.05, 0.15, 0.3]
         }
       );
