@@ -63,159 +63,193 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    .background-network {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      opacity: 0;
-    }
-
-    /* Designed SVG background inspired by the attached dynamic-tech reference. */
+    /* Dynamic scientific-network background inspired by the supplied Lottie reference. */
     .background-network-svg {
       position: fixed;
-      inset: 0;
+      inset: -2px;
       z-index: 0;
-      width: 100%;
-      height: 100%;
+      width: calc(100% + 4px);
+      height: calc(100% + 4px);
       pointer-events: none;
-      overflow: visible;
+      overflow: hidden;
       opacity: 0.66;
+      filter: blur(1.35px) saturate(0.92);
+      transform: translateZ(0);
     }
 
-    .tech-scene {
+    .motion-scene {
       transform-origin: center;
-      animation: tech-scene-float 18s ease-in-out infinite alternate;
+      animation: motion-scene-drift 18s ease-in-out infinite alternate;
     }
 
-    .tech-link {
+    .motion-path {
       fill: none;
-      stroke: rgba(40, 91, 138, 0.20);
-      stroke-width: 1.7;
+      stroke: rgba(38, 91, 140, 0.20);
+      stroke-width: 1.8;
       stroke-linecap: round;
       stroke-linejoin: round;
+      filter: blur(0.28px);
     }
 
-    .tech-link.bold {
-      stroke: rgba(33, 86, 135, 0.30);
-      stroke-width: 2.15;
+    .motion-path.bold {
+      stroke: rgba(32, 83, 132, 0.34);
+      stroke-width: 2.6;
+      filter: blur(0.38px);
     }
 
-    .tech-link.dashed {
-      stroke: rgba(57, 109, 154, 0.28);
-      stroke-dasharray: 5 7;
-      animation: tech-dash-flow 8s linear infinite;
+    .motion-path.dashed {
+      stroke: rgba(42, 100, 150, 0.30);
+      stroke-width: 1.9;
+      stroke-dasharray: 5 8;
+      filter: blur(0.42px);
+      animation: motion-dash 6.5s linear infinite;
     }
 
-    .tech-link.accent {
-      stroke: rgba(0, 172, 196, 0.56);
-      stroke-width: 2.4;
-      stroke-dasharray: 10 10;
-      animation: tech-dash-flow 4s linear infinite;
-      filter: drop-shadow(0 0 7px rgba(0, 176, 201, 0.18));
+    .motion-path.energy {
+      stroke: rgba(0, 174, 196, 0.68);
+      stroke-width: 3.4;
+      stroke-dasharray: 18 16;
+      animation: motion-energy 2.8s linear infinite;
+      filter: blur(0.45px) drop-shadow(0 0 9px rgba(0, 174, 196, 0.34));
     }
 
-    .tech-node {
-      fill: rgba(27, 76, 128, 0.88);
+    .motion-node {
+      fill: rgba(31, 79, 130, 0.84);
+      filter: blur(0.45px) drop-shadow(0 0 5px rgba(55, 108, 158, 0.18));
       transform-box: fill-box;
       transform-origin: center;
-      animation: tech-node-pulse 3s ease-in-out infinite alternate;
+      animation: motion-node-pulse 2.6s ease-in-out infinite alternate;
     }
 
-    .tech-node.soft {
-      fill: rgba(52, 103, 154, 0.66);
+    .motion-node.white {
+      fill: rgba(255, 255, 255, 0.98);
+      stroke: rgba(19, 58, 105, 0.78);
+      stroke-width: 1.4;
     }
 
-    .tech-node.core {
-      fill: rgba(255, 255, 255, 0.95);
-      animation-duration: 2.2s;
+    .motion-node.cyan {
+      fill: rgba(0, 179, 188, 0.88);
+      filter: blur(0.55px) drop-shadow(0 0 10px rgba(0, 179, 188, 0.38));
     }
 
-    .tech-halo {
-      fill: rgba(108, 177, 224, 0.16);
+    .motion-node.small {
+      animation-duration: 3.4s;
+    }
+
+    .motion-halo {
+      fill: rgba(74, 129, 201, 0.18);
+      filter: blur(5px);
       transform-box: fill-box;
       transform-origin: center;
-      animation: tech-halo-pulse 4.2s ease-in-out infinite alternate;
+      animation: motion-halo-pulse 4s ease-in-out infinite alternate;
     }
 
-    .tech-ring {
+    .motion-ring {
       fill: none;
-      stroke: rgba(0, 153, 214, 0.34);
-      stroke-width: 1.5;
-      animation: tech-ring-breathe 5.4s ease-in-out infinite alternate;
+      stroke: rgba(35, 92, 148, 0.20);
+      stroke-width: 1.45;
+      filter: blur(0.6px);
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: motion-ring-breathe 5.5s ease-in-out infinite alternate;
     }
 
-    .tech-ring.large {
-      stroke: rgba(36, 91, 137, 0.18);
-      stroke-width: 1.3;
+    .motion-ring.cyan {
+      stroke: rgba(0, 158, 182, 0.62);
+      stroke-width: 1.7;
     }
 
-    .tech-blur {
-      fill: rgba(80, 118, 204, 0.18);
-      filter: blur(12px);
-      animation: tech-blur-float 7.5s ease-in-out infinite alternate;
+    .motion-orbit {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: motion-orbit 10s linear infinite;
     }
 
-    .tech-cluster-left {
-      transform-origin: 24% 52%;
-      animation: tech-drift-left 11s ease-in-out infinite alternate;
+    .motion-blur {
+      fill: rgba(63, 99, 191, 0.20);
+      filter: blur(20px);
+      animation: motion-blur-float 7s ease-in-out infinite alternate;
     }
 
-    .tech-cluster-center {
-      transform-origin: 50% 52%;
-      animation: tech-drift-center 9s ease-in-out infinite alternate;
+    .motion-cluster-left {
+      transform-origin: 25% 52%;
+      animation: motion-cluster-left 11s ease-in-out infinite alternate;
     }
 
-    .tech-cluster-right {
-      transform-origin: 76% 50%;
-      animation: tech-drift-right 12s ease-in-out infinite alternate;
+    .motion-cluster-center {
+      transform-origin: 50% 53%;
+      animation: motion-cluster-center 9s ease-in-out infinite alternate;
     }
 
-    @keyframes tech-scene-float {
-      from { transform: translate3d(0, 0, 0); }
-      to { transform: translate3d(0, -8px, 0); }
+    .motion-cluster-right {
+      transform-origin: 77% 50%;
+      animation: motion-cluster-right 12s ease-in-out infinite alternate;
     }
 
-    @keyframes tech-dash-flow {
+    .motion-particle {
+      fill: rgba(0, 178, 194, 0.90);
+      filter: blur(0.7px) drop-shadow(0 0 11px rgba(0, 178, 194, 0.42));
+    }
+
+    .motion-particle.white {
+      fill: rgba(255, 255, 255, 0.92);
+      stroke: rgba(32, 75, 124, 0.68);
+      stroke-width: 1;
+      filter: blur(0.55px) drop-shadow(0 0 9px rgba(58, 110, 160, 0.30));
+    }
+
+    @keyframes motion-scene-drift {
+      from { transform: translate3d(0, 4px, 0) scale(1); }
+      to { transform: translate3d(0, -8px, 0) scale(1.012); }
+    }
+
+    @keyframes motion-dash {
       from { stroke-dashoffset: 0; }
-      to { stroke-dashoffset: -90; }
+      to { stroke-dashoffset: -130; }
     }
 
-    @keyframes tech-node-pulse {
-      from { opacity: 0.68; transform: scale(0.88); }
-      to { opacity: 1; transform: scale(1.16); }
+    @keyframes motion-energy {
+      from { stroke-dashoffset: 0; }
+      to { stroke-dashoffset: -160; }
     }
 
-    @keyframes tech-halo-pulse {
-      from { opacity: 0.08; transform: scale(0.82); }
-      to { opacity: 0.28; transform: scale(1.18); }
+    @keyframes motion-node-pulse {
+      from { opacity: 0.64; transform: scale(0.84); }
+      to { opacity: 1; transform: scale(1.2); }
     }
 
-    @keyframes tech-ring-breathe {
-      from { opacity: 0.22; transform: scale(0.96); }
-      to { opacity: 0.42; transform: scale(1.04); }
+    @keyframes motion-halo-pulse {
+      from { opacity: 0.08; transform: scale(0.75); }
+      to { opacity: 0.34; transform: scale(1.3); }
     }
 
-    @keyframes tech-blur-float {
-      from { opacity: 0.12; transform: translate3d(-6px, 2px, 0) scale(0.92); }
-      to { opacity: 0.24; transform: translate3d(10px, -10px, 0) scale(1.08); }
+    @keyframes motion-ring-breathe {
+      from { opacity: 0.22; transform: scale(0.94) rotate(-2deg); }
+      to { opacity: 0.5; transform: scale(1.06) rotate(2deg); }
     }
 
-    @keyframes tech-drift-left {
-      from { transform: translate3d(-14px, 8px, 0); }
-      to { transform: translate3d(18px, -14px, 0); }
+    @keyframes motion-orbit {
+      to { transform: rotate(360deg); }
     }
 
-    @keyframes tech-drift-center {
-      from { transform: translate3d(-8px, 12px, 0); }
+    @keyframes motion-blur-float {
+      from { opacity: 0.12; transform: translate3d(-10px, 4px, 0) scale(0.88); }
+      to { opacity: 0.28; transform: translate3d(14px, -12px, 0) scale(1.12); }
+    }
+
+    @keyframes motion-cluster-left {
+      from { transform: translate3d(-18px, 8px, 0) rotate(-0.7deg); }
+      to { transform: translate3d(18px, -14px, 0) rotate(0.9deg); }
+    }
+
+    @keyframes motion-cluster-center {
+      from { transform: translate3d(-7px, 12px, 0); }
       to { transform: translate3d(10px, -10px, 0); }
     }
 
-    @keyframes tech-drift-right {
-      from { transform: translate3d(16px, -6px, 0); }
-      to { transform: translate3d(-20px, 14px, 0); }
+    @keyframes motion-cluster-right {
+      from { transform: translate3d(18px, -8px, 0) rotate(0.5deg); }
+      to { transform: translate3d(-22px, 14px, 0) rotate(-0.8deg); }
     }
     .site-nav,
     main,
@@ -1600,72 +1634,109 @@
   </script>
 </head>
 <body>
-<canvas aria-hidden="true" class="background-network"></canvas>
 <svg aria-hidden="true" class="background-network-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
-  <g class="tech-scene">
-    <circle class="tech-ring large" cx="80" cy="450" r="84"/>
-    <circle class="tech-ring large" cx="1325" cy="380" r="120"/>
-    <circle class="tech-blur" cx="292" cy="570" r="34"/>
-    <circle class="tech-blur" cx="1180" cy="602" r="48"/>
+  <defs>
+    <path id="particle-route-left" d="M-60 370 L122 468 L250 516 L430 392 L570 474"/>
+    <path id="particle-route-center" d="M570 474 L652 432 L736 472 L736 552 L652 590 L570 558 Z"/>
+    <path id="particle-route-right" d="M736 472 L888 382 L1038 478 L1260 578 L1500 690"/>
+    <path id="particle-route-vertical" d="M652 350 L652 432 L652 590 L652 770"/>
+  </defs>
 
-    <g class="tech-cluster-left">
-      <line class="tech-link dashed" x1="-30" y1="355" x2="100" y2="436"/>
-      <line class="tech-link" x1="100" y1="436" x2="210" y2="494"/>
-      <line class="tech-link dashed" x1="210" y1="494" x2="400" y2="384"/>
-      <circle class="tech-node core" cx="100" cy="436" r="7"/>
-      <circle class="tech-node soft" cx="210" cy="494" r="8"/>
-      <g>
-        <circle class="tech-halo" cx="400" cy="384" r="24"/>
-        <circle class="tech-ring" cx="400" cy="384" r="30"/>
-        <circle class="tech-node" cx="400" cy="384" r="7.2"/>
-        <circle class="tech-node soft" cx="400" cy="372" r="1.6"/>
-        <circle class="tech-node soft" cx="392" cy="382" r="1.4"/>
-        <circle class="tech-node soft" cx="409" cy="380" r="1.4"/>
-        <circle class="tech-node soft" cx="393" cy="392" r="1.4"/>
-        <circle class="tech-node soft" cx="408" cy="392" r="1.5"/>
+  <g class="motion-scene">
+    <circle class="motion-ring" cx="70" cy="470" r="82"/>
+    <circle class="motion-ring" cx="1320" cy="365" r="118"/>
+    <circle class="motion-blur" cx="280" cy="588" r="35"/>
+    <circle class="motion-blur" cx="1180" cy="610" r="46"/>
+
+    <g class="motion-cluster-left">
+      <path class="motion-path dashed" d="M-60 370 L122 468 L250 516 L430 392"/>
+      <path class="motion-path bold" d="M122 468 L250 516"/>
+      <path class="motion-path" d="M430 392 L470 620"/>
+
+      <circle class="motion-halo" cx="430" cy="392" r="27"/>
+      <circle class="motion-ring cyan" cx="430" cy="392" r="30"/>
+      <circle class="motion-node white" cx="122" cy="468" r="6.5"/>
+      <circle class="motion-node" cx="250" cy="516" r="6"/>
+      <circle class="motion-node cyan" cx="430" cy="392" r="6.5"/>
+      <circle class="motion-node cyan small" cx="444" cy="552" r="4.2"/>
+      <circle class="motion-ring cyan" cx="490" cy="646" r="28"/>
+
+      <g class="motion-orbit">
+        <circle class="motion-node small" cx="430" cy="361" r="2.2"/>
+        <circle class="motion-node small" cx="456" cy="404" r="2.2"/>
+        <circle class="motion-node small" cx="404" cy="405" r="2.2"/>
       </g>
-      <circle class="tech-node" cx="418" cy="520" r="4.5"/>
-      <circle class="tech-ring" cx="478" cy="622" r="30"/>
-      <circle class="tech-node soft" cx="478" cy="622" r="4.1"/>
     </g>
 
-    <g class="tech-cluster-center">
-      <line class="tech-link accent" x1="400" y1="384" x2="560" y2="468"/>
-      <line class="tech-link bold" x1="560" y1="468" x2="642" y2="432"/>
-      <line class="tech-link bold" x1="560" y1="468" x2="642" y2="548"/>
-      <line class="tech-link bold" x1="642" y1="432" x2="724" y2="468"/>
-      <line class="tech-link bold" x1="724" y1="468" x2="724" y2="548"/>
-      <line class="tech-link bold" x1="724" y1="548" x2="642" y2="584"/>
-      <line class="tech-link bold" x1="642" y1="584" x2="642" y2="432"/>
-      <line class="tech-link bold" x1="560" y1="468" x2="560" y2="558"/>
-      <line class="tech-link dashed" x1="642" y1="584" x2="642" y2="734"/>
-      <line class="tech-link" x1="642" y1="432" x2="642" y2="362"/>
+    <g class="motion-cluster-center">
+      <path class="motion-path energy" d="M430 392 L570 474"/>
+      <path class="motion-path bold" d="M570 474 L652 432 L736 472 L736 552 L652 590 L570 558 Z"/>
+      <path class="motion-path bold" d="M570 474 L736 552"/>
+      <path class="motion-path bold" d="M652 432 L652 590"/>
+      <path class="motion-path dashed" d="M652 590 L652 770"/>
+      <path class="motion-path" d="M652 432 L652 350"/>
 
-      <circle class="tech-node soft" cx="560" cy="468" r="5.8"/>
-      <circle class="tech-node" cx="560" cy="558" r="4.8"/>
-      <circle class="tech-node" cx="642" cy="432" r="5.8"/>
-      <circle class="tech-node core" cx="642" cy="584" r="6"/>
-      <circle class="tech-node core" cx="724" cy="468" r="6"/>
-      <circle class="tech-node" cx="724" cy="548" r="5.6"/>
-      <circle class="tech-node" cx="642" cy="362" r="4.7"/>
+      <circle class="motion-node" cx="570" cy="474" r="5.4"/>
+      <circle class="motion-node" cx="570" cy="558" r="4.8"/>
+      <circle class="motion-node cyan" cx="652" cy="432" r="5.4"/>
+      <circle class="motion-node white" cx="652" cy="590" r="6.2"/>
+      <circle class="motion-node white" cx="736" cy="472" r="6.2"/>
+      <circle class="motion-node" cx="736" cy="552" r="5.5"/>
+      <circle class="motion-node cyan small" cx="652" cy="350" r="4.5"/>
     </g>
 
-    <g class="tech-cluster-right">
-      <line class="tech-link dashed" x1="724" y1="468" x2="878" y2="378"/>
-      <line class="tech-link bold" x1="878" y1="378" x2="1018" y2="472"/>
-      <line class="tech-link dashed" x1="1018" y1="472" x2="1220" y2="566"/>
-      <g>
-        <circle class="tech-halo" cx="878" cy="378" r="22"/>
-        <circle class="tech-ring" cx="878" cy="378" r="26"/>
-        <circle class="tech-ring" cx="878" cy="378" r="10"/>
-        <circle class="tech-node core" cx="878" cy="378" r="6.4"/>
-      </g>
-      <circle class="tech-node" cx="1018" cy="472" r="5.6"/>
-      <circle class="tech-node core" cx="1100" cy="282" r="5.5"/>
-      <circle class="tech-node core" cx="987" cy="503" r="4.9"/>
-      <circle class="tech-ring" cx="918" cy="648" r="28"/>
-      <circle class="tech-node soft" cx="918" cy="648" r="4.4"/>
+    <g class="motion-cluster-right">
+      <path class="motion-path dashed" d="M736 472 L888 382"/>
+      <path class="motion-path bold" d="M888 382 L1038 478"/>
+      <path class="motion-path dashed" d="M1038 478 L1260 578 L1500 690"/>
+
+      <circle class="motion-halo" cx="888" cy="382" r="23"/>
+      <circle class="motion-ring" cx="888" cy="382" r="26"/>
+      <circle class="motion-ring" cx="888" cy="382" r="10"/>
+      <circle class="motion-node white" cx="888" cy="382" r="6.2"/>
+      <circle class="motion-node cyan" cx="1038" cy="478" r="5.5"/>
+      <circle class="motion-node white small" cx="1104" cy="288" r="5"/>
+      <circle class="motion-node white small" cx="976" cy="510" r="4.4"/>
+      <circle class="motion-ring" cx="920" cy="650" r="28"/>
+      <circle class="motion-node" cx="920" cy="650" r="4.2"/>
     </g>
+
+    <!-- Bright particles travel along the same paths, recreating the Lottie-style motion. -->
+    <circle class="motion-particle" r="4.4">
+      <animateMotion dur="5.8s" repeatCount="indefinite" rotate="auto">
+        <mpath href="#particle-route-left"/>
+      </animateMotion>
+    </circle>
+    <circle class="motion-particle white" r="4">
+      <animateMotion dur="7.6s" begin="-2.4s" repeatCount="indefinite" rotate="auto">
+        <mpath href="#particle-route-left"/>
+      </animateMotion>
+    </circle>
+    <circle class="motion-particle" r="4.1">
+      <animateMotion dur="4.4s" repeatCount="indefinite" rotate="auto">
+        <mpath href="#particle-route-center"/>
+      </animateMotion>
+    </circle>
+    <circle class="motion-particle white" r="3.8">
+      <animateMotion dur="5.2s" begin="-1.6s" repeatCount="indefinite" rotate="auto">
+        <mpath href="#particle-route-center"/>
+      </animateMotion>
+    </circle>
+    <circle class="motion-particle" r="4.2">
+      <animateMotion dur="7s" begin="-3s" repeatCount="indefinite" rotate="auto">
+        <mpath href="#particle-route-right"/>
+      </animateMotion>
+    </circle>
+    <circle class="motion-particle white" r="3.8">
+      <animateMotion dur="8.8s" begin="-5.2s" repeatCount="indefinite" rotate="auto">
+        <mpath href="#particle-route-right"/>
+      </animateMotion>
+    </circle>
+    <circle class="motion-particle" r="3.8">
+      <animateMotion dur="4.8s" begin="-1s" repeatCount="indefinite" rotate="auto">
+        <mpath href="#particle-route-vertical"/>
+      </animateMotion>
+    </circle>
   </g>
 </svg>
 <div aria-hidden="true" class="scroll-progress"></div>
@@ -1829,19 +1900,6 @@
 </article>
 <article class="publication-card" data-reveal="">
 <div class="publication-visual">
-<div><span class="publication-topic">Rim-Driven Systems</span><span class="muted">Propulsion · Pump</span></div>
-</div>
-<div>
-<span class="publication-title">Numerical Approach to Performance Analysis of Modified Duct Shapes for Electric Hubless Rim-Driven Propellers</span>
-<p class="publication-authors"><strong>Islam, M. D.</strong>, Lee, C. J., &amp; Kim, H. H.</p>
-<p class="publication-meta"><em>Journal of Mechanical Science and Technology</em>, accepted, 2026 · First author</p>
-<p class="publication-note">Evaluates duct-shape modifications for improved hydrodynamic performance of electric hubless rim-driven propellers.</p>
-</div>
-</article>
-</div>
-</article>
-<article class="publication-card" data-reveal="">
-<div class="publication-visual">
 <div><span class="publication-topic">Stent CFD</span><span class="muted">CFD · Experiment</span></div>
 </div>
 <div>
@@ -1886,6 +1944,19 @@
 <p class="publication-meta"><em>Alexandria Engineering Journal</em>, 113, 431–450, 2025</p>
 <p class="publication-note">Investigates how cavitation and erosion alter hydraulic performance and operational stability in submersible drainage pumps.</p>
 <div class="inline-links"><a href="https://doi.org/10.1016/j.aej.2024.11.060" rel="noopener" target="_blank">DOI</a></div>
+</div>
+</article>
+<article class="publication-card" data-reveal="">
+<div class="publication-visual">
+<div><span class="publication-topic">Rim-Driven Systems</span><span class="muted">Propulsion · Pump</span></div>
+</div>
+<div>
+<span class="publication-title">Numerical Approach to Performance Analysis of Modified Duct Shapes for Electric Hubless Rim-Driven Propellers</span>
+<p class="publication-authors"><strong>Islam, M. D.</strong>, Lee, C. J., &amp; Kim, H. H.</p>
+<p class="publication-meta"><em>Journal of Mechanical Science and Technology</em>, accepted, 2026 · First author</p>
+<p class="publication-note">Evaluates duct-shape modifications for improved hydrodynamic performance of electric hubless rim-driven propellers.</p>
+</div>
+</article>
 </div>
 <details class="archive">
 <summary>View complete publication list</summary>
@@ -2393,7 +2464,7 @@
         });
       }
 
-      initNetworkBackground();
+      // Background motion is now handled by the inline SVG and CSS animations.
 
       function closeMenu() {
         navLinksContainer.classList.remove('open');
