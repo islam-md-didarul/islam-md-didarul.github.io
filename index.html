@@ -1148,6 +1148,63 @@
       letter-spacing: 0.02em;
     }
 
+    .presentation-title-link {
+      color: inherit;
+      text-decoration: none;
+      text-underline-offset: 3px;
+    }
+
+    .presentation-title-link:hover {
+      color: var(--blue);
+      text-decoration: underline;
+    }
+
+    .presentation-meta a {
+      color: inherit;
+      font-weight: 650;
+      text-decoration: underline;
+      text-decoration-color: rgba(23, 105, 170, 0.32);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .presentation-meta a:hover {
+      color: var(--blue-dark);
+      text-decoration-color: currentColor;
+    }
+
+    .presentation-entry-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 7px;
+      margin-top: 7px;
+    }
+
+    .conference-site-button {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 2px 8px;
+      color: #174f7d;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid #bfd7e9;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      line-height: 1.25;
+      text-decoration: none;
+      transition: color 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+    }
+
+    .conference-site-button:hover {
+      color: #071d36;
+      background: #ffffff;
+      border-color: #8fbddd;
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
 
 
     /* Standalone milestones and conference sections */
@@ -1816,7 +1873,7 @@
             <a href="https://www.gnu.ac.kr/eng/main.do" rel="noopener" target="_blank">Gyeongsang National University</a>.
           </p>
 <div aria-label="Primary profile links" class="hero-actions">
-<a class="button button-primary" href="https://scholar.google.com/citations?hl=en&amp;user=re2yAfAAAAAJ" rel="noopener" target="_blank">Google Scholar</a>
+<a class="button button-primary" href="https://scholar.google.com/citations?hl=en&amp;user=re2yAfAAAAAJ">Google Scholar</a>
 <a class="button button-secondary" href="assets/CV_Md_Didarul_Islam.pdf">Download CV</a>
 <a class="button button-secondary" href="mailto:didarul@gnu.ac.kr">Email</a>
 </div>
@@ -1848,10 +1905,10 @@
 <li><span class="update-date">Jul 2026</span><span>Delivered the keynote lecture <a href="https://isromac2026.com/" rel="noopener" target="_blank">“CFD–PIV Analysis and Performance Optimization of Hubless Rim-Driven Systems”</a> at ISROMAC19, Waseda University, Japan.</span></li>
 
 
+<li><span class="update-date">Jun 2026</span><span>Published <a href="https://doi.org/10.1016/j.jtha.2026.02.033" rel="noopener" target="_blank">“Experimental Investigation of Ultrasound-Guided Thrombin Injection Outcomes in Complex Morphologies of Iatrogenic Femoral Artery Pseudoaneurysms”</a> in the <em>Journal of Thrombosis and Haemostasis</em>.</span></li>
 <li><span class="update-date">May 2026</span><span>Received the <a href="https://chem.gnu.ac.kr/board/view?bd_id=news01&amp;wr_id=602&amp;main=1" rel="noopener" target="_blank">Young Pioneer Researcher Award</a> from Gyeongsang National University.</span></li>
 <li><span class="update-date">Apr 2026</span><span>Received <a href="https://news.iubat.ac.bd/article.php?post_id=bb7ba8e893b885b645697215d64dd68a" rel="noopener" target="_blank">Miyan Publications Rewards 2026</a> from IUBAT, Bangladesh.</span></li>
 <li><span class="update-date">Feb 2026</span><span>Published <a href="https://doi.org/10.1063/5.0315426" rel="noopener" target="_blank">“Koopman theory-based reduced-order modeling for diagnosing obstructive sleep apnea using breathing power diagram”</a> in <em>Physics of Fluids</em>.</span></li>
-<li><span class="update-date">Feb 2026</span><span>Published <a href="https://doi.org/10.1016/j.jtha.2026.02.033" rel="noopener" target="_blank">“Experimental Investigation of Ultrasound-Guided Thrombin Injection Outcomes in Complex Morphologies of Iatrogenic Femoral Artery Pseudoaneurysms”</a> in the <em>Journal of Thrombosis and Haemostasis</em>.</span></li>
 <li><span class="update-date">Sep 2025</span><span>Started the Ph.D. program in Mechanical and Aerospace Engineering at <a href="https://www.gnu.ac.kr/eng/main.do" rel="noopener" target="_blank">Gyeongsang National University</a> and continued as a Doctoral Researcher at the <a href="https://sites.google.com/gnu.ac.kr/flow-information-lab" rel="noopener" target="_blank">Flow Information Lab</a>.</span></li>
 </ul>
 <details class="archive">
@@ -1984,7 +2041,7 @@
 <div>
 <a class="publication-title" href="https://doi.org/10.1016/j.aej.2024.11.060" rel="noopener" target="_blank">Cavitation and erosion effects on hydraulic performances of a submersible drainage pump</a>
 <p class="publication-authors">Rakibuzzaman, M., Suh, S. H., Kim, H. H., <strong>Islam, M. D.</strong>, Zhou, L., &amp; El-Emam, M. A.</p>
-<p class="publication-meta"><em>Alexandria Engineering Journal</em>, 113, 431–450, 2025</p>
+<p class="publication-meta"><em>Alexandria Engineering Journal</em>, 113, 431–450, 2025 · Co-author</p>
 <p class="publication-note">Investigates how cavitation and erosion alter hydraulic performance and operational stability in submersible drainage pumps.</p>
 <div class="inline-links"><a href="https://doi.org/10.1016/j.aej.2024.11.060" rel="noopener" target="_blank">DOI</a></div>
 </div>
@@ -2075,41 +2132,41 @@
 <li class="presentation-entry">
 <span class="presentation-year">2026</span>
 <div>
-<strong><a href="https://isromac2026.com/" rel="noopener" target="_blank">CFD–PIV Analysis and Performance Optimization of Hubless Rim-Driven Systems</a></strong>
-<span class="presentation-meta">ISROMAC19 · Waseda University, Japan · July 5–7, 2026</span>
-<span class="presentation-type">Keynote Lecture</span>
+<strong><a class="presentation-title-link" href="https://isromac2026.com/" rel="noopener" target="_blank">CFD–PIV Analysis and Performance Optimization of Hubless Rim-Driven Systems</a></strong>
+<span class="presentation-meta"><a href="https://isromac2026.com/" rel="noopener" target="_blank">ISROMAC19</a> · Waseda University, Japan · July 5–7, 2026</span>
+<div class="presentation-entry-actions"><span class="presentation-type">Keynote Lecture</span><a class="conference-site-button" href="https://isromac2026.com/" rel="noopener" target="_blank" aria-label="Open the official conference site for ISROMAC19">Conference site ↗</a></div>
 </div>
 </li>
 <li class="presentation-entry">
 <span class="presentation-year">2025</span>
 <div>
-<strong>Back-Turn Method for Energy Optimization in Booster Pump Systems</strong>
-<span class="presentation-meta">5th IAHR Asian Working Group Symposium on Hydraulic Machinery and Systems · South Korea · August 4–7, 2025</span>
-<span class="presentation-type">Oral Presentation</span>
+<strong><a class="presentation-title-link" href="https://iahr-asia2025.org/" rel="noopener" target="_blank">Back-Turn Method for Energy Optimization in Booster Pump Systems</a></strong>
+<span class="presentation-meta"><a href="https://iahr-asia2025.org/" rel="noopener" target="_blank">5th IAHR Asian Working Group Symposium on Hydraulic Machinery and Systems</a> · South Korea · August 4–7, 2025</span>
+<div class="presentation-entry-actions"><span class="presentation-type">Oral Presentation</span><a class="conference-site-button" href="https://iahr-asia2025.org/" rel="noopener" target="_blank" aria-label="Open the official conference site for 5th IAHR Asian Working Group Symposium on Hydraulic Machinery and Systems">Conference site ↗</a></div>
 </div>
 </li>
 <li class="presentation-entry">
 <span class="presentation-year">2025</span>
 <div>
-<strong>Effects of Cavitation and Erosion on the Hydraulic Performances of Submersible Drainage Pumps</strong>
-<span class="presentation-meta">4th Asian Workshop on Hydraulic Machinery · Japan · January 4–6, 2025</span>
-<span class="presentation-type">Oral Presentation</span>
+<strong><a class="presentation-title-link" href="https://www.turbo-so.jp/" rel="noopener" target="_blank">Effects of Cavitation and Erosion on the Hydraulic Performances of Submersible Drainage Pumps</a></strong>
+<span class="presentation-meta"><a href="https://www.turbo-so.jp/" rel="noopener" target="_blank">4th Asian Workshop on Hydraulic Machinery</a> · Japan · January 4–6, 2025</span>
+<div class="presentation-entry-actions"><span class="presentation-type">Oral Presentation</span><a class="conference-site-button" href="https://www.turbo-so.jp/" rel="noopener" target="_blank" aria-label="Open the official conference site for 4th Asian Workshop on Hydraulic Machinery">Conference site ↗</a></div>
 </div>
 </li>
 <li class="presentation-entry">
 <span class="presentation-year">2024</span>
 <div>
-<strong>Percutaneous Thrombin Injection Outcomes in Femoral Artery Pseudoaneurysms Using Complex Pseudoaneurysm Models</strong>
-<span class="presentation-meta">26th International Congress of Theoretical and Applied Mechanics (ICTAM 2024) · South Korea · August 25–30, 2024</span>
-<span class="presentation-type">International Conference</span>
+<strong><a class="presentation-title-link" href="https://www.ictam2024.org/" rel="noopener" target="_blank">Percutaneous Thrombin Injection Outcomes in Femoral Artery Pseudoaneurysms Using Complex Pseudoaneurysm Models</a></strong>
+<span class="presentation-meta"><a href="https://www.ictam2024.org/" rel="noopener" target="_blank">26th International Congress of Theoretical and Applied Mechanics (ICTAM 2024)</a> · South Korea · August 25–30, 2024</span>
+<div class="presentation-entry-actions"><span class="presentation-type">International Conference</span><a class="conference-site-button" href="https://www.ictam2024.org/" rel="noopener" target="_blank" aria-label="Open the official conference site for 26th International Congress of Theoretical and Applied Mechanics (ICTAM 2024)">Conference site ↗</a></div>
 </div>
 </li>
 <li class="presentation-entry">
 <span class="presentation-year">2024</span>
 <div>
-<strong>Analysis of Encrustation Formation in Four Types of Ureteral Stents Using an In Vitro Urinary Model</strong>
-<span class="presentation-meta">26th International Congress of Theoretical and Applied Mechanics (ICTAM 2024) · South Korea · August 25–30, 2024</span>
-<span class="presentation-type">International Conference</span>
+<strong><a class="presentation-title-link" href="https://www.ictam2024.org/" rel="noopener" target="_blank">Analysis of Encrustation Formation in Four Types of Ureteral Stents Using an In Vitro Urinary Model</a></strong>
+<span class="presentation-meta"><a href="https://www.ictam2024.org/" rel="noopener" target="_blank">26th International Congress of Theoretical and Applied Mechanics (ICTAM 2024)</a> · South Korea · August 25–30, 2024</span>
+<div class="presentation-entry-actions"><span class="presentation-type">International Conference</span><a class="conference-site-button" href="https://www.ictam2024.org/" rel="noopener" target="_blank" aria-label="Open the official conference site for 26th International Congress of Theoretical and Applied Mechanics (ICTAM 2024)">Conference site ↗</a></div>
 </div>
 </li>
 </ol>
@@ -2123,41 +2180,41 @@
 <li class="presentation-entry">
 <span class="presentation-year">2026</span>
 <div>
-<strong>OSA Diagnostic Index Prediction Using CFD and CNN-KAE</strong>
-<span class="presentation-meta">14th National Congress on Fluids Engineering (14NCFE) · South Korea · July 8–11, 2026</span>
-<span class="presentation-type">Domestic Oral Presentation</span>
+<strong><a class="presentation-title-link" href="https://www.ncfe.or.kr/" rel="noopener" target="_blank">OSA Diagnostic Index Prediction Using CFD and CNN-KAE</a></strong>
+<span class="presentation-meta"><a href="https://www.ncfe.or.kr/" rel="noopener" target="_blank">14th National Congress on Fluids Engineering (14NCFE)</a> · South Korea · July 8–11, 2026</span>
+<div class="presentation-entry-actions"><span class="presentation-type">Domestic Oral Presentation</span><a class="conference-site-button" href="https://www.ncfe.or.kr/" rel="noopener" target="_blank" aria-label="Open the official conference site for 14th National Congress on Fluids Engineering (14NCFE)">Conference site ↗</a></div>
 </div>
 </li>
 <li class="presentation-entry">
 <span class="presentation-year">2025</span>
 <div>
-<strong>CFD Analysis of Duct Shape Effects on Thrust in Electric Hubless Rim-Driven Propellers</strong>
-<span class="presentation-meta">Korean Society of Fluid Machinery Winter Conference · South Korea · December 3–6, 2025</span>
-<span class="presentation-type">Domestic Conference</span>
+<strong><a class="presentation-title-link" href="https://ksfm.org/board/sevent/article/269993" rel="noopener" target="_blank">CFD Analysis of Duct Shape Effects on Thrust in Electric Hubless Rim-Driven Propellers</a></strong>
+<span class="presentation-meta"><a href="https://ksfm.org/board/sevent/article/269993" rel="noopener" target="_blank">Korean Society of Fluid Machinery Winter Conference</a> · South Korea · December 3–6, 2025</span>
+<div class="presentation-entry-actions"><span class="presentation-type">Domestic Conference</span><a class="conference-site-button" href="https://ksfm.org/board/sevent/article/269993" rel="noopener" target="_blank" aria-label="Open the official conference site for Korean Society of Fluid Machinery Winter Conference">Conference site ↗</a></div>
 </div>
 </li>
 <li class="presentation-entry">
 <span class="presentation-year">2024</span>
 <div>
-<strong>Flow Performance and Encrustation Analysis of Ureteral Stents Using an In Vitro Urinary System</strong>
-<span class="presentation-meta">Korean Society of Mechanical Engineers Winter Conference · South Korea · November 4–7, 2024</span>
-<span class="presentation-type">International Session</span>
+<strong><a class="presentation-title-link" href="https://ksme.or.kr/Proceedings/2024a/" rel="noopener" target="_blank">Flow Performance and Encrustation Analysis of Ureteral Stents Using an In Vitro Urinary System</a></strong>
+<span class="presentation-meta"><a href="https://ksme.or.kr/Proceedings/2024a/" rel="noopener" target="_blank">Korean Society of Mechanical Engineers Winter Conference</a> · South Korea · November 4–7, 2024</span>
+<div class="presentation-entry-actions"><span class="presentation-type">International Session</span><a class="conference-site-button" href="https://ksme.or.kr/Proceedings/2024a/" rel="noopener" target="_blank" aria-label="Open the official conference site for Korean Society of Mechanical Engineers Annual Meeting 2024">Conference site ↗</a></div>
 </div>
 </li>
 <li class="presentation-entry">
 <span class="presentation-year">2024</span>
 <div>
-<strong>Analysis of Encrustation Formation at a Double J Stent with a Controlled Flow Rate Using an In Vitro Bladder Model</strong>
-<span class="presentation-meta">Biomedical Engineering Society for Circulatory Disorders Summer Conference · South Korea · March 4–6, 2024</span>
-<span class="presentation-type">Domestic Conference</span>
+<strong><a class="presentation-title-link" href="https://besco.or.kr/" rel="noopener" target="_blank">Analysis of Encrustation Formation at a Double J Stent with a Controlled Flow Rate Using an In Vitro Bladder Model</a></strong>
+<span class="presentation-meta"><a href="https://besco.or.kr/" rel="noopener" target="_blank">Biomedical Engineering Society for Circulatory Disorders Summer Conference</a> · South Korea · March 4–6, 2024</span>
+<div class="presentation-entry-actions"><span class="presentation-type">Domestic Conference</span><a class="conference-site-button" href="https://besco.or.kr/" rel="noopener" target="_blank" aria-label="Open the official conference site for Biomedical Engineering Society for Circulation Summer Conference">Conference site ↗</a></div>
 </div>
 </li>
 <li class="presentation-entry">
 <span class="presentation-year">2023</span>
 <div>
-<strong>A Study on Renovated Double J Stent for Urine Drainage Performance</strong>
-<span class="presentation-meta">Korean Society of Mechanical Engineers Annual Meeting · South Korea · November 1–4, 2023</span>
-<span class="presentation-type">International Session</span>
+<strong><a class="presentation-title-link" href="https://ksme.or.kr/conference/conference01_1.asp?AC=0&sub_param=1&top_param=1" rel="noopener" target="_blank">A Study on Renovated Double J Stent for Urine Drainage Performance</a></strong>
+<span class="presentation-meta"><a href="https://ksme.or.kr/conference/conference01_1.asp?AC=0&sub_param=1&top_param=1" rel="noopener" target="_blank">Korean Society of Mechanical Engineers Annual Meeting</a> · South Korea · November 1–4, 2023</span>
+<div class="presentation-entry-actions"><span class="presentation-type">International Session</span><a class="conference-site-button" href="https://ksme.or.kr/conference/conference01_1.asp?AC=0&sub_param=1&top_param=1" rel="noopener" target="_blank" aria-label="Open the official conference site for Korean Society of Mechanical Engineers Annual Meeting">Conference site ↗</a></div>
 </div>
 </li>
 </ol>
