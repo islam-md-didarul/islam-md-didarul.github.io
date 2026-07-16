@@ -63,194 +63,178 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Dynamic scientific-network background inspired by the supplied Lottie reference. */
+    /* Research-specific CFD–Koopman background. */
     .background-network-svg {
       position: fixed;
-      inset: -2px;
+      inset: -3px;
       z-index: 0;
-      width: calc(100% + 4px);
-      height: calc(100% + 4px);
+      width: calc(100% + 6px);
+      height: calc(100% + 6px);
       pointer-events: none;
       overflow: hidden;
-      opacity: 0.66;
-      filter: blur(1.35px) saturate(0.92);
-      transform: translateZ(0);
+      opacity: var(--flow-bg-opacity, 0.58);
+      filter: blur(1.65px) saturate(0.88);
+      transform: translate3d(0, var(--flow-bg-shift, 0px), 0) scale(1.01);
+      transition: opacity 0.45s ease;
+      will-change: transform, opacity;
     }
 
-    .motion-scene {
-      transform-origin: center;
-      animation: motion-scene-drift 18s ease-in-out infinite alternate;
-    }
-
-    .motion-path {
+    .flow-streamline {
       fill: none;
-      stroke: rgba(38, 91, 140, 0.20);
+      stroke: rgba(43, 101, 150, 0.22);
+      stroke-width: 1.6;
+      stroke-linecap: round;
+    }
+
+    .flow-streamline.secondary {
+      stroke: rgba(64, 126, 172, 0.14);
+      stroke-width: 1.15;
+    }
+
+    .flow-streamline.accent {
+      stroke: rgba(0, 161, 184, 0.44);
+      stroke-width: 2.15;
+      stroke-dasharray: 13 15;
+      animation: flow-dash 5.8s linear infinite;
+      filter: drop-shadow(0 0 6px rgba(0, 161, 184, 0.14));
+    }
+
+    .flow-particle {
+      fill: rgba(18, 113, 172, 0.76);
+      filter: drop-shadow(0 0 6px rgba(38, 126, 182, 0.26));
+    }
+
+    .flow-particle.cyan {
+      fill: rgba(0, 172, 190, 0.82);
+      filter: drop-shadow(0 0 7px rgba(0, 172, 190, 0.28));
+    }
+
+    .koopman-link {
+      fill: none;
+      stroke: rgba(39, 91, 141, 0.30);
+      stroke-width: 1.35;
+      stroke-dasharray: 4 7;
+      animation: koopman-link-flow 8.5s linear infinite;
+    }
+
+    .koopman-node {
+      fill: rgba(31, 79, 129, 0.72);
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: koopman-node-pulse 3.2s ease-in-out infinite alternate;
+    }
+
+    .koopman-node.cyan {
+      fill: rgba(0, 166, 184, 0.78);
+    }
+
+    .koopman-node.white {
+      fill: rgba(255, 255, 255, 0.95);
+      stroke: rgba(31, 79, 129, 0.66);
+      stroke-width: 1.15;
+    }
+
+    .koopman-halo {
+      fill: rgba(82, 153, 205, 0.14);
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: koopman-halo-pulse 4.5s ease-in-out infinite alternate;
+    }
+
+    .rim-ring {
+      fill: none;
+      stroke: rgba(30, 93, 146, 0.18);
+      stroke-width: 1.45;
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: rim-ring-rotate 24s linear infinite;
+    }
+
+    .rim-ring .rim-blade {
+      stroke: rgba(0, 151, 176, 0.35);
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+
+    .breathing-wave {
+      fill: none;
+      stroke: rgba(37, 104, 154, 0.21);
       stroke-width: 1.8;
       stroke-linecap: round;
-      stroke-linejoin: round;
-      filter: blur(0.28px);
+      stroke-dasharray: 8 10;
+      animation: breathing-wave-flow 9s linear infinite;
     }
 
-    .motion-path.bold {
-      stroke: rgba(32, 83, 132, 0.34);
-      stroke-width: 2.6;
-      filter: blur(0.38px);
-    }
-
-    .motion-path.dashed {
-      stroke: rgba(42, 100, 150, 0.30);
-      stroke-width: 1.9;
-      stroke-dasharray: 5 8;
-      filter: blur(0.42px);
-      animation: motion-dash 6.5s linear infinite;
-    }
-
-    .motion-path.energy {
-      stroke: rgba(0, 174, 196, 0.68);
-      stroke-width: 3.4;
-      stroke-dasharray: 18 16;
-      animation: motion-energy 2.8s linear infinite;
-      filter: blur(0.45px) drop-shadow(0 0 9px rgba(0, 174, 196, 0.34));
-    }
-
-    .motion-node {
-      fill: rgba(31, 79, 130, 0.84);
-      filter: blur(0.45px) drop-shadow(0 0 5px rgba(55, 108, 158, 0.18));
+    .breathing-pulse {
+      fill: rgba(0, 158, 180, 0.12);
       transform-box: fill-box;
       transform-origin: center;
-      animation: motion-node-pulse 2.6s ease-in-out infinite alternate;
+      animation: breathing-pulse 5.4s ease-in-out infinite;
     }
 
-    .motion-node.white {
-      fill: rgba(255, 255, 255, 0.98);
-      stroke: rgba(19, 58, 105, 0.78);
-      stroke-width: 1.4;
+    .flow-cluster-left {
+      transform-origin: 22% 46%;
+      animation: flow-cluster-left 15s ease-in-out infinite alternate;
     }
 
-    .motion-node.cyan {
-      fill: rgba(0, 179, 188, 0.88);
-      filter: blur(0.55px) drop-shadow(0 0 10px rgba(0, 179, 188, 0.38));
+    .flow-cluster-center {
+      transform-origin: 52% 52%;
+      animation: flow-cluster-center 13s ease-in-out infinite alternate;
     }
 
-    .motion-node.small {
-      animation-duration: 3.4s;
+    .flow-cluster-right {
+      transform-origin: 82% 44%;
+      animation: flow-cluster-right 17s ease-in-out infinite alternate;
     }
 
-    .motion-halo {
-      fill: rgba(74, 129, 201, 0.18);
-      filter: blur(5px);
-      transform-box: fill-box;
-      transform-origin: center;
-      animation: motion-halo-pulse 4s ease-in-out infinite alternate;
-    }
-
-    .motion-ring {
-      fill: none;
-      stroke: rgba(35, 92, 148, 0.20);
-      stroke-width: 1.45;
-      filter: blur(0.6px);
-      transform-box: fill-box;
-      transform-origin: center;
-      animation: motion-ring-breathe 5.5s ease-in-out infinite alternate;
-    }
-
-    .motion-ring.cyan {
-      stroke: rgba(0, 158, 182, 0.62);
-      stroke-width: 1.7;
-    }
-
-    .motion-orbit {
-      transform-box: fill-box;
-      transform-origin: center;
-      animation: motion-orbit 10s linear infinite;
-    }
-
-    .motion-blur {
-      fill: rgba(63, 99, 191, 0.20);
-      filter: blur(20px);
-      animation: motion-blur-float 7s ease-in-out infinite alternate;
-    }
-
-    .motion-cluster-left {
-      transform-origin: 25% 52%;
-      animation: motion-cluster-left 11s ease-in-out infinite alternate;
-    }
-
-    .motion-cluster-center {
-      transform-origin: 50% 53%;
-      animation: motion-cluster-center 9s ease-in-out infinite alternate;
-    }
-
-    .motion-cluster-right {
-      transform-origin: 77% 50%;
-      animation: motion-cluster-right 12s ease-in-out infinite alternate;
-    }
-
-    .motion-particle {
-      fill: rgba(0, 178, 194, 0.90);
-      filter: blur(0.7px) drop-shadow(0 0 11px rgba(0, 178, 194, 0.42));
-    }
-
-    .motion-particle.white {
-      fill: rgba(255, 255, 255, 0.92);
-      stroke: rgba(32, 75, 124, 0.68);
-      stroke-width: 1;
-      filter: blur(0.55px) drop-shadow(0 0 9px rgba(58, 110, 160, 0.30));
-    }
-
-    @keyframes motion-scene-drift {
-      from { transform: translate3d(0, 4px, 0) scale(1); }
-      to { transform: translate3d(0, -8px, 0) scale(1.012); }
-    }
-
-    @keyframes motion-dash {
+    @keyframes flow-dash {
       from { stroke-dashoffset: 0; }
-      to { stroke-dashoffset: -130; }
+      to { stroke-dashoffset: -112; }
     }
 
-    @keyframes motion-energy {
+    @keyframes koopman-link-flow {
       from { stroke-dashoffset: 0; }
-      to { stroke-dashoffset: -160; }
+      to { stroke-dashoffset: -88; }
     }
 
-    @keyframes motion-node-pulse {
-      from { opacity: 0.64; transform: scale(0.84); }
-      to { opacity: 1; transform: scale(1.2); }
+    @keyframes koopman-node-pulse {
+      from { opacity: 0.58; transform: scale(0.88); }
+      to { opacity: 1; transform: scale(1.16); }
     }
 
-    @keyframes motion-halo-pulse {
-      from { opacity: 0.08; transform: scale(0.75); }
-      to { opacity: 0.34; transform: scale(1.3); }
+    @keyframes koopman-halo-pulse {
+      from { opacity: 0.08; transform: scale(0.82); }
+      to { opacity: 0.26; transform: scale(1.2); }
     }
 
-    @keyframes motion-ring-breathe {
-      from { opacity: 0.22; transform: scale(0.94) rotate(-2deg); }
-      to { opacity: 0.5; transform: scale(1.06) rotate(2deg); }
-    }
-
-    @keyframes motion-orbit {
+    @keyframes rim-ring-rotate {
       to { transform: rotate(360deg); }
     }
 
-    @keyframes motion-blur-float {
-      from { opacity: 0.12; transform: translate3d(-10px, 4px, 0) scale(0.88); }
-      to { opacity: 0.28; transform: translate3d(14px, -12px, 0) scale(1.12); }
+    @keyframes breathing-wave-flow {
+      to { stroke-dashoffset: -144; }
     }
 
-    @keyframes motion-cluster-left {
-      from { transform: translate3d(-18px, 8px, 0) rotate(-0.7deg); }
-      to { transform: translate3d(18px, -14px, 0) rotate(0.9deg); }
+    @keyframes breathing-pulse {
+      0%, 100% { opacity: 0.08; transform: scale(0.84); }
+      50% { opacity: 0.22; transform: scale(1.18); }
     }
 
-    @keyframes motion-cluster-center {
-      from { transform: translate3d(-7px, 12px, 0); }
-      to { transform: translate3d(10px, -10px, 0); }
+    @keyframes flow-cluster-left {
+      from { transform: translate3d(-16px, 7px, 0); }
+      to { transform: translate3d(20px, -13px, 0); }
     }
 
-    @keyframes motion-cluster-right {
-      from { transform: translate3d(18px, -8px, 0) rotate(0.5deg); }
-      to { transform: translate3d(-22px, 14px, 0) rotate(-0.8deg); }
+    @keyframes flow-cluster-center {
+      from { transform: translate3d(-8px, 11px, 0); }
+      to { transform: translate3d(12px, -10px, 0); }
     }
+
+    @keyframes flow-cluster-right {
+      from { transform: translate3d(16px, -8px, 0); }
+      to { transform: translate3d(-22px, 14px, 0); }
+    }
+
     .site-nav,
     main,
     footer,
@@ -1659,6 +1643,10 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+      .background-network-svg * {
+        animation: none !important;
+      }
+
       html {
         scroll-behavior: auto;
       }
@@ -1737,107 +1725,61 @@
 <body>
 <svg aria-hidden="true" class="background-network-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
   <defs>
-    <path id="particle-route-left" d="M-60 370 L122 468 L250 516 L430 392 L570 474"/>
-    <path id="particle-route-center" d="M570 474 L652 432 L736 472 L736 552 L652 590 L570 558 Z"/>
-    <path id="particle-route-right" d="M736 472 L888 382 L1038 478 L1260 578 L1500 690"/>
-    <path id="particle-route-vertical" d="M652 350 L652 432 L652 590 L652 770"/>
+    <path id="streamline-a" d="M-120 305 C100 190, 260 230, 420 330 S760 500, 980 370 S1260 230, 1560 350"/>
+    <path id="streamline-b" d="M-120 410 C120 300, 300 350, 500 440 S820 600, 1040 485 S1300 350, 1560 455"/>
+    <path id="streamline-c" d="M-120 515 C80 430, 280 470, 470 565 S790 705, 1030 590 S1310 460, 1560 565"/>
+    <path id="latent-path" d="M505 480 L615 410 L735 462 L760 585 L646 648 L535 570 Z"/>
   </defs>
 
-  <g class="motion-scene">
-    <circle class="motion-ring" cx="70" cy="470" r="82"/>
-    <circle class="motion-ring" cx="1320" cy="365" r="118"/>
-    <circle class="motion-blur" cx="280" cy="588" r="35"/>
-    <circle class="motion-blur" cx="1180" cy="610" r="46"/>
+  <g class="flow-cluster-left">
+    <path class="flow-streamline" d="M-140 300 C110 170, 280 220, 450 330 S760 500, 980 370 S1280 220, 1560 340"/>
+    <path class="flow-streamline secondary" d="M-140 360 C80 245, 270 280, 460 380 S800 545, 1010 425 S1290 300, 1560 410"/>
+    <path class="flow-streamline accent" d="M-140 420 C100 310, 300 350, 500 440 S820 600, 1040 485 S1300 350, 1560 455"/>
+    <path class="flow-streamline secondary" d="M-140 480 C100 390, 300 420, 490 515 S805 665, 1030 550 S1320 420, 1560 525"/>
+    <path class="flow-streamline" d="M-140 540 C80 455, 280 490, 470 585 S790 725, 1040 610 S1320 480, 1560 585"/>
 
-    <g class="motion-cluster-left">
-      <path class="motion-path dashed" d="M-60 370 L122 468 L250 516 L430 392"/>
-      <path class="motion-path bold" d="M122 468 L250 516"/>
-      <path class="motion-path" d="M430 392 L470 620"/>
+    <circle class="flow-particle" r="4.2"><animateMotion dur="10s" repeatCount="indefinite" rotate="auto"><mpath href="#streamline-a"/></animateMotion></circle>
+    <circle class="flow-particle cyan" r="4.6"><animateMotion dur="8.2s" begin="-2.7s" repeatCount="indefinite" rotate="auto"><mpath href="#streamline-b"/></animateMotion></circle>
+    <circle class="flow-particle" r="3.8"><animateMotion dur="11.5s" begin="-6.1s" repeatCount="indefinite" rotate="auto"><mpath href="#streamline-c"/></animateMotion></circle>
+    <circle class="flow-particle cyan" r="3.6"><animateMotion dur="13s" begin="-8.4s" repeatCount="indefinite" rotate="auto"><mpath href="#streamline-a"/></animateMotion></circle>
+  </g>
 
-      <circle class="motion-halo" cx="430" cy="392" r="27"/>
-      <circle class="motion-ring cyan" cx="430" cy="392" r="30"/>
-      <circle class="motion-node white" cx="122" cy="468" r="6.5"/>
-      <circle class="motion-node" cx="250" cy="516" r="6"/>
-      <circle class="motion-node cyan" cx="430" cy="392" r="6.5"/>
-      <circle class="motion-node cyan small" cx="444" cy="552" r="4.2"/>
-      <circle class="motion-ring cyan" cx="490" cy="646" r="28"/>
+  <g class="flow-cluster-center">
+    <path class="koopman-link" d="M505 480 L615 410 L735 462 L760 585 L646 648 L535 570 Z"/>
+    <path class="koopman-link" d="M505 480 L735 462 M615 410 L646 648 M535 570 L760 585"/>
+    <circle class="koopman-halo" cx="615" cy="410" r="30"/>
+    <circle class="koopman-halo" cx="646" cy="648" r="34"/>
+    <circle class="koopman-node" cx="505" cy="480" r="5.5"/>
+    <circle class="koopman-node cyan" cx="615" cy="410" r="6.2"/>
+    <circle class="koopman-node white" cx="735" cy="462" r="6.6"/>
+    <circle class="koopman-node" cx="760" cy="585" r="5.8"/>
+    <circle class="koopman-node white" cx="646" cy="648" r="6.5"/>
+    <circle class="koopman-node cyan" cx="535" cy="570" r="5.6"/>
+    <circle class="flow-particle cyan" r="4"><animateMotion dur="7.2s" repeatCount="indefinite" rotate="auto"><mpath href="#latent-path"/></animateMotion></circle>
+    <circle class="flow-particle" r="3.5"><animateMotion dur="9.3s" begin="-4.2s" repeatCount="indefinite" rotate="auto"><mpath href="#latent-path"/></animateMotion></circle>
+  </g>
 
-      <g class="motion-orbit">
-        <circle class="motion-node small" cx="430" cy="361" r="2.2"/>
-        <circle class="motion-node small" cx="456" cy="404" r="2.2"/>
-        <circle class="motion-node small" cx="404" cy="405" r="2.2"/>
+  <g class="flow-cluster-right">
+    <g transform="translate(1125 300)">
+      <g class="rim-ring">
+        <circle cx="0" cy="0" r="82"/>
+        <circle cx="0" cy="0" r="55"/>
+        <line class="rim-blade" x1="0" y1="-55" x2="18" y2="-80"/>
+        <line class="rim-blade" x1="39" y1="-39" x2="67" y2="-54"/>
+        <line class="rim-blade" x1="55" y1="0" x2="82" y2="10"/>
+        <line class="rim-blade" x1="39" y1="39" x2="54" y2="67"/>
+        <line class="rim-blade" x1="0" y1="55" x2="-16" y2="80"/>
+        <line class="rim-blade" x1="-39" y1="39" x2="-67" y2="54"/>
+        <line class="rim-blade" x1="-55" y1="0" x2="-82" y2="-10"/>
+        <line class="rim-blade" x1="-39" y1="-39" x2="-54" y2="-67"/>
       </g>
     </g>
+  </g>
 
-    <g class="motion-cluster-center">
-      <path class="motion-path energy" d="M430 392 L570 474"/>
-      <path class="motion-path bold" d="M570 474 L652 432 L736 472 L736 552 L652 590 L570 558 Z"/>
-      <path class="motion-path bold" d="M570 474 L736 552"/>
-      <path class="motion-path bold" d="M652 432 L652 590"/>
-      <path class="motion-path dashed" d="M652 590 L652 770"/>
-      <path class="motion-path" d="M652 432 L652 350"/>
-
-      <circle class="motion-node" cx="570" cy="474" r="5.4"/>
-      <circle class="motion-node" cx="570" cy="558" r="4.8"/>
-      <circle class="motion-node cyan" cx="652" cy="432" r="5.4"/>
-      <circle class="motion-node white" cx="652" cy="590" r="6.2"/>
-      <circle class="motion-node white" cx="736" cy="472" r="6.2"/>
-      <circle class="motion-node" cx="736" cy="552" r="5.5"/>
-      <circle class="motion-node cyan small" cx="652" cy="350" r="4.5"/>
-    </g>
-
-    <g class="motion-cluster-right">
-      <path class="motion-path dashed" d="M736 472 L888 382"/>
-      <path class="motion-path bold" d="M888 382 L1038 478"/>
-      <path class="motion-path dashed" d="M1038 478 L1260 578 L1500 690"/>
-
-      <circle class="motion-halo" cx="888" cy="382" r="23"/>
-      <circle class="motion-ring" cx="888" cy="382" r="26"/>
-      <circle class="motion-ring" cx="888" cy="382" r="10"/>
-      <circle class="motion-node white" cx="888" cy="382" r="6.2"/>
-      <circle class="motion-node cyan" cx="1038" cy="478" r="5.5"/>
-      <circle class="motion-node white small" cx="1104" cy="288" r="5"/>
-      <circle class="motion-node white small" cx="976" cy="510" r="4.4"/>
-      <circle class="motion-ring" cx="920" cy="650" r="28"/>
-      <circle class="motion-node" cx="920" cy="650" r="4.2"/>
-    </g>
-
-    <!-- Bright particles travel along the same paths, recreating the Lottie-style motion. -->
-    <circle class="motion-particle" r="4.4">
-      <animateMotion dur="5.8s" repeatCount="indefinite" rotate="auto">
-        <mpath href="#particle-route-left"/>
-      </animateMotion>
-    </circle>
-    <circle class="motion-particle white" r="4">
-      <animateMotion dur="7.6s" begin="-2.4s" repeatCount="indefinite" rotate="auto">
-        <mpath href="#particle-route-left"/>
-      </animateMotion>
-    </circle>
-    <circle class="motion-particle" r="4.1">
-      <animateMotion dur="4.4s" repeatCount="indefinite" rotate="auto">
-        <mpath href="#particle-route-center"/>
-      </animateMotion>
-    </circle>
-    <circle class="motion-particle white" r="3.8">
-      <animateMotion dur="5.2s" begin="-1.6s" repeatCount="indefinite" rotate="auto">
-        <mpath href="#particle-route-center"/>
-      </animateMotion>
-    </circle>
-    <circle class="motion-particle" r="4.2">
-      <animateMotion dur="7s" begin="-3s" repeatCount="indefinite" rotate="auto">
-        <mpath href="#particle-route-right"/>
-      </animateMotion>
-    </circle>
-    <circle class="motion-particle white" r="3.8">
-      <animateMotion dur="8.8s" begin="-5.2s" repeatCount="indefinite" rotate="auto">
-        <mpath href="#particle-route-right"/>
-      </animateMotion>
-    </circle>
-    <circle class="motion-particle" r="3.8">
-      <animateMotion dur="4.8s" begin="-1s" repeatCount="indefinite" rotate="auto">
-        <mpath href="#particle-route-vertical"/>
-      </animateMotion>
-    </circle>
+  <g opacity="0.86">
+    <path class="breathing-wave" d="M70 730 C145 730, 175 665, 240 665 C315 665, 330 785, 410 785 C490 785, 510 700, 585 700 C660 700, 680 755, 755 755"/>
+    <circle class="breathing-pulse" cx="240" cy="665" r="34"/>
+    <circle class="breathing-pulse" cx="585" cy="700" r="30" style="animation-delay:-2.1s"/>
   </g>
 </svg>
 <div aria-hidden="true" class="scroll-progress"></div>
@@ -2174,7 +2116,7 @@
 </article>
 <article class="presentation-group" data-presentation-category="domestic" data-reveal="">
 <header class="presentation-group-header">
-<h4>Domestic Conferences and International Sessions</h4>
+<h4>Domestic Conferences and Int. Sessions</h4>
 <span class="presentation-count">5 presentations</span>
 </header>
 <ol class="presentation-timeline">
@@ -2361,6 +2303,28 @@
         .filter(Boolean);
       const progressBar = document.querySelector('.scroll-progress');
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const flowBackground = document.querySelector('.background-network-svg');
+      let flowBackgroundTicking = false;
+
+      function updateFlowBackground() {
+        if (!flowBackground) return;
+        const scrollable = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+        const progress = Math.min(window.scrollY / scrollable, 1);
+        const opacity = reduceMotion ? 0.34 : 0.60 - (progress * 0.20);
+        const shift = reduceMotion ? 0 : Math.max(window.scrollY * -0.018, -22);
+        document.documentElement.style.setProperty('--flow-bg-opacity', opacity.toFixed(3));
+        document.documentElement.style.setProperty('--flow-bg-shift', shift.toFixed(1) + 'px');
+        flowBackgroundTicking = false;
+      }
+
+      window.addEventListener('scroll', function () {
+        if (!flowBackgroundTicking) {
+          window.requestAnimationFrame(updateFlowBackground);
+          flowBackgroundTicking = true;
+        }
+      }, { passive: true });
+      updateFlowBackground();
 
       // More clearly animated network background inspired by connecting-node visuals.
       const networkCanvas = document.querySelector('.background-network');
